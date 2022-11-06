@@ -105,5 +105,9 @@ dist
 
 .idea
 
+#Database
+louevainlinux.sqlite
+
+#HTTPS certificates
 key.pem
 cert.pem
