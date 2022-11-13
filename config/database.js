@@ -197,5 +197,24 @@ Historique.init({
     }
 },({sequelize}));
 
+class Recu extends Model{}
+Recu.init({
+    n_commande:{
+        type: DataTypes.TEXT,
+        allowNull: false,
+        primaryKey: true
+    },
+    commande:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references:{
+            model: Commandes,
+            key: 'commandeID'
+        }
+    }
+},({sequelize}));
+
+//TODO Relations entre tables
+
 sequelize.sync()
 module.exports = {sequelize};
