@@ -1,17 +1,19 @@
-const {Sequelize , DataTypes , Model} = require('sequelize');
+const {Sequelize, DataTypes, Model} = require('sequelize');
 
 const sequelize = new Sequelize({
     dialect: "sqlite",
     storage: "louevainlinux.sqlite"
 })
 
-class Admins extends Model{}
+class Admins extends Model {
+}
+
 Admins.init({
-    email:{
+    email: {
         type: DataTypes.TEXT,
         allowNull: false,
         primaryKey: true,
-        validate:{
+        validate: {
             isEmail: true
         }
     },
@@ -24,21 +26,23 @@ Admins.init({
         allowNull: false
 
     }
-},({sequelize}));
+}, ({sequelize}));
 
-class Produits extends Model{}
+class Produits extends Model {
+}
+
 Produits.init({
-    produitID:{
+    produitID: {
         type: DataTypes.INTEGER,
         allowNull: false,
         autoIncrement: true,
         primaryKey: true
     },
-    prix:{
+    prix: {
         type: DataTypes.REAL,
         allowNull: false,
     },
-    quantite:{
+    quantite: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
@@ -46,173 +50,179 @@ Produits.init({
         type: DataTypes.TEXT,
         allowNull: false
     },
-    description:{
+    description: {
         type: DataTypes.TEXT,
         allowNull: false
     }
-},({sequelize}));
+}, ({sequelize}));
 
-class Commandes extends Model{}
+class Commandes extends Model {
+}
+
 Commandes.init({
-    commandeID:{
+    commandeID: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    produitID:{
+    produitID: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references:{
+        references: {
             model: Produits,
             key: 'produitID'
         }
     },
-    quantite:{
+    quantite: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    date_debut:{
+    date_debut: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             isDate: true
         }
     },
-    date_fin:{
+    date_fin: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             isDate: true
         }
     },
-    date_recu:{
+    date_recu: {
         type: DataTypes.TEXT,
         validate: {
             isDate: true
         }
     },
-    date_reception:{
+    date_reception: {
         type: DataTypes.TEXT,
         validate: {
             isDate: true
         }
     },
-    gsm:{
+    gsm: {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    email:{
+    email: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate:{
+        validate: {
             isEmail: true
         }
     },
-    adresse:{
+    adresse: {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    nom_du_client:{
+    nom_du_client: {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    paye:{
+    paye: {
         type: DataTypes.TEXT,
         defaultValue: "Non"
     },
-    assure:{
+    assure: {
         type: DataTypes.TEXT,
         defaultValue: "Non"
     },
-    admin:{
+    admin: {
         type: DataTypes.TEXT,
         allowNull: false,
-        references:{
+        references: {
             model: Admins,
             key: 'email'
         }
     }
-},({sequelize}));
+}, ({sequelize}));
 
-class Historique extends Model{}
+class Historique extends Model {
+}
+
 Historique.init({
-    historiqueID:{
+    historiqueID: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
         allowNull: false,
         primaryKey: true
     },
-    produit:{
+    produit: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references:{
+        references: {
             model: Produits,
             key: 'produitID'
         }
     },
-    quantite:{
+    quantite: {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    date_debut:{
+    date_debut: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             isDate: true
         }
     },
-    date_fin:{
+    date_fin: {
         type: DataTypes.TEXT,
         allowNull: false,
         validate: {
             isDate: true
         }
     },
-    gsm:{
+    gsm: {
         type: DataTypes.TEXT,
         allowNull: false
     },
-    email:{
+    email: {
         type: DataTypes.TEXT,
         allowNull: false,
-        validate:{
+        validate: {
             isEmail: true
         }
     },
-    assure:{
+    assure: {
         type: DataTypes.TEXT,
         defaultValue: "Non"
     },
-    commentaire:{
+    commentaire: {
         type: DataTypes.TEXT
     },
-    admin:{
+    admin: {
         type: DataTypes.TEXT,
         allowNull: false,
-        references:{
+        references: {
             model: Admins,
             key: 'email'
         }
     }
-},({sequelize}));
+}, ({sequelize}));
 
-class Recu extends Model{}
+class Recu extends Model {
+}
+
 Recu.init({
-    n_commande:{
+    n_commande: {
         type: DataTypes.TEXT,
         allowNull: false,
         primaryKey: true
     },
-    commande:{
+    commande: {
         type: DataTypes.INTEGER,
         allowNull: false,
-        references:{
+        references: {
             model: Commandes,
             key: 'commandeID'
         }
     }
-},({sequelize}));
+}, ({sequelize}));
 
 //TODO Relations entre tables
 
