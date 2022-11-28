@@ -10,7 +10,14 @@ const fs = require('fs');
 const app = express();
 const public_dir = path.join(__dirname, 'public');
 
+const {sequelize} = require("./config/database");
+const {initDB} = require("./models/global");
+
 app.set('view engine', 'ejs');
+
+initDB(sequelize).then(() => {
+    console.log("databse startup process complete");
+});
 
 app.use(express.static(public_dir));
 

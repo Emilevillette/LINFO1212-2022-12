@@ -5,10 +5,12 @@ const sequelize = new Sequelize({
     storage: "louevainlinux.sqlite"
 })
 
-class Admins extends Model {
+
+/**
+ class Admins extends Model {
 }
 
-Admins.init({
+ Admins.init({
     email: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -28,10 +30,10 @@ Admins.init({
     }
 }, ({sequelize}));
 
-class Produits extends Model {
+ class Produits extends Model {
 }
 
-Produits.init({
+ Produits.init({
     produitID: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -56,10 +58,10 @@ Produits.init({
     }
 }, ({sequelize}));
 
-class Commandes extends Model {
+ class Commandes extends Model {
 }
 
-Commandes.init({
+ Commandes.init({
     commandeID: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -141,10 +143,10 @@ Commandes.init({
     }
 }, ({sequelize}));
 
-class Historique extends Model {
+ class Historique extends Model {
 }
 
-Historique.init({
+ Historique.init({
     historiqueID: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -205,10 +207,10 @@ Historique.init({
     }
 }, ({sequelize}));
 
-class Recu extends Model {
+ class Recu extends Model {
 }
 
-Recu.init({
+ Recu.init({
     n_commande: {
         type: DataTypes.TEXT,
         allowNull: false,
@@ -223,8 +225,6 @@ Recu.init({
         }
     }
 }, ({sequelize}));
+ **/
 
-//TODO Relations entre tables
-
-sequelize.sync()
 module.exports = {sequelize};

@@ -13,4 +13,4 @@ Receipt.init({
     }
 }, ({sequelize}));
 
-module.exports = Receipt;
+module.exports = {Receipt};

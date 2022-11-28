@@ -61,3 +61,5 @@ const Orders = sequelize.define("orders", {
         defaultValue: false,
     }
 });
+
+module.exports = {Orders}

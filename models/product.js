@@ -39,6 +39,7 @@ const ProductCategory = sequelize.define(
         id: {
             type: DataTypes.TEXT,
             allowNull: false,
+            primaryKey:true,
             defaultValue: "Other"
         },
         "description": {
@@ -49,4 +50,4 @@ const ProductCategory = sequelize.define(
     }
 );
 
-
+module.exports = {Product, ProductModel, ProductCategory}
