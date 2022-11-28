@@ -3,7 +3,7 @@
 	width: 450px;
 	height: 500px;
 	overflow: hidden;
-    background: rgba(138, 149, 179, 0.5);
+    background: var(--third-color);
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
     margin: auto;
@@ -16,7 +16,7 @@
 	height: 100%;
 }
 label{
-	color: #fff;
+	color: var(--fourth-color);
 	font-size: 2.3em;
 	justify-content: center;
 	display: flex;
@@ -28,7 +28,7 @@ label{
 .in{
 	width: 60%;
 	height: 20px;
-	background: #e0dede;
+	background: var(--sixth-color);
 	justify-content: center;
 	display: flex;
 	margin: 20px auto;
@@ -45,8 +45,8 @@ label{
 	margin: 10px auto;
 	justify-content: center;
 	display: block;
-	color: #fff;
-	background: rgb(206, 186, 190);
+	color: rgba(255, 255, 255, 0.671);
+	background: var(--seventh-color);
 	font-size: 1em;
 	font-weight: bold;
 	margin-top: 20px;
@@ -57,7 +57,7 @@ label{
 	cursor: pointer;
 }
 .log:hover{
-	background: rgb(170, 142, 146);
+	background: var(--eight-color);
 }
 .login{
 	height: 460px;
