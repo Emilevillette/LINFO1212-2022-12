@@ -5,9 +5,9 @@
   font-family: 'Poppins',sans-serif;
   overflow: hidden;
 }
+
 body {
-    background-image: url("https://www.aivs.fr/wp-content/uploads/2020/11/bandeau-fourniture-materiel-informatique-qualite-aivs-phone.jpg");
-    background-repeat: no-repeat;
+    background-image: var(--backg);
     background-attachment: fixed; 
     background-size: 100% 100%;
     
@@ -17,10 +17,61 @@ body {
 	width: 750px;
 	height: 350px;
 	overflow: hidden;
-    background: rgba(138, 149, 179, 0.5);
+  background: var(--third-color);
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
-    margin: auto;
+  margin: auto;
+}
+
+h1{
+  color: var(--fourth-color);
+  margin-top: 1em;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+h2{
+  color: var(--fifth-color);
+  margin-top: 2em;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+h6{
+  color: var(--fifth-color);
+  margin-top: 5em;
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+main .form{
+  margin-top: 5em;
+}
+
+
+
+:root{
+  --backg: url(images/background.jpg);
+  --primary-color: #e4e4e4bb;
+  --secondary-color: rgb(47, 64, 109);
+  --third-color:rgba(189, 197, 218, 0.884);
+  --fourth-color:rgb(65, 49, 97);
+  --fifth-color: rgb(52, 47, 65);
+  --sixth-color:rgba(255, 255, 255, 0.747);
+  --seventh-color:rgba(96, 111, 155, 0.74);
+  --eight-color:rgb(87, 97, 131);
+}
+
+.dark-theme{
+  --backg: url(images/background2.jpg);
+  --primary-color:#1b1b1b;
+  --secondary-color:rgb(112, 128, 173);
+  --third-color:rgba(96, 111, 155, 0.74);
+  --fourth-color:rgba(196, 193, 193, 0.89);
+  --fifth-color: rgb(29, 27, 34);
+  --sixth-color: #4241418e;
+  --seventh-color:rgba(139, 151, 189, 0.74);
+  --eight-color:rgb(178, 182, 194);
 }
 
 
@@ -34,11 +85,16 @@ body {
 }
 nav{
     position: fixed;
-    background: #1b1b1b;
+    background: var(--primary-color);
     width: 100%;
     padding: 10px 0;
     z-index: 12;
   }
+
+#icon{
+  width: 30px;
+  cursor: pointer;
+}
 nav .menu{
   max-width: 1250px;
   margin: auto;
@@ -47,24 +103,30 @@ nav .menu{
   justify-content: space-between;
   padding: 0 20px;
 }
+
+.top_right{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .menu .logo a{
   text-decoration: none;
-  color: rgb(112, 128, 173);
-  font-size: 35px;
+  color: var(--secondary-color);
+  font-size: 40px;
   font-weight: 600;
-}
-.menu ul{
-  display: inline-flex;
 }
 
 
 .look_up {
     text-align: center;
     transition-duration: 0.5s;
+    background-color: var(--sixth-color);
+
 }
 
 .look_up:hover {
-    background-color: rgb(165, 171, 223);
+    background-color: rgb(192, 196, 229);
 }
 
 
@@ -72,11 +134,19 @@ nav .menu{
     width : 350px;
     text-align: center;
     transition-duration: 0.5s;
-    background-color: rgba(255, 255, 255, 0.747);
+    background-color: var(--sixth-color);
+    margin-top: 6em;
 }
+/*
+::placeholder {
+  color: rgb(141, 99, 99);
+}*/
+
+
 
 .search_bar:hover {
-    background-color: rgb(165, 171, 223);
+    background-color: rgb(192, 196, 229);
+    
 }
 
 .backg{
@@ -100,16 +170,7 @@ nav .menu{
     background-color:#1b1b1ba8;
 }
 
-.top_right{
-    position: absolute;
-    top: 10%;
-    left: 187%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    font-size: 35px;
-    font-weight: 600;
-    
-}
+
 
 .center{
   position: absolute;
@@ -246,5 +307,3 @@ td:first-child, th:first-child {
 .but:hover::after {
   opacity: 1;
 }
-
-
