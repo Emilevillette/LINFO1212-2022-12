@@ -15,8 +15,7 @@
       <div class="logo">
         <a href="#">LOUEvain-Li-Nux</a>
       </div>
-        <a class="link" href="#">🛒</a>
-    </div>
+        <img src="images/moon.png" id="icon" onclick="dark_mode()">
   </nav>
   
   <div class="backg"></div>
@@ -51,4 +50,18 @@
 </body>
 
 
-</html>   
+<!--meant to be on a seperate js file, my mac refuses access to the file-->
+<script>
+  // This function allows us to switch from light to dark mode
+  function dark_mode(){
+      var icon = document.getElementById("icon");
+      document.body.classList.toggle("dark-theme");
+      if(document.body.classList.contains("dark-theme")){
+          icon.src = "images/sun.png";
+      }else{
+          icon.src = "images/moon.png";
+      }
+  }
+</script>
+
+</html>    
