@@ -14,26 +14,39 @@
       <div class="logo">
         <a href="#">LOUEvain-Li-Nux</a>
       </div>
+      <div class="top_right">
         <a class="link" href="#">🛒</a>
-    </div>
+        <img src="images/moon.png" id="icon" onclick="dark_mode()">
+      </dov>
   </nav>
   
   <div class="backg"></div>
 
   <div class="center">
     <div class="main">
-      <h1 style= "color: rgb(190, 189, 192)">Veuillez présenter le code de commande ci-dessous au Kot-à-Projet Louvain-li-Nux afin de récupérer votre commande:</h1>
-      <br style = "line-height:5;">
-      <h2 style= "color: rgb(29, 27, 34)"><u>X8J625bn954</u></h2>
-      <br style = "line-height:4.5;">
-      <h6 style= "color: rgb(29, 27, 34)">Ce même code vous a été envoyé par mail à l'adresse renseignée précédemment</h4>
+      <h1>Veuillez présenter le code de commande ci-dessous au Kot-à-Projet Louvain-li-Nux afin de récupérer votre commande:</h1>
+      <h2><u>X8J625bn954</u></h2>
+      <h6>Ce même code vous a été envoyé par mail à l'adresse renseignée précédemment</h4>
     </div>
   </div>
 </div>
-<footer>
-  <p>Ce même code vous a été envoyé par mail à l'adresse renseignée précédemment </p>
-</footer>
+
 </body>
 
 
-</html>   
+<!--meant to be on a seperate js file, my mac refuses access to the file-->
+<script>
+  // This function allows us to switch from light to dark mode
+  function dark_mode(){
+      var icon = document.getElementById("icon");
+      document.body.classList.toggle("dark-theme");
+      if(document.body.classList.contains("dark-theme")){
+          icon.src = "images/sun.png";
+      }else{
+          icon.src = "images/moon.png";
+      }
+  }
+</script>
+
+
+</html>  
