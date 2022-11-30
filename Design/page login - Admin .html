@@ -1,10 +1,12 @@
-<!--commande-user page-->
+<!--login-admin page-->
+<!--to do:renvoie vers log commande par defaut, menu nav barre avec toutes les autres pages admin + centrer-->
 <!DOCTYPE html>
 <html lang="fr">
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stock.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 
    </head>
@@ -14,23 +16,26 @@
       <div class="logo">
         <a href="page acceuil general.html">LOUEvain-Li-Nux</a>
       </div>
-      <div class="top_right">
-        <a class="link" href="#">🛒</a>
-        <img src="images/moon.png" id="icon" onclick="dark_mode()">
-      </dov>
+      <img src="images/moon.png" id="icon" onclick="dark_mode()">
   </nav>
   
   <div class="backg"></div>
 
   <div class="center">
     <div class="main">
-      <h1>Veuillez présenter le code de commande ci-dessous au Kot-à-Projet Louvain-li-Nux afin de récupérer votre commande:</h1>
-      <h2><u>X8J625bn954</u></h2>
-      <h6>Ce même code vous a été envoyé par mail à l'adresse renseignée précédemment</h4>
+
+        <div class="signup">
+          <form>
+            <label>Se connecter</label>
+            <input class="in" type="text" name="e-mail" placeholder="Adresse mail" required>
+            <input class="in" type="password" name="pwd" placeholder="Mot de passe" required>
+            <button class="log">Se connecter</button>
+             <!--<a href='page log commandes - Admin.html' class="log">Se connecter</a>-->
+          </form>
+        </div>
     </div>
   </div>
 </div>
-
 </body>
 
 
@@ -47,6 +52,5 @@
       }
   }
 </script>
-
 
 </html>   

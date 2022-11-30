@@ -1,4 +1,4 @@
-<!--login page-->
+<!--commande-admin page-->
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -12,8 +12,11 @@
   <nav>
     <div class="menu">
       <div class="logo">
-        <a href="#">LOUEvain-Li-Nux</a>
+        <a href="page acceuil general.html">LOUEvain-Li-Nux</a>
       </div>
+      <a class="link" href="page gestion de stock - Admin.html">Gestion de stock</a>
+      <a class="link" href="page log commandes - Admin.html">Historique des commandes</a>
+      <img src="images/moon.png" id="icon" onclick="dark_mode()">
     </div>
   </nav>
   
@@ -21,14 +24,28 @@
 
   <div class="center">
     <div class="main">
-      <h1 style= "color: rgb(190, 189, 192)">Veuillez saisir le numéro de la commande que vous souhaitez visualiser ci-dessous:  </h1>
-      <br style = "line-height:5;">
+      <h1>Veuillez saisir le numéro de la commande que vous souhaitez visualiser ci-dessous:  </h1>
       <form>
         <input class="search_bar" type="text" name="search_bar" placeholder="Numéro de commande">
         <button class="look_up">👁️</button>
-    </form>
+      </form>
     </div>
   </div>
 </div>
 </body>
+
+<!--meant to be on a seperate js file, my mac refuses access to the file-->
+<script>
+  // This function allows us to switch from light to dark mode
+  function dark_mode(){
+      var icon = document.getElementById("icon");
+      document.body.classList.toggle("dark-theme");
+      if(document.body.classList.contains("dark-theme")){
+          icon.src = "images/sun.png";
+      }else{
+          icon.src = "images/moon.png";
+      }
+  }
+</script>
+
 </html>   
