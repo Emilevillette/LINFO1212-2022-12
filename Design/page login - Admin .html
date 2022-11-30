@@ -1,0 +1,56 @@
+<!--login-admin page-->
+<!--to do:renvoie vers log commande par defaut, menu nav barre avec toutes les autres pages admin + centrer-->
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stock.css">
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+
+   </head>
+<body>
+  <nav>
+    <div class="menu">
+      <div class="logo">
+        <a href="page acceuil general.html">LOUEvain-Li-Nux</a>
+      </div>
+      <img src="images/moon.png" id="icon" onclick="dark_mode()">
+  </nav>
+  
+  <div class="backg"></div>
+
+  <div class="center">
+    <div class="main">
+
+        <div class="signup">
+          <form>
+            <label>Se connecter</label>
+            <input class="in" type="text" name="e-mail" placeholder="Adresse mail" required>
+            <input class="in" type="password" name="pwd" placeholder="Mot de passe" required>
+            <button class="log">Se connecter</button>
+             <!--<a href='page log commandes - Admin.html' class="log">Se connecter</a>-->
+          </form>
+        </div>
+    </div>
+  </div>
+</div>
+</body>
+
+
+<!--meant to be on a seperate js file, my mac refuses access to the file-->
+<script>
+  // This function allows us to switch from light to dark mode
+  function dark_mode(){
+      var icon = document.getElementById("icon");
+      document.body.classList.toggle("dark-theme");
+      if(document.body.classList.contains("dark-theme")){
+          icon.src = "images/sun.png";
+      }else{
+          icon.src = "images/moon.png";
+      }
+  }
+</script>
+
+</html>   
