@@ -40,19 +40,7 @@
     </table>
 </div>
 
-<!--meant to be on a seperate js file, my mac refuses access to the file-->
-<script>
-    // This function allows us to switch from light to dark mode
-    function dark_mode() {
-        var icon = document.getElementById("icon");
-        document.body.classList.toggle("dark-theme");
-        if (document.body.classList.contains("dark-theme")) {
-            icon.src = "images/sun.png";
-        } else {
-            icon.src = "images/moon.png";
-        }
-    }
-</script>
+<script src="/js/dark_mode.js"></script>
 
 </body>
 </html>   
