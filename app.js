@@ -15,7 +15,7 @@ const {initDB} = require("./models/global");
 const {or} = require("sequelize");
 
 app.set('view engine', 'ejs');
-app.set('views','views');
+app.set('views', 'views');
 
 initDB(sequelize).then(() => {
     console.log("databse startup process complete");
@@ -113,8 +113,8 @@ app.get('/order_completed',function (req,res){
 
 /*********************************** Product pages ***********************************/
 //Main page with all products shown to the user
-app.get('/',async function (req,res){
-   res.render('pages/index.ejs');
+app.get('/', async function (req, res) {
+    res.render('pages/index.ejs');
 });
 
 //Products filter by category
