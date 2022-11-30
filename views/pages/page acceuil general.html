@@ -2,53 +2,53 @@
 <!--fix buttons-->
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/style.css">
     <link rel="stylesheet" href="../../public/css/stock.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 
-   </head>
+</head>
 <body>
-  <nav>
+<nav>
     <div class="menu">
-      <div class="logo">
-        <a href="#">LOUEvain-Li-Nux</a>
-      </div>
-      <img src="../../Design/images/moon.png" id="icon" onclick="dark_mode()">
-  </nav>
-  
-  <div class="backg"></div>
+        <div class="logo">
+            <a href="#">LOUEvain-Li-Nux</a>
+        </div>
+        <img src="../../public/img/moon.png" id="icon" onclick="dark_mode()">
+</nav>
 
-  <div class="center">
+<div class="backg"></div>
+
+<div class="center">
     <div class="main">
         <div class="signup">
-          <form>
-            <label>Veuillez selectionner la section du site que vous souhaitez accéder:</label>
-            <a href='page%20login%20-%20Admin%20.html%20.html' class="log">Admin</a>
-            <!--Ref à modifier vers la page d'acceuil user quand créée-->
-            <a href='page%20commande%20-%20user.htmlr.html' class="log">User</a>
-          </form>
+            <form>
+                <label>Veuillez selectionner la section du site que vous souhaitez accéder:</label>
+                <a href='page%20login%20-%20Admin%20.html%20.html' class="log">Admin</a>
+                <!--Ref à modifier vers la page d'acceuil user quand créée-->
+                <a href='page%20commande%20-%20user.htmlr.html' class="log">User</a>
+            </form>
         </div>
     </div>
-  </div>
+</div>
 </div>
 </body>
 
 
 <!--meant to be on a seperate js file, my mac refuses access to the file-->
 <script>
-  // This function allows us to switch from light to dark mode
-  function dark_mode(){
-      var icon = document.getElementById("icon");
-      document.body.classList.toggle("dark-theme");
-      if(document.body.classList.contains("dark-theme")){
-          icon.src = "images/sun.png";
-      }else{
-          icon.src = "images/moon.png";
-      }
-  }
+    // This function allows us to switch from light to dark mode
+    function dark_mode() {
+        var icon = document.getElementById("icon");
+        document.body.classList.toggle("dark-theme");
+        if (document.body.classList.contains("dark-theme")) {
+            icon.src = "images/sun.png";
+        } else {
+            icon.src = "images/moon.png";
+        }
+    }
 </script>
 
 </html>   

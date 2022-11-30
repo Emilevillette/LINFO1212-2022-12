@@ -53,7 +53,7 @@ main .form{
 
 
 :root{
-  --backg: url(../../Design/images/background.jpg);
+  --backg: url(../img/background.jpg);
   --primary-color: #e4e4e4bb;
   --secondary-color: rgb(47, 64, 109);
   --third-color:rgba(189, 197, 218, 0.884);
@@ -66,7 +66,7 @@ main .form{
 }
 
 .dark-theme{
-  --backg: url(../../Design/images/background2.jpg);
+  --backg: url(../img/background2.jpg);
   --primary-color:#1b1b1b;
   --secondary-color:rgb(112, 128, 173);
   --third-color:rgba(96, 111, 155, 0.74);

@@ -1,51 +1,51 @@
 <!--commande-admin page-->
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../public/css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 
-   </head>
+</head>
 <body>
-  <nav>
+<nav>
     <div class="menu">
-      <div class="logo">
-        <a href="page%20acceuil%20general.htmlhtml">LOUEvain-Li-Nux</a>
-      </div>
-      <a class="link" href="page%20gestion%20de%20stock%20-%20Admin.htmlAdmin.html">Gestion de stock</a>
-      <a class="link" href="page%20log%20commandes%20-%20Admin.htmlmin.html">Historique des commandes</a>
-      <img src="../../Design/images/moon.png" id="icon" onclick="dark_mode()">
+        <div class="logo">
+            <a href="page%20acceuil%20general.htmlhtml">LOUEvain-Li-Nux</a>
+        </div>
+        <a class="link" href="page%20gestion%20de%20stock%20-%20Admin.htmlAdmin.html">Gestion de stock</a>
+        <a class="link" href="page%20log%20commandes%20-%20Admin.htmlmin.html">Historique des commandes</a>
+        <img src="../../public/img/moon.png" id="icon" onclick="dark_mode()">
     </div>
-  </nav>
-  
-  <div class="backg"></div>
+</nav>
 
-  <div class="center">
+<div class="backg"></div>
+
+<div class="center">
     <div class="main">
-      <h1>Veuillez saisir le numéro de la commande que vous souhaitez visualiser ci-dessous:  </h1>
-      <form>
-        <input class="search_bar" type="text" name="search_bar" placeholder="Numéro de commande">
-        <button class="look_up">👁️</button>
-      </form>
+        <h1>Veuillez saisir le numéro de la commande que vous souhaitez visualiser ci-dessous: </h1>
+        <form>
+            <input class="search_bar" type="text" name="search_bar" placeholder="Numéro de commande">
+            <button class="look_up">👁️</button>
+        </form>
     </div>
-  </div>
+</div>
 </div>
 </body>
 
 <!--meant to be on a seperate js file, my mac refuses access to the file-->
 <script>
-  // This function allows us to switch from light to dark mode
-  function dark_mode(){
-      var icon = document.getElementById("icon");
-      document.body.classList.toggle("dark-theme");
-      if(document.body.classList.contains("dark-theme")){
-          icon.src = "images/sun.png";
-      }else{
-          icon.src = "images/moon.png";
-      }
-  }
+    // This function allows us to switch from light to dark mode
+    function dark_mode() {
+        var icon = document.getElementById("icon");
+        document.body.classList.toggle("dark-theme");
+        if (document.body.classList.contains("dark-theme")) {
+            icon.src = "images/sun.png";
+        } else {
+            icon.src = "images/moon.png";
+        }
+    }
 </script>
 
 </html>   
