@@ -11,8 +11,11 @@ const app = express();
 const public_dir = path.join(__dirname, 'public');
 
 const {sequelize} = require("./config/database");
+
 const {initDB} = require("./models/global");
 const {or} = require("sequelize");
+
+const Order_mgmt = require("./scripts/order_management");
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -46,11 +49,15 @@ app.post('/connect_admin',async function (req,res){
 
 /********* Inventory related *********/
 //Admin has entered the order number
-/*
 app.get('/check_order',function (req,res){
     let order_number = req.query.order_number;
     res.render('pages/order.ejs',{order_number : order_number});
-});*/
+});
+
+//Admin wants to log in
+app.get('/login', function (req,res) {
+    res.render("pages/admin_login")
+});
 
 //Admin can add item to inventory
 /*
@@ -65,12 +72,11 @@ app.post('/add_product',async function (req,res){
 });*/
 
 //Admin can check all finished orders
-/*
-app.get('/order_hitory',async function (req,res){
+app.get('/order_history',async function (req,res){
     //Get all FINISHED orders from database
-    let orders = await get_all_orders();
-    res.render('pages/order_history.ejs',{orders: orders});
-});*/
+    let orders = await Order_mgmt.get_all_orders();
+    res.render('pages/admin_order_log.ejs',{orders: orders});
+});
 
 /****************************************************************************************/
 
