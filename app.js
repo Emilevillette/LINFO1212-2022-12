@@ -83,6 +83,7 @@ app.get('/order_history',async function (req,res){
 /*********************************** Clients pages ***********************************/
 /********* Checkout *********/
 //Cart page
+
 app.get('/cart',function (req,res){
     res.render('pages/cart.ejs');
 });
