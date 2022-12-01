@@ -24,19 +24,6 @@
             <th>Commentaire Admin</th>
         </tr>
         <!--db à rechecker, commentaire char max needs to be fixed-->
-        <% for(var i=0; i < count; i++) { %>
-        <tr>
-            <td><%= commandes[i].CommandeID %></td>
-            <td><%= commandes[i].nom_complet %></td>
-            <td><%= commandes[i].adresse_mail %></td>
-            <td><%= commandes[i].date_sortie %></td>
-            <td><%= commandes[i].date_retour %></td>
-            <td><%= commandes[i].date_vraie_sortie %></td>
-            <td><%= commandes[i].date_vrai_retour %></td>
-            <td><%= commandes[i].commentaire_admin %></td>
-        </tr>
-        <% } %>
-
     </table>
 </div>
 

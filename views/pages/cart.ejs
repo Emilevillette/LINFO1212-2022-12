@@ -1,0 +1,37 @@
+<!--panier - user page-->
+<!--fix buttons-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+
+<body>
+<%- include('../partials/user_navbar') %>
+  
+  <div class="backg"></div>
+
+  <div class="center">
+    <div class="title">Votre panier contient les éléments ci-dessous:</div>
+        <!-- Liste des commandes-->
+        <table class = tableau >
+            <tr>
+                <th>Catégorie du produit</th>
+                <th>Brève description du produit</th>
+                <th>Date sortie</th>
+                <th>Date retour</th>
+
+            </tr>
+            <!--Où est stocké le contenu du panier? (exemple juste pour pouvoir visualiser)-->
+            <tr>
+              <td>De la connectique audio</td>
+              <td>Câble adaptateur audio InLine® 3,5 mm Stéréo femelle à femelle, dont la bande de roulement est 0,2 m</td>
+              <td>30/11/2022</td>
+              <td>5/01/2022</td>
+              <td><button>🗑️</button></td>
+            </tr>
+
+        </table>
+        <a href='/checkout' class="log">Confirmer la commande</a>
+</div>
+
+</body>
+</html>   

@@ -51,7 +51,7 @@ app.post('/connect_admin',async function (req,res){
 //Admin has entered the order number
 app.get('/check_order',function (req,res){
     let order_number = req.query.order_number;
-    res.render('pages/order.ejs',{order_number : order_number});
+    res.render('pages/admin_order.ejs',{order_number : order_number});
 });
 
 //Admin wants to log in
@@ -60,10 +60,10 @@ app.get('/login', function (req,res) {
 });
 
 //Admin can add item to inventory
-/*
+
 app.get('/add_to_inventory',function (req,res){
-    res.render('pages/add_product.ejs');
-});*/
+    res.render('pages/admin_stock.ejs');
+});
 /*
 app.post('/add_product',async function (req,res){
     //If product already in stock, just increase quantity.
@@ -83,18 +83,21 @@ app.get('/order_history',async function (req,res){
 /*********************************** Clients pages ***********************************/
 /********* Checkout *********/
 //Cart page
-/*
 app.get('/cart',function (req,res){
+    res.render('pages/cart.ejs');
+});
+
+/*app.get('/cart',function (req,res){
     let cart = req.session.cart;
     res.render('pages/cart.ejs',{cart : cart});
 });*/
 
 //Checkout
-/*
+
 app.get('/checkout',function (req,res){
     //User add his information and clicks on the validate button
-    res.render('pages/checkout.ejs');
-});*/
+    res.render('pages/user_info.ejs');
+});
 
 //Send order to database
 /*
