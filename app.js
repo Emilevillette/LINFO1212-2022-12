@@ -16,7 +16,7 @@ const {initDB} = require("./models/global");
 const {or} = require("sequelize");
 
 const Order_mgmt = require("./scripts/order_management");
-const Account_mgmt = require("./scripts/account_management");
+//const Account_mgmt = require("./scripts/account_management");
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -140,12 +140,12 @@ app.get('/checkout', function (req, res) {
 });
 
 //Send order to database
-app.post('/new_order', urlencodedParser async function (req, res) {
+/*app.post('/new_order', urlencodedParser async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
     await Order_mgmt.create_order(req);
     req.session.order_number = await create_receipt();
     res.redirect('/order_completed');
-});
+});*/
 
 //Order completed
 /*
