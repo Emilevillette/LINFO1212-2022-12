@@ -1,7 +1,7 @@
 const {Product, ProductModel, ProductCategory} = require("./product");
 const {Users} = require("./users");
 const {Receipt} = require("./receipt");
-const {Orders} = require("./order");
+const {Orders, Quantity} = require("./order");
 
 //Initialize database
 async function initDB(db) {
@@ -26,6 +26,10 @@ async function initDB(db) {
         Receipt.belongsTo(Orders, {
             as: "Receipt", foreignKey: {name: "id", allowNull: false}
         });
+
+        Orders.hasMany(Product);
+        Product.hasMany(Quantity);
+        Orders.hasMany(Quantity);
 
         await db.sync();
     } catch (error) {

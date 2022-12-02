@@ -4,13 +4,10 @@ const {sequelize} = require("../config/database");
 
 const Orders = sequelize.define("orders", {
     id: {
-        type: DataTypes.UUID,
-        defaultValue: DataTypes.UUIDV4,
+        type: DataTypes.INTEGER,
         primaryKey: true,
+        autoIncrement: true,
         allowNull: false,
-        validate: {
-            isUUID: 4,
-        }
     },
     name: {
         type: DataTypes.STRING,
@@ -26,10 +23,6 @@ const Orders = sequelize.define("orders", {
     },
     phone_number: {
         type: DataTypes.NUMBER,
-        allowNull: false,
-    },
-    quantity: {
-        type: DataTypes.INTEGER,
         allowNull: false,
     },
     start_date: {
@@ -51,15 +44,26 @@ const Orders = sequelize.define("orders", {
     is_payed: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+        allowNull: true,
     },
     is_insured: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+        allowNull: true,
     },
     is_archived: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
+        allowNull: true,
     }
 });
 
-module.exports = {Orders}
+const Quantity = sequelize.define("quantity", {
+    quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        primaryKey: true,
+    }
+})
+
+module.exports = {Orders, Quantity}

@@ -101,17 +101,17 @@ app.get('/checkout',function (req,res){
 });
 
 //Send order to database
-/*
+
 app.post('/new_order',async function (req,res){
     let adress = req.body.adress;
     let email = req.body.email;
     let phone_number = req.body.phone_number;
     let client_name = req.body.client_name;
     //For all items in cart create an order of the same person then create a receipt with the order number
-    await create_order(adress,email,phone_number,client_name);
+    await Order_mgmt.create_order(req);
     req.session.order_number = await create_receipt();
     res.redirect('/order_completed');
-});*/
+});
 
 //Order completed
 /*
