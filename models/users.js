@@ -14,6 +14,10 @@ const Users = sequelize.define("users", {
     password_hash: {
         type: DataTypes.STRING,
         allowNull: false,
+    },
+    is_main_admin: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
     }
 }, {});
 

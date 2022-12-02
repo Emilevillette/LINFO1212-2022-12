@@ -16,6 +16,7 @@ const {initDB} = require("./models/global");
 const {or} = require("sequelize");
 
 const Order_mgmt = require("./scripts/order_management");
+const Account_mgmt = require("./scripts/account_management");
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -25,6 +26,19 @@ initDB(sequelize).then(() => {
 });
 
 app.use(express.static(public_dir));
+
+//Setup express-session
+app.use(session({
+    secret: "df7p+9i+y&;qE<9G_MosjTN?$</#p3", //THIS SHOULD BE IN A CONFIG FILE AND NOT COMMITTED, used here for the sake of the project
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        path: '/',
+        httpOnly: true,
+        maxAge: 86400000
+    }
+}));
+
 /*
 app.get('*', function (req, res) {
     res.status(404).send("La page n'existe pas");
@@ -38,27 +52,34 @@ app.use(express.static('content'));
 //Super Admin creates an admin account
 
 app.get('/create_admin', function (req,res){
-    //If I'm a SUPER Admin, check if new admin doesn't exist and create it
     res.render("pages/admin_signup")
 });
 
-//Admin tries to connect to its account
-/*
-app.post('/connect_admin',async function (req,res){
-    //Check if admin exist and check if password is correct
-});*/
+app.post('/create_admin', urlencodedParser, async function (req, res) {
+    if (req.session.is_main_admin === true) {
+        Account_mgmt.create_account(req.body.email, req.body.password);
+    }
+    res.redirect("/login");
+});
 
-/********* Inventory related *********/
-//Admin has entered the order number
-app.get('/check_order',function (req,res){
-    let order_number = req.query.order_number;
-    res.render('pages/admin_order.ejs',{order_number : order_number});
+
+//Admin tries to connect to its account
+
+app.post('/connect_admin', urlencodedParser, async function (req, res) {
+    //Check if admin exist and check if password is correct
+    const feedback = await Account_mgmt.get_account(req.body.email, req.body.password);
+    if (feedback["data"]["pass"] === true) {
+        req.session.email = feedback["data"].email;
+        req.session.is_main_admin = feedback["data"].is_main_admin;
+    }
+    res.redirect("/login");
 });
 
 //Admin wants to log in
-app.get('/login', function (req,res) {
+app.get('/login', function (req, res) {
     res.render("pages/admin_login")
 });
+
 
 //Admin can choose  which stock page he wants to access
 app.get('/stock',function (req,res){
@@ -70,23 +91,30 @@ app.get('/add_to_stock',function (req,res){
     res.render('pages/admin_stock_manage.ejs');
 });
 
-//Admin can see what items are in stock and delete items from stock
-app.get('/visualise_stock',function (req,res){
-    res.render('pages/admin_stock.ejs');
-});
-
 /*
-app.post('/add_product',async function (req,res){
+app.post('/add_product', urlencodedParser, async function (req,res){
     //If product already in stock, just increase quantity.
     //Otherwise create a new product
     let product_model = req.body.product_model;
 });*/
 
+//Admin can see what items are in stock and delete items from stock
+app.get('/visualise_stock',function (req,res){
+    res.render('pages/admin_stock.ejs');
+});
+
+/********* Inventory related *********/
+//Admin has entered the order number
+app.get('/check_order', function (req, res) {
+    let order_number = req.query.order_number;
+    res.render('pages/admin_order.ejs', {order_number: order_number});
+});
+
 //Admin can check all finished orders
-app.get('/order_history',async function (req,res){
+app.get('/order_history', async function (req, res) {
     //Get all FINISHED orders from database
     let orders = await Order_mgmt.get_all_orders();
-    res.render('pages/admin_order_log.ejs',{orders: orders});
+    res.render('pages/admin_order_log.ejs', {orders: orders});
 });
 
 /****************************************************************************************/
@@ -95,7 +123,7 @@ app.get('/order_history',async function (req,res){
 /********* Checkout *********/
 //Cart page
 
-app.get('/cart',function (req,res){
+app.get('/cart', function (req, res) {
     res.render('pages/cart.ejs');
 });
 
@@ -106,23 +134,18 @@ app.get('/cart',function (req,res){
 
 //Checkout
 
-app.get('/checkout',function (req,res){
+app.get('/checkout', function (req, res) {
     //User add his information and clicks on the validate button
     res.render('pages/user_info.ejs');
 });
 
 //Send order to database
-/*
-app.post('/new_order',async function (req,res){
-    let adress = req.body.adress;
-    let email = req.body.email;
-    let phone_number = req.body.phone_number;
-    let client_name = req.body.client_name;
+app.post('/new_order', urlencodedParser async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
-    await create_order(adress,email,phone_number,client_name);
+    await Order_mgmt.create_order(req);
     req.session.order_number = await create_receipt();
     res.redirect('/order_completed');
-});*/
+});
 
 //Order completed
 /*
