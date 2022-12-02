@@ -36,10 +36,11 @@ app.use(express.static('content'));
 
 /********* Account related *********/
 //Super Admin creates an admin account
-/*
-app.post('/create_admin',async function (req,res){
+
+app.get('/create_admin', function (req,res){
     //If I'm a SUPER Admin, check if new admin doesn't exist and create it
-});*/
+    res.render("pages/admin_signup")
+});
 
 //Admin tries to connect to its account
 /*
@@ -59,11 +60,21 @@ app.get('/login', function (req,res) {
     res.render("pages/admin_login")
 });
 
-//Admin can add item to inventory
+//Admin can choose  which stock page he wants to access
+app.get('/stock',function (req,res){
+    res.render('pages/index_stock.ejs');
+});
 
-app.get('/add_to_inventory',function (req,res){
+//Admin can add item to inventory
+app.get('/add_to_stock',function (req,res){
+    res.render('pages/admin_stock_manage.ejs');
+});
+
+//Admin can see what items are in stock and delete items from stock
+app.get('/visualise_stock',function (req,res){
     res.render('pages/admin_stock.ejs');
 });
+
 /*
 app.post('/add_product',async function (req,res){
     //If product already in stock, just increase quantity.

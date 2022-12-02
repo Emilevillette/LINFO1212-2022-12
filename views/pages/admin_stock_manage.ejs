@@ -1,0 +1,42 @@
+<!--stock management - admin page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+
+<body>
+<%- include('../partials/admin_navbar') %>
+
+
+<div class="backg"></div>
+
+<div class="center">
+    <div class="main">
+
+        <div class="signup">
+            <form>
+                <label>Rajouter un élément au stock</label>
+                <input class="in" type="text" list="categories" name="cat" placeholder="Catégorie" required>
+                <input class="in" type="text" name="Mod" placeholder="Modèle" required>
+                <input class="in" type="date" name="Per" placeholder="Période" required>
+                <input class="in" type="number" name="Qt" placeholder="Quantité" required>
+                <datalist id="categories">
+                    <option>Des Micros de divers types + des filtres</option>
+                    <option>De la connectique audio</option>
+                    <option>Un lecteur de disque externe</option>
+                    <option>Des claviers USB pour ordinateurs</option>
+                    <option>Des écrans d'ordinateurs</option>
+                    <option>Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</option>
+                    <option>Un Module SMS</option>
+                    <option>Des PC portables et des tours</option>
+                    <option>Divers connectiques et adaptateurs de connection pour pc</option>
+                </datalist>
+                <button class="log">Rajouter au stock</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+<script src="/js/dark_mode.js"></script>
+
+</html>   
