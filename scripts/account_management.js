@@ -7,7 +7,7 @@ const UserModel = require("../models/users");
  * @param password the user's password
  * @returns {Promise<string>}
  */
-async function create_account(email, password, username, full_name) {
+async function create_account(email, password) {
     if (await check_existing(email) !== false) {
         return "create_fail";
     }

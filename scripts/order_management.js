@@ -12,7 +12,6 @@ async function create_order(req) {
         phone_number: req.body.phone_number,
         name: req.body.name,
         items: req.body.items,
-        quantity: req.body.quantity,
         start_date: req.body.start_date,
         end_date: req.body.end_date,
     })
