@@ -97,7 +97,8 @@ app.post('/add_product', urlencodedParser, async function (req,res){
     //If product already in stock, just increase quantity.
     //Otherwise create a new product
 
-    Product_mgmt.add_to_inventory(req)
+    await Product_mgmt.add_to_inventory(req)
+    res.redirect('/visualise_stock');
 });
 
 //Admin can see what items are in stock and delete items from stock
