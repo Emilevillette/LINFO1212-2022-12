@@ -16,6 +16,7 @@ const {initDB} = require("./models/global");
 const {or} = require("sequelize");
 
 const Order_mgmt = require("./scripts/order_management");
+const Product_mgmt = require("./scripts/product_management");
 //const Account_mgmt = require("./scripts/account_management");
 
 app.set('view engine', 'ejs');
@@ -91,12 +92,13 @@ app.get('/add_to_stock',function (req,res){
     res.render('pages/admin_stock_manage.ejs');
 });
 
-/*
+
 app.post('/add_product', urlencodedParser, async function (req,res){
     //If product already in stock, just increase quantity.
     //Otherwise create a new product
-    let product_model = req.body.product_model;
-});*/
+
+    Product_mgmt.add_to_inventory(req)
+});
 
 //Admin can see what items are in stock and delete items from stock
 app.get('/visualise_stock',function (req,res){

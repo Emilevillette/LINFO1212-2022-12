@@ -28,6 +28,10 @@ const ProductModel = sequelize.define(
             defaultValue: "No description for this product type",
         },
         "cautionAmount": {
+            type: DataTypes.FLOAT,
+            allowNull: false,
+        },
+        quantity: {
             type: DataTypes.INTEGER,
             allowNull: false,
         }
