@@ -1,5 +1,12 @@
 const {ProductCategory, ProductModel, Product} = require("../models/product");
 
+/**
+ * Adds a new category of products to the database
+ *
+ * @param name category's name
+ * @param description product's description
+ * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
+ */
 async function add_category(name, description) {
     return ProductCategory.create({
         id: name,
@@ -7,6 +14,16 @@ async function add_category(name, description) {
     });
 }
 
+/**
+ * Adds a new model of products to the database
+ *
+ * @param name model's name
+ * @param description product's description
+ * @param cautionAmount
+ * @param category
+ * @param quantity
+ * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
+ */
 async function add_model(name, description, cautionAmount, category, quantity) {
     return ProductModel.create({
         id: name,
@@ -17,22 +34,38 @@ async function add_model(name, description, cautionAmount, category, quantity) {
     });
 }
 
+
+/**
+ * Adds a new product of the model given
+ *
+ * @param name product's name
+ * @param model product's model
+ * @returns {Promise<Model<any, TModelAttributes>>}
+ */
 async function add_product(name, model) {
-    return Product.create({
+    return await Product.create({
         id: name,
         ProductModel: model,
-    })
+    });
 }
 
+/**
+ * Finds if a product exists
+ *
+ * @param name product's name
+ * @returns {Promise<boolean>}
+ */
 async function find_product(name) {
     const product = await ProductModel.findByPk(name);
-    if (product === undefined) {
-        return false;
-    } else {
-        return true;
-    }
+    return product !== undefined;
 }
 
+/**
+ * Adds a new model of products the database
+ *
+ * @param req all queries entered by the admin
+ * @returns {Promise<Model<*, TModelAttributes>|*>}
+ */
 async function add_to_inventory(req) {
     if (await find_product(req.body.Mod) === false) {
         return add_model(req.body.Mod, req.body.Description, req.body.CautionAmount, req.body.Category);
