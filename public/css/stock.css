@@ -41,8 +41,8 @@ label{
 
 
 .log{
-	width: 60%;
-	height: 40px;
+	width: 60% ; 
+	height: 40px auto;
 	margin: 10px auto;
 	justify-content: center;
 	display: block;

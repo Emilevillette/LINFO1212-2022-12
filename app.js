@@ -165,6 +165,9 @@ app.get('/', async function (req, res) {
 });
 
 //Products filter by category
+app.get('/category', async function (req, res) {
+    res.render('pages/category.ejs');
+});
 /*
 app.get('/category',async function (req,res){
     let category = get_product_by_category(req.query.category);
