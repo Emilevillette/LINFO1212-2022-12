@@ -1,7 +1,7 @@
 
 .main{
 	width: 450px;
-	height: 500px;
+	height: auto;
 	overflow: hidden;
     background: var(--third-color);
 	border-radius: 10px;

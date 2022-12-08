@@ -15,10 +15,11 @@
         <div class="signup">
             <form method="post" action="/add_product">
                 <label>Rajouter un élément au stock</label>
-                <input class="in" type="text" list="categories" name="cat" placeholder="Catégorie" required>
-                <input class="in" type="text" name="Mod" placeholder="Modèle" required>
-                <input class="in" type="date" name="Per" placeholder="Période" required>
-                <input class="in" type="number" name="Qt" placeholder="Quantité" required>
+                <input class="in" type="text" name="name" placeholder="Nom" required>
+                <input class="in" type="text" name="description" placeholder="Description" required>
+                <input class="in" type="number" name="cautionAmount" placeholder="Caution" required>
+                <input class="in" type="number" name="quantity" placeholder="Quantité" required>
+                <input class="in" type="text" list="categories" name="category" placeholder="Catégorie" required>
                 <datalist id="categories">
                     <option>Des Micros de divers types + des filtres</option>
                     <option>De la connectique audio</option>
