@@ -1,6 +1,6 @@
 
 .main{
-	width: 450px;
+	width: 475px;
 	height: auto;
 	overflow: hidden;
     background: var(--third-color);
@@ -56,6 +56,7 @@ label{
 	border-radius: 5px;
 	transition: .2s ease-in;
 	cursor: pointer;
+	margin-bottom: 3em;
 }
 .log:hover{
 	background: var(--eight-color);

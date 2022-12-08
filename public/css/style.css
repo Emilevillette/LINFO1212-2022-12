@@ -138,7 +138,8 @@ nav .menu{
     text-align: center;
     transition-duration: 0.5s;
     background-color: var(--sixth-color);
-    margin-top: 6em;
+    margin-top: 5em;
+    margin-bottom: 3em;
 }
 /*
 ::placeholder {
