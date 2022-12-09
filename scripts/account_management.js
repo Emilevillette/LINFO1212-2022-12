@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const UserModel = require("../models/users");
+const {Users} = require("../models/users");
 
 /**
  * Creates an admin account
@@ -8,14 +8,15 @@ const UserModel = require("../models/users");
  * @param password the user's password
  * @returns {Promise<string>}
  */
-async function create_account(email, password) {
+async function create_account(email, password, is_main_admin) {
     if (await check_existing(email) !== false) {
         return "create_fail";
     }
 
-    await UserModel.create({
+    await Users.create({
         email: email,
         password_hash: await hash_password(password),
+        is_main_admin: is_main_admin,
     })
     return "create_ok";
 }
@@ -28,7 +29,7 @@ async function create_account(email, password) {
  * @returns {Promise<Model<any, TModelAttributes>|boolean>}
  */
 async function check_existing(email) {
-    const account = await UserModel.findByPk(email);
+    const account = await Users.findByPk(email);
     if (account) {
         return account;
     } else {

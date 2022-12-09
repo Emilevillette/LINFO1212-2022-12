@@ -1,4 +1,5 @@
 const Product_mgmt = require("./scripts/product_management");
+const User_mgmt = require("./scripts/account_management");
 const {initDB} = require("./models/global");
 const {sequelize} = require("./config/database");
 
@@ -16,8 +17,9 @@ const cat_list = {
 
 initDB(sequelize).then(() => {
     console.log("databse startup process complete");
-});
+    for(const [name, desc] of Object.entries(cat_list)) {
+        Product_mgmt.add_category(name, desc);
+    }
 
-for(const [name, desc] of Object.entries(cat_list)) {
-    Product_mgmt.add_category(name, desc);
-}
+    User_mgmt.create_account("admin@louvainlinux.org", "supersecurepwd", true);
+});
