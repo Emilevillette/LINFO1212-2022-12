@@ -46,11 +46,6 @@ const Orders = sequelize.define("orders", {
         defaultValue: false,
         allowNull: true,
     },
-    is_insured: {
-        type: DataTypes.BOOLEAN,
-        defaultValue: false,
-        allowNull: true,
-    },
     is_archived: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,

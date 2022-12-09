@@ -59,7 +59,7 @@ app.get('/main_admin', function (req,res){
  * Super Admin creates an admin account
  */
 
-app.get('/admin_signup', function (req,res){
+app.get('/admin_signup', function (req, res) {
     res.render("pages/admin_signup");
 });
 
@@ -78,13 +78,16 @@ app.post('/create_admin', urlencodedParser, function (req, res) {
 app.post('/connect_admin', urlencodedParser, async function (req, res) {
     //Check if admin exist and check if password is correct
     const feedback = await Account_mgmt.get_account(req.body.email, req.body.password);
-    if (feedback["data"]["pass"] === true) {
+    if (feedback["pass"] === true) {
         req.session.email = feedback["data"].email;
         req.session.is_main_admin = feedback["data"].is_main_admin;
-        res.redirect("/main_admin");
+        console.log(feedback["data"].is_main_admin)
+        console.log(req.session.is_main_admin);
+        res.redirect("/order_history");
+    } else {
+        // Add here warning message
+        res.redirect("/login");
     }
-    // Add here warning message
-    res.redirect("/login");
 });
 
 app.get('/login', function (req, res) {
@@ -97,7 +100,7 @@ app.get('/login', function (req, res) {
  * Admin can choose which stock page he wants to access
  */
 
-app.get('/stock',function (req,res){
+app.get('/stock', function (req, res) {
     res.render('pages/index_stock');
 });
 
@@ -105,11 +108,11 @@ app.get('/stock',function (req,res){
  * Admin can add item to inventory
  */
 
-app.get('/add_to_stock',function (req,res){
+app.get('/add_to_stock', function (req, res) {
     res.render('pages/admin_stock_manage');
 });
 
-app.post('/add_product', urlencodedParser, async function (req,res){
+app.post('/add_product', urlencodedParser, async function (req, res) {
     //If product already in stock, just increase quantity.
     //Otherwise, create a new product
     await Product_mgmt.add_to_inventory(req)
@@ -120,7 +123,7 @@ app.post('/add_product', urlencodedParser, async function (req,res){
  * Admin can see what items are in stock and delete items from stock
  */
 
-app.get('/visualise_stock',function (req,res){
+app.get('/visualise_stock', function (req, res) {
     res.render('pages/admin_stock');
 });
 
