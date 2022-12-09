@@ -13,12 +13,10 @@ const public_dir = path.join(__dirname, 'public');
 const {sequelize} = require("./config/database");
 
 const {initDB} = require("./models/global");
-//const {or} = require("sequelize");
 
 const Order_mgmt = require("./scripts/order_management");
 const Product_mgmt = require("./scripts/product_management");
 const Account_mgmt = require("./scripts/account_management");
-const {get_account} = require("./scripts/account_management");
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -201,15 +199,17 @@ app.get('/', function (req, res) {
 app.get('/category', function (req, res) {
     res.render('pages/category');
 });
-/*
 
-//Selected product page e.g: when you select an item in amazon,ebay,etc
-/*
-app.get('/product',async function (req,res){
+
+/**
+ * Selected product page e.g: when you select an item in amazon,ebay,etc
+ */
+
+app.get('/product', function (req,res){
     let product_model = req.query.product_model;
-    let product = await get_product_model(product_model);
+    let product = Product_mgmt.find_product(product_model);
     res.render('pages/product.ejs',{product : product});
-});*/
+});
 /*************************************************************************************/
 
 https.createServer({
