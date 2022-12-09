@@ -76,13 +76,16 @@ body {
 }
 
 .main{
-	width: 475px;
+	width: 50%;
 	height: auto;
 	overflow: hidden;
     background: var(--third-color);
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
     margin: auto;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 20px;
 }
 
 nav{
@@ -259,7 +262,7 @@ label{
 }
 
 .log{
-	width: 60% ; 
+	width: 60%;
 	height: 40px auto;
 	margin: 10px auto;
 	justify-content: center;
