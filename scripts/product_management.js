@@ -52,7 +52,7 @@ async function add_product(name, model) {
 /**
  * Finds if a product exists
  *
- * @param name product's name
+ * @param name product's model
  * @returns {Promise<boolean>}
  */
 async function find_product(name) {
