@@ -2,6 +2,7 @@ const bcrypt = require("bcrypt");
 const UserModel = require("../models/users");
 
 /**
+ * Creates an admin account
  *
  * @param email the user's email address
  * @param password the user's password
@@ -36,6 +37,7 @@ async function check_existing(email) {
 }
 
 /**
+ * Gets the admin account that it's trying to connect
  *
  * @param email the user's email address
  * @param password the user's password
@@ -68,7 +70,7 @@ async function get_account(email, password) {
 }
 
 /**
- * Checks is the password is correct
+ * Checks if the password is correct
  *
  * @param providedPassword user-provided password
  * @param hash user password hash in database

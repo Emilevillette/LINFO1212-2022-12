@@ -1,5 +1,5 @@
 const express = require('express');
-var session = require('express-session');
+const session = require('express-session');
 const bodyparser = require('body-parser');
 const urlencodedParser = bodyparser.urlencoded({extended: true});
 const path = require('path');
@@ -13,11 +13,12 @@ const public_dir = path.join(__dirname, 'public');
 const {sequelize} = require("./config/database");
 
 const {initDB} = require("./models/global");
-const {or} = require("sequelize");
+//const {or} = require("sequelize");
 
 const Order_mgmt = require("./scripts/order_management");
 const Product_mgmt = require("./scripts/product_management");
-//const Account_mgmt = require("./scripts/account_management");
+const Account_mgmt = require("./scripts/account_management");
+const {get_account} = require("./scripts/account_management");
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -40,23 +41,29 @@ app.use(session({
     }
 }));
 
-/*
-app.get('*', function (req, res) {
-    res.status(404).send("La page n'existe pas");
-});*/
-
 app.use(express.static('content'));
 
 /*********************************** Admin only pages ***********************************/
 
-/********* Account related *********/
-//Super Admin creates an admin account
+/**
+ * Admin main page
+ */
+/*
+app.get('/main_admin', function (req,res){
+    res.render('pages/main_admin');
+});*/
 
-app.get('/create_admin', function (req,res){
-    res.render("pages/admin_signup")
+/********* Account related *********/
+
+/**
+ * Super Admin creates an admin account
+ */
+
+app.get('/admin_signup', function (req,res){
+    res.render("pages/admin_signup");
 });
 
-app.post('/create_admin', urlencodedParser, async function (req, res) {
+app.post('/create_admin', urlencodedParser, function (req, res) {
     if (req.session.is_main_admin === true) {
         Account_mgmt.create_account(req.body.email, req.body.password);
     }
@@ -64,7 +71,9 @@ app.post('/create_admin', urlencodedParser, async function (req, res) {
 });
 
 
-//Admin tries to connect to its account
+/**
+ * Admin tries to connect to his account
+ */
 
 app.post('/connect_admin', urlencodedParser, async function (req, res) {
     //Check if admin exist and check if password is correct
@@ -72,83 +81,100 @@ app.post('/connect_admin', urlencodedParser, async function (req, res) {
     if (feedback["data"]["pass"] === true) {
         req.session.email = feedback["data"].email;
         req.session.is_main_admin = feedback["data"].is_main_admin;
+        res.redirect("/main_admin");
     }
+    // Add here warning message
     res.redirect("/login");
 });
 
-//Admin wants to log in
 app.get('/login', function (req, res) {
-    res.render("pages/admin_login")
+    res.render("pages/admin_login");
 });
 
+/********* Inventory related *********/
 
-//Admin can choose  which stock page he wants to access
+/**
+ * Admin can choose which stock page he wants to access
+ */
+
 app.get('/stock',function (req,res){
-    res.render('pages/index_stock.ejs');
+    res.render('pages/index_stock');
 });
 
-//Admin can add item to inventory
+/**
+ * Admin can add item to inventory
+ */
+
 app.get('/add_to_stock',function (req,res){
-    res.render('pages/admin_stock_manage.ejs');
+    res.render('pages/admin_stock_manage');
 });
-
 
 app.post('/add_product', urlencodedParser, async function (req,res){
     //If product already in stock, just increase quantity.
-    //Otherwise create a new product
-
+    //Otherwise, create a new product
     await Product_mgmt.add_to_inventory(req)
     res.redirect('/visualise_stock');
 });
 
-//Admin can see what items are in stock and delete items from stock
+/**
+ * Admin can see what items are in stock and delete items from stock
+ */
+
 app.get('/visualise_stock',function (req,res){
-    res.render('pages/admin_stock.ejs');
+    res.render('pages/admin_stock');
 });
 
-/********* Inventory related *********/
-//Admin has entered the order number
+/**
+ * Admin has entered the order number
+ */
+
 app.get('/check_order', function (req, res) {
     let order_number = req.query.order_number;
-    res.render('pages/admin_order.ejs', {order_number: order_number});
+    res.render('pages/admin_order', {order_number: order_number});
 });
 
-//Admin can check all finished orders
+/**
+ * Admin can check all finished orders
+ */
+
 app.get('/order_history', async function (req, res) {
     //Get all FINISHED orders from database
     let orders = await Order_mgmt.get_all_orders();
-    res.render('pages/admin_order_log.ejs', {orders: orders});
+    res.render('pages/admin_order_log', {orders: orders});
 });
 
 /****************************************************************************************/
 
 /*********************************** Clients pages ***********************************/
 /********* Checkout *********/
-//Cart page
+
+/**
+ * Cart page
+ */
 
 app.get('/cart', function (req, res) {
-    res.render('pages/cart.ejs');
+    res.render('pages/cart');
 });
 
-/*app.get('/cart',function (req,res){
-    let cart = req.session.cart;
-    res.render('pages/cart.ejs',{cart : cart});
-});*/
-
-//Checkout
+/**
+ * Checkout
+ */
 
 app.get('/checkout', function (req, res) {
-    //User add his information and clicks on the validate button
-    res.render('pages/user_info.ejs');
+    //User adds his information and clicks on the validate button
+    res.render('pages/user_info');
 });
 
-//Send order to database
-/*app.post('/new_order', urlencodedParser async function (req, res) {
+/**
+ * Create new order
+ */
+
+app.post('/new_order', urlencodedParser, async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
     await Order_mgmt.create_order(req);
-    req.session.order_number = await create_receipt();
+    //req.session.order_number = await create_receipt();
     res.redirect('/order_completed');
-});*/
+});
 
 //Order completed
 /*
@@ -159,20 +185,23 @@ app.get('/order_completed',function (req,res){
 /*************************************************************************************/
 
 /*********************************** Product pages ***********************************/
-//Main page with all products shown to the user
-app.get('/', async function (req, res) {
-    res.render('pages/index.ejs');
+
+/**
+ * Main page
+ */
+
+app.get('/', function (req, res) {
+    res.render('pages/index');
 });
 
-//Products filter by category
-app.get('/category', async function (req, res) {
-    res.render('pages/category.ejs');
+/**
+ * Products filtered by category
+ */
+
+app.get('/category', function (req, res) {
+    res.render('pages/category');
 });
 /*
-app.get('/category',async function (req,res){
-    let category = get_product_by_category(req.query.category);
-    res.render('pages/category.ejs',{category : category});
-});*/
 
 //Selected product page e.g: when you select an item in amazon,ebay,etc
 /*

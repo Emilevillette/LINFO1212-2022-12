@@ -1,10 +1,21 @@
 const {sequelize} = require("../config/database");
 const {Orders} = require("../models/order");
 
+/**
+ * Get all orders from the database
+ *
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
 async function get_all_orders() {
-    return Orders.findAll({raw: true,});
+    return Orders.findAll({raw: true});
 }
 
+/**
+ * Creates a new client order
+ *
+ * @param req all the queries entered by the client
+ * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
+ */
 async function create_order(req) {
     return Orders.create({
         address: req.body.address,
@@ -14,7 +25,7 @@ async function create_order(req) {
         items: req.body.items,
         start_date: req.body.start_date,
         end_date: req.body.end_date,
-    })
+    });
 }
 
 module.exports = {get_all_orders, create_order}
