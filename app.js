@@ -60,12 +60,17 @@ app.get('/main_admin', function (req,res){
  */
 
 app.get('/admin_signup', function (req, res) {
-    res.render("pages/admin_signup");
+    if (req.session.is_main_admin === true) {
+        res.render("pages/admin_signup");
+    } else {
+        res.redirect("/login");
+    }
+
 });
 
 app.post('/create_admin', urlencodedParser, function (req, res) {
     if (req.session.is_main_admin === true) {
-        Account_mgmt.create_account(req.body.email, req.body.password);
+        Account_mgmt.create_account(req.body.email, req.body.password, false);
     }
     res.redirect("/login");
 });
@@ -81,7 +86,6 @@ app.post('/connect_admin', urlencodedParser, async function (req, res) {
     if (feedback["pass"] === true) {
         req.session.email = feedback["data"].email;
         req.session.is_main_admin = feedback["data"].is_main_admin;
-        console.log(feedback["data"].is_main_admin)
         console.log(req.session.is_main_admin);
         res.redirect("/order_history");
     } else {
@@ -101,6 +105,9 @@ app.get('/login', function (req, res) {
  */
 
 app.get('/stock', function (req, res) {
+    if(!req.session.email) {
+        res.redirect("/login");
+    }
     res.render('pages/index_stock');
 });
 
@@ -109,10 +116,16 @@ app.get('/stock', function (req, res) {
  */
 
 app.get('/add_to_stock', function (req, res) {
+    if(!req.session.email) {
+        res.redirect("/login");
+    }
     res.render('pages/admin_stock_manage');
 });
 
 app.post('/add_product', urlencodedParser, async function (req, res) {
+    if(!req.session.email) {
+        res.redirect("/login");
+    }
     //If product already in stock, just increase quantity.
     //Otherwise, create a new product
     await Product_mgmt.add_to_inventory(req)
@@ -124,6 +137,9 @@ app.post('/add_product', urlencodedParser, async function (req, res) {
  */
 
 app.get('/visualise_stock', function (req, res) {
+    if(!req.session.email) {
+        res.redirect("/login");
+    }
     res.render('pages/admin_stock');
 });
 
@@ -132,6 +148,9 @@ app.get('/visualise_stock', function (req, res) {
  */
 
 app.get('/check_order', function (req, res) {
+    if(!req.session.email) {
+        res.redirect("/login");
+    }
     let order_number = req.query.order_number;
     res.render('pages/admin_order', {order_number: order_number});
 });
@@ -141,6 +160,9 @@ app.get('/check_order', function (req, res) {
  */
 
 app.get('/order_history', async function (req, res) {
+    if(!req.session.email) {
+        res.redirect("/login");
+    }
     //Get all FINISHED orders from database
     let orders = await Order_mgmt.get_all_orders();
     res.render('pages/admin_order_log', {orders: orders});

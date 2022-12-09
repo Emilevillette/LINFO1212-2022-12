@@ -6,6 +6,7 @@ const {Users} = require("../models/users");
  *
  * @param email the user's email address
  * @param password the user's password
+ * @param is_main_admin
  * @returns {Promise<string>}
  */
 async function create_account(email, password, is_main_admin) {
