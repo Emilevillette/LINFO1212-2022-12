@@ -1,6 +1,3 @@
-
-
-
 async function get_and_insert_table(path, tableId, thead_elements, tbody_ids) {
     let stock_data = await fetch(path);
     stock_data = await stock_data.json();
