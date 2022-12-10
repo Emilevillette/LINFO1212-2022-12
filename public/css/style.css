@@ -3,7 +3,7 @@
   margin: 0;
   padding: 90;
   font-family: 'Poppins',sans-serif;
-  overflow-y: scroll;
+  overflow-y: hidden;
   overflow-x: hidden;
 }
 
