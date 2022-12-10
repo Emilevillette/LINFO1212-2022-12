@@ -100,8 +100,12 @@ app.get('/login', function (req, res) {
 });
 
 app.get('/logout', function(req, res) {
-    req.session.destroy();
-    res.redirect("/login");
+    if(req.session.email) {
+        req.session.destroy();
+        res.redirect("/login");
+    } else {
+        res.redirect("/");
+    }
 })
 
 /********* Inventory related *********/
@@ -268,6 +272,12 @@ app.get('/', function (req, res) {
 app.get('/category', function (req, res) {
     res.render('pages/category');
 });
+
+
+app.get('/get_all_categories', async function(req, res) {
+    let categories = await Product_mgmt.get_all_categories();
+    res.json(categories);
+})
 
 /**
  * products filtered by category
