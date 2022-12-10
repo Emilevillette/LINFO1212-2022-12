@@ -92,7 +92,11 @@ app.post('/connect_admin', urlencodedParser, async function (req, res) {
 });
 
 app.get('/login', function (req, res) {
-    res.render("pages/admin_login");
+    if (!req.session.email) {
+        res.render("pages/admin_login");
+    } else {
+        res.redirect("/order_history");
+    }
 });
 
 /********* Inventory related *********/
@@ -144,6 +148,11 @@ app.get('/visualise_stock', function (req, res) {
     }
 });
 
+app.get('/get_stock', async function (req, res) {
+    let retval = await Product_mgmt.get_all_products();
+    res.json(retval);
+})
+
 /**
  * Admin has entered the order number
  */
@@ -163,10 +172,11 @@ app.get('/check_order', function (req, res) {
 app.get('/order_history', async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
+    } else {
+        //Get all FINISHED orders from database
+        let orders = await Order_mgmt.get_all_orders();
+        res.render('pages/admin_order_log', {orders: orders});
     }
-    //Get all FINISHED orders from database
-    let orders = await Order_mgmt.get_all_orders();
-    res.render('pages/admin_order_log', {orders: orders});
 });
 
 /****************************************************************************************/

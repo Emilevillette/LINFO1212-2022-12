@@ -178,7 +178,7 @@ td, th {
     
 }
 
-th {
+thead tr {
     color: rgba(255, 255, 255, 0.774);
     background-color: var(--tenth-color);
     border-top: none;

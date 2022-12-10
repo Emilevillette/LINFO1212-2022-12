@@ -3,36 +3,50 @@
 <!DOCTYPE html>
 <html lang="fr">
 <%- include('../partials/head') %>
+<head>
+    <script type="text/javascript" src="js/retrieve_stock.js"></script>
+</head>
 
 <body>
 <%- include('../partials/admin_navbar') %>
-  
-  <div class="backg"></div>
 
-  <div class="center">
-    <div class="title">Votre panier contient les éléments ci-dessous:</div>
-        <!-- Liste des produit disponibles en stock-->
-        <table class = tableau >
-            <tr>
-                <th>Catégorie du produit</th>
-                <th>Brève description du produit</th>
-                <th>Disponible</th>
-                <th>Nombre en stock</th>
+<div class="backg"></div>
 
-            </tr>
-            <!--fetch from database (exemple juste pour pouvoir visualiser)-->
-            <tr>
-              <td>De la connectique audio</td>
-              <td>Câble adaptateur audio InLine® 3,5 mm Stéréo femelle à femelle, dont la bande de roulement est 0,2 m</td>
-              <td>✓</td>
-              <td>7</td>
-              <td><button>🗑️</button></td>
-            </tr>
+<div class="center">
+    <div class="title">Contenu de l'inventaire:</div>
+    <!-- Liste des produit disponibles en stock-->
+    <table class="tableau" id="stock_table">
+        <thead>
+        <!--
+        <tr>
+            <th>Modèle du produit</th>
+            <th>Brève description du produit</th>
+            <th>Disponible</th>
+            <th>Nombre en stock</th>
+        </tr>
+        -->
+        </thead>
+        <!--fetch from database (exemple juste pour pouvoir visualiser)-->
+        <tbody>
+        <!--
+        <tr>
+            <td>De la connectique audio</td>
+            <td>Câble adaptateur audio InLine® 3,5 mm Stéréo femelle à femelle, dont la bande de roulement est 0,2 m
+            </td>
+            <td>✓</td>
+            <td>7</td>
+            <td>
+                <button>🗑️</button>
+            </td>
+        </tr>
+        -->
+        </tbody>
 
-        </table>
-        <button class="log">Enregistrer les modifications</button>
+    </table>
+    <button class="log">Enregistrer les modifications</button>
 </div>
 
+<script>get_stock()</script>
 <script src="/js/dark_mode.js"></script>
 
 </body>

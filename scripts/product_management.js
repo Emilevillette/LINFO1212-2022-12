@@ -91,4 +91,8 @@ async function add_to_inventory(req) {
     }
 }
 
-module.exports = {add_category, add_model, add_product, add_to_inventory}
+async function get_all_products(options) {
+    return ProductModel.findAll({raw: true});
+}
+
+module.exports = {add_category, add_model, add_product, add_to_inventory, get_all_products}
