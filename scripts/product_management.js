@@ -30,7 +30,7 @@ async function add_model(name, description, cautionAmount, category, quantity) {
         description: description,
         cautionAmount: cautionAmount,
         quantity: quantity,
-        ProductCategory: category,
+        productCategoryId: category,
     });
 }
 
@@ -38,14 +38,12 @@ async function add_model(name, description, cautionAmount, category, quantity) {
 /**
  * Adds a new product of the model given
  *
- * @param name product's name
  * @param model product's model
  * @returns {Promise<Model<any, TModelAttributes>>}
  */
-async function add_product(name, model) {
+async function add_product(model) {
     return await Product.create({
-        id: name,
-        ProductModel: model,
+        productModelId: model,
     });
 }
 
@@ -57,7 +55,19 @@ async function add_product(name, model) {
  */
 async function find_product(name) {
     const product = await ProductModel.findByPk(name);
-    return product !== undefined;
+    return product !== null;
+}
+
+/**
+ * Add mutiple products at a time
+ * @param qty quantity
+ * @param name model
+ * @returns {Promise<Model<*, TModelAttributes>>}
+ */
+async function add_multiple_products(qty, name) {
+    for (let i = 0; i < qty; i++) {
+        await add_product(name);
+    }
 }
 
 /**
@@ -67,13 +77,15 @@ async function find_product(name) {
  * @returns {Promise<Model<*, TModelAttributes>|*>}
  */
 async function add_to_inventory(req) {
-    if (await find_product(req.body.Mod) === false) {
-        return add_model(req.body.Mod, req.body.Description, req.body.CautionAmount, req.body.Category);
+    if (await find_product(req.body.name) === false) {
+        await add_model(req.body.name, req.body.description, req.body.cautionAmount, req.body.category, req.body.quantity);
+        return add_multiple_products(req.body.quantity, req.body.name);
     } else {
+        await add_multiple_products(req.body.quantity, req.body.name);
         return ProductModel.increment('quantity', {
             by: req.body.quantity,
             where: {
-                id: req.body.Mod,
+                id: req.body.name,
             }
         });
     }

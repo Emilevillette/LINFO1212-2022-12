@@ -84,7 +84,6 @@ app.post('/connect_admin', urlencodedParser, async function (req, res) {
     if (feedback["pass"] === true) {
         req.session.email = feedback["data"].email;
         req.session.is_main_admin = feedback["data"].is_main_admin;
-        console.log(req.session.is_main_admin);
         res.redirect("/order_history");
     } else {
         // Add here warning message
@@ -103,10 +102,11 @@ app.get('/login', function (req, res) {
  */
 
 app.get('/stock', function (req, res) {
-    if(!req.session.email) {
+    if (!req.session.email) {
         res.redirect("/login");
+    } else {
+        res.render('pages/index_stock');
     }
-    res.render('pages/index_stock');
 });
 
 /**
@@ -114,20 +114,22 @@ app.get('/stock', function (req, res) {
  */
 
 app.get('/add_to_stock', function (req, res) {
-    if(!req.session.email) {
+    if (!req.session.email) {
         res.redirect("/login");
+    } else {
+        res.render('pages/admin_stock_manage');
     }
-    res.render('pages/admin_stock_manage');
 });
 
 app.post('/add_product', urlencodedParser, async function (req, res) {
-    if(!req.session.email) {
+    if (!req.session.email) {
         res.redirect("/login");
+    } else {
+        //If product already in stock, just increase quantity.
+        //Otherwise, create a new product
+        await Product_mgmt.add_to_inventory(req)
+        res.redirect('/visualise_stock');
     }
-    //If product already in stock, just increase quantity.
-    //Otherwise, create a new product
-    await Product_mgmt.add_to_inventory(req)
-    res.redirect('/visualise_stock');
 });
 
 /**
@@ -135,10 +137,11 @@ app.post('/add_product', urlencodedParser, async function (req, res) {
  */
 
 app.get('/visualise_stock', function (req, res) {
-    if(!req.session.email) {
+    if (!req.session.email) {
         res.redirect("/login");
+    } else {
+        res.render('pages/admin_stock');
     }
-    res.render('pages/admin_stock');
 });
 
 /**
@@ -146,7 +149,7 @@ app.get('/visualise_stock', function (req, res) {
  */
 
 app.get('/check_order', function (req, res) {
-    if(!req.session.email) {
+    if (!req.session.email) {
         res.redirect("/login");
     }
     let order_number = req.query.order_number;
@@ -158,7 +161,7 @@ app.get('/check_order', function (req, res) {
  */
 
 app.get('/order_history', async function (req, res) {
-    if(!req.session.email) {
+    if (!req.session.email) {
         res.redirect("/login");
     }
     //Get all FINISHED orders from database
@@ -230,10 +233,10 @@ app.get('/category', function (req, res) {
  * Selected product page e.g: when you select an item in amazon,ebay,etc
  */
 
-app.get('/product', function (req,res){
+app.get('/product', function (req, res) {
     let product_model = req.query.product_model;
     let product = Product_mgmt.find_product(product_model);
-    res.render('pages/product.ejs',{product : product});
+    res.render('pages/product.ejs', {product: product});
 });
 /*************************************************************************************/
 

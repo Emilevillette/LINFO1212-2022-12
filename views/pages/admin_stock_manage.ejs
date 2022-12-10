@@ -19,18 +19,19 @@
                 <input class="in" type="text" name="description" placeholder="Description" required>
                 <input class="in" type="number" name="cautionAmount" placeholder="Caution" required>
                 <input class="in" type="number" name="quantity" placeholder="Quantité" required>
-                <input class="in" type="text" list="categories" name="category" placeholder="Catégorie" required>
-                <datalist id="categories">
-                    <option>Des Micros de divers types + des filtres</option>
-                    <option>De la connectique audio</option>
-                    <option>Un lecteur de disque externe</option>
-                    <option>Des claviers USB pour ordinateurs</option>
-                    <option>Des écrans d'ordinateurs</option>
-                    <option>Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</option>
-                    <option>Un Module SMS</option>
-                    <option>Des PC portables et des tours</option>
-                    <option>Divers connectiques et adaptateurs de connection pour pc</option>
-                </datalist>
+                <select class="in" list="categories" name="category" placeholder="Catégorie" required>
+                    <!--<datalist id="categories">-->
+                        <option>Des Micros de divers types + des filtres</option>
+                        <option>De la connectique audio</option>
+                        <option>Un lecteur de disque externe</option>
+                        <option>Des claviers USB pour ordinateurs</option>
+                        <option>Des écrans d'ordinateurs</option>
+                        <option>Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</option>
+                        <option>Un Module SMS</option>
+                        <option>Des PC portables et des tours</option>
+                        <option>Divers connectiques et adaptateurs de connection pour pc</option>
+                    <!--</datalist>-->
+                </select>
                 <button class="log">Rajouter au stock</button>
             </form>
         </div>

@@ -10,25 +10,14 @@ async function initDB(db) {
         await db.authenticate();
         console.log('Connection has been established successfully.');
 
-        Product.belongsTo(ProductModel, {
-            as: "ProductModel", foreignKey: {name: "id", allowNull: false}
-        });
-        ProductModel.belongsTo(ProductCategory, {
-            as: "productModel",
-            foreignKey: {name: "id", allowNull: false}
-        });
-        ProductModel.hasMany(Product, {
-            as: "ProductModel", foreignKey: {name: "id", allowNull: false}
-        });
-        ProductCategory.hasMany(ProductModel, {
-            as: "ProductCategory", foreignKey: {name: "id", allowNull: false}
-        });
-        Receipt.belongsTo(Orders, {
-            as: "Receipt", foreignKey: {name: "id", allowNull: false}
-        });
+        Product.belongsTo(ProductModel,);
+        ProductModel.belongsTo(ProductCategory,);
+        ProductModel.hasMany(Product,);
+        ProductCategory.hasMany(ProductModel,);
 
+        Receipt.belongsTo(Orders,);
         Orders.hasMany(Product);
-        Product.hasMany(Quantity);
+        //Product.hasMany(Quantity);
         Orders.hasMany(Quantity);
 
         await db.sync();

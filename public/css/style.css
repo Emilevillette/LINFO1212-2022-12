@@ -250,7 +250,7 @@ label{
 
 .in{
 	width: 60%;
-	height: 20px;
+	/*height: 20px;*/
 	background: var(--sixth-color);
 	justify-content: center;
 	display: flex;
