@@ -1,13 +1,13 @@
 const Product_mgmt = require("../scripts/product_management");
 
 describe('Find products', () => {
-    test('Find a non existent product', () => {
-        const product = Product_mgmt.find_product('RTX 4090'); // :c
+    test('Find a non existent product', async () => {
+        const product = await Product_mgmt.find_product('RTX 4090'); // :c
         expect(product).toBeFalsy();
     });
 
-    test('Find a product that exists', () => {
-        const product = Product_mgmt.find_product('Souris');
+    test('Find a product that exists', async () => {
+        const product = await Product_mgmt.find_product('Souris');
         expect(product).toBeTruthy();
     });
 });

@@ -18,7 +18,7 @@ async function create_account(email, password, is_main_admin) {
         email: email,
         password_hash: await hash_password(password),
         is_main_admin: is_main_admin,
-    })
+    });
     return "create_ok";
 }
 
@@ -96,7 +96,7 @@ async function hash_password(password) {
  * Deletes an admin account
  *
  * @param email
- * @returns {Promise<void>}
+ * @returns {Promise<number>}
  */
 async function delete_account(email){
     await Users.destroy({
@@ -104,4 +104,4 @@ async function delete_account(email){
     });
 }
 
-module.exports = {create_account, get_account, check_existing, create_account, delete_account};
+module.exports = {create_account, get_account, check_existing, delete_account};
