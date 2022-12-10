@@ -3,7 +3,8 @@
   margin: 0;
   padding: 90;
   font-family: 'Poppins',sans-serif;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 :root{
@@ -36,7 +37,7 @@ body {
     background-image: var(--backg);
     background-attachment: fixed; 
     background-size: 100% 100%;
-    
+    overflow: scroll;
 }
 
 .backg{
@@ -46,18 +47,6 @@ body {
   width: 300%;
   background: rgba(49, 61, 88, 0.5);
   background-repeat: no-repeat;;
-}
-
-.top_left{
-    color: #fff;
-    position: absolute;
-    top: 10%;
-    left: 100.25%;
-    transform: translate(-50%, -50%);
-    width: 200%;
-    font-size: 25px;
-    font-weight: 400;
-    background-color:#1b1b1ba8;
 }
 
 .center{
@@ -79,7 +68,7 @@ body {
 	width: 50%;
 	height: auto;
 	overflow: hidden;
-    background: var(--third-color);
+  background: var(--third-color);
 	border-radius: 10px;
 	box-shadow: 5px 20px 50px #000;
     margin: auto;
@@ -279,8 +268,49 @@ label{
 	cursor: pointer;
 	margin-bottom: 3em;
 }
+
 .log:hover{
 	background: var(--eight-color);
 }
 
+.grid {
+  height: 75%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin-top: 75%;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: left;
+}
 
+.disp{
+  height: 75%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 10px;
+  margin-top: 1%;
+  margin-left: 50px;
+  margin-right: 50px;
+  text-align: left;
+}
+
+.box {
+  background: var(--third-color);
+  padding: 10px;
+  border-radius: 10px;
+  transition: 0.5s;
+  margin-top: 70px;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  text-align: center;
+}
+
+.box img {
+  width: 100%;
+  height: 100%;
+  margin: 20px 0 20px 0;
+}
+
+p {
+  margin-bottom: 10px;
+}

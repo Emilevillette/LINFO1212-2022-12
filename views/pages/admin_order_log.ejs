@@ -10,19 +10,19 @@
 <div class="backg"></div>
 
 <div class="center">
-    <div class="title">Historique des commandes:</div>
+    <div id="log" class="title">Historique des commandes:</div>
     <!-- Liste des commandes-->
     <table class=tableau>
         <thead>
         <tr>
-            <th>Numéro de commande</th>
-            <th>Nom complet du client</th>
-            <th>Adresse e-mail du client</th>
-            <th>Date sortie</th>
-            <th>Date retour</th>
-            <th>Date vraie sortie</th>
-            <th>Date vrai retour</th>
-            <th>Commentaire Admin</th>
+            <th id="order_num">Numéro de commande</th>
+            <th id="client_name">Nom complet du client</th>
+            <th id="client_email">Adresse e-mail du client</th>
+            <th id="S_date">Date sortie</th>
+            <th id="R_date">Date retour</th>
+            <th id="V_S_date">Date vraie sortie</th>
+            <th id="V_R_date">Date vrai retour</th>
+            <th id="admin_com">Commentaire Admin</th>
         </tr>
         </thead>
         <!--db à rechecker, commentaire char max needs to be fixed-->
@@ -30,6 +30,7 @@
 </div>
 
 <script src="/js/dark_mode.js"></script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>   

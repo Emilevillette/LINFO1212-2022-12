@@ -236,12 +236,21 @@ app.get('/', function (req, res) {
 });
 
 /**
- * Products filtered by category
+ * Categories
  */
 
 app.get('/category', function (req, res) {
     res.render('pages/category');
 });
+
+/**
+ * products filtered by category
+ */
+
+app.get('/product', function (req, res) {
+    res.render('pages/products');
+});
+/*
 
 
 /**
@@ -262,3 +271,5 @@ https.createServer({
 }, app).listen(8080, () => {
     console.log("Server up at http://localhost:8080/")
 });
+
+
