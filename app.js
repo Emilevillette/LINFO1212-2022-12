@@ -194,7 +194,26 @@ app.get('/order_history', async function (req, res) {
  */
 
 app.get('/cart', function (req, res) {
-    res.render('pages/cart');
+    let cart = req.session.cart;
+    res.render('pages/cart',{cart : cart});
+});
+
+/**
+ * Add product to cart
+ */
+app.post('/add_to_cart', function (req,res) {
+    let start_date = req.body.start_date;
+    let end_date = req.body.end_date ;
+    let quantity = req.body.quantity;
+    let product_model = req.query.product_model;
+    req.session.add_to_cart_message = "Item successfully added to the cart";
+    req.session.cart.push({
+        quantity: quantity,
+        model: product_model,
+        start_date: start_date,
+        end_date: end_date
+    });
+    res.redirect('back'); // redirect to the same page
 });
 
 /**
@@ -214,6 +233,7 @@ app.post('/new_order', urlencodedParser, async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
     await Order_mgmt.create_order(req);
     //req.session.order_number = await create_receipt();
+    req.session.cart = [];
     res.redirect('/order_completed');
 });
 
@@ -232,6 +252,7 @@ app.get('/order_completed',function (req,res){
  */
 
 app.get('/', function (req, res) {
+    if (req.session.cart === undefined) req.session.cart = [];
     res.render('pages/index');
 });
 
@@ -250,17 +271,16 @@ app.get('/category', function (req, res) {
 app.get('/product', function (req, res) {
     res.render('pages/products');
 });
-/*
 
 
 /**
  * Selected product page e.g: when you select an item in amazon,ebay,etc
  */
 
-app.get('/product', function (req, res) {
+app.get('/selected_product', function (req, res) {
     let product_model = req.query.product_model;
     let product = Product_mgmt.find_product(product_model);
-    res.render('pages/product.ejs', {product: product});
+    res.render('pages/product.ejs', {product: product, message: req.session.add_to_cart_message});
 });
 /*************************************************************************************/
 

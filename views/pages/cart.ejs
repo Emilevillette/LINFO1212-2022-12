@@ -14,22 +14,23 @@
         <!-- Liste des commandes-->
         <table class = tableau >
             <tr>
-                <th>Catégorie du produit</th>
-                <th>Brève description du produit</th>
+               <!-- <th>Catégorie du produit</th> -->
+                <th>Produit</th>
                 <th>Quantité</th>
                 <th>Date sortie</th>
                 <th>Date retour</th>
 
             </tr>
-            <!--Où est stocké le contenu du panier? (exemple juste pour pouvoir visualiser)-->
-            <tr>
-              <td>De la connectique audio</td>
-              <td>Câble adaptateur audio InLine® 3,5 mm Stéréo femelle à femelle, dont la bande de roulement est 0,2 m</td>
-              <td>6</td>
-              <td>30/11/2022</td>
-              <td>5/01/2022</td>
-              <td><button>🗑️</button></td>
-            </tr>
+            <% if (cart !== undefined ) {%>
+            <% for(var i=0; i < cart.length; i++) { %>
+                <tr>
+                    <td><%= cart[i]["model"] %></td>
+                    <td><%= cart[i]["quantity"] %></td>
+                    <td><%= cart[i]["start_date"] %></td>
+                    <td><%= cart[i]["end_date"] %></td>
+                    <td><button>🗑️</button></td>
+                </tr>
+            <% } }%>
 
         </table>
         <a href='/checkout' class="log">Confirmer la commande</a>
