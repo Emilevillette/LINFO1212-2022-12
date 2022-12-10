@@ -4,7 +4,7 @@
   "description": "Service de gestion d'inventaire pour le kot-à-projet Louvain-li-Nux",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -24,5 +24,8 @@
     "express-session": "^1.17.3",
     "sequelize": "^6.25.6",
     "sqlite3": "^5.1.2"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }

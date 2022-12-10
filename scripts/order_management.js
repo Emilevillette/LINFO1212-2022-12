@@ -1,4 +1,3 @@
-const {sequelize} = require("../config/database");
 const {Orders} = require("../models/order");
 
 /**
@@ -10,8 +9,8 @@ async function get_all_orders() {
     return Orders.findAll({raw: true});
 }
 
-async function get_order_by_number(orderno) {
-    return Orders.findByPk(orderno, {raw: true});
+async function get_order_by_number(order_number) {
+    return Orders.findByPk(order_number, {raw: true});
 }
 
 /**
