@@ -160,9 +160,14 @@ app.get('/get_stock', async function (req, res) {
 app.get('/check_order', function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
+    } else {
+        res.render('pages/admin_order');
     }
-    let order_number = req.query.order_number;
-    res.render('pages/admin_order', {order_number: order_number});
+});
+
+
+app.get('/get_order', function(req, res) {
+   res.json(Order_mgmt.get_order_by_number(req.query.orderno));
 });
 
 /**

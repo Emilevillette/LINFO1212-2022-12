@@ -10,6 +10,10 @@ async function get_all_orders() {
     return Orders.findAll({raw: true});
 }
 
+async function get_order_by_number(orderno) {
+    return Orders.findByPk(orderno, {raw: true});
+}
+
 /**
  * Creates a new client order
  *
@@ -28,4 +32,4 @@ async function create_order(req) {
     });
 }
 
-module.exports = {get_all_orders, create_order}
+module.exports = {get_all_orders, create_order, get_order_by_number}
