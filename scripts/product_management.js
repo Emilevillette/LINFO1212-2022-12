@@ -95,4 +95,4 @@ async function get_all_products(options) {
     return ProductModel.findAll({raw: true});
 }
 
-module.exports = {add_category, add_model, add_product, add_to_inventory, get_all_products}
+module.exports = {add_category, add_model, add_product, add_to_inventory, get_all_products, find_product}

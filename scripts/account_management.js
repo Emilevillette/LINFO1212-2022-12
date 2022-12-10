@@ -89,8 +89,19 @@ async function check_password(providedPassword, hash) {
  * @returns {Promise<void|*>}
  */
 async function hash_password(password) {
-    return bcrypt.hash(password, 10);
+    return await bcrypt.hash(password, 10);
 }
 
+/**
+ * Deletes an admin account
+ *
+ * @param email
+ * @returns {Promise<void>}
+ */
+async function delete_account(email){
+    await Users.destroy({
+        where: {email : email}
+    });
+}
 
-module.exports = {create_account, get_account};
+module.exports = {create_account, get_account, check_existing, create_account, delete_account};
