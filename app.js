@@ -269,8 +269,9 @@ app.get('/', function (req, res) {
  * Categories
  */
 
-app.get('/category', function (req, res) {
-    res.render('pages/category');
+app.get('/category', async function (req, res) {
+    let categories = await Product_mgmt.get_all_categories();
+    res.render('pages/category', {categories: categories});
 });
 
 

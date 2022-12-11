@@ -11,34 +11,11 @@
 <div class="backg"></div>
 <div class="center">
     <div class="disp">
-        <div class="box">
-            <a class="link" href="/product">Des Micros de divers types + des filtres</a>
-        </div>
-        <div class="box">
-            <button class="log">De la connectique audio</button>
-        </div>
-        <div class="box">
-            <button class="log">Un lecteur de disque externe</button>
-        </div>
-        <div class="box">
-            <button class="log">Des claviers USB pour ordinateurs</button>
-        </div>
-        <div class="box">
-           <button class="log">Des écrans d'ordinateurs</button>
-        </div>
-        <div class="box">
-            <button class="log">Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</button>
-        </div>
-        <div class="box">
-            <button class="log">Un Module SMS</button>
-        </div>
-        <div class="box">
-            <button class="log">Des PC portables et des tours</button>
-        </div>
-        <div class="box">
-            <button class="log">Divers connectiques et adaptateurs de connection pour pc</button>
-        </div>
-
+        <% for(element in categories) { %>
+            <div class="box">
+                <a class="link" href="/product?<%= categories[element]["id"] %>"><button class="log"><%= categories[element]["id"] %></button></a>
+            </div>
+        <% } %>
     </div>
 </div>
 </body>
