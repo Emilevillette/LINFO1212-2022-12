@@ -1,0 +1,39 @@
+<!--pre panier page-->
+<!--the user gets sent to this page when he pushes the add button under a product-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+
+<body>
+<%- include('../partials/user_navbar') %>
+
+<div class="center">
+    <div class="main">
+        <div class="signup">
+            <form>
+                <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
+                <small>Date de la sortie du produit:</small>
+                <input class="in" type="date" min="" id="date_sortie" required>
+                <small>Date du retour du produit:</small>
+                <input class="in" type="date" min="" id="date_retour" disabled = "true" required>
+                <small>La quantité souhaitée</small>
+                <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value = 1 required>
+                <button class="log" ><a class="link" href='/category'>Confirmer</button></a>
+            </form>           
+        </div>
+    </div>
+</div>
+</body>
+
+<!--put on form.js-->
+<script>
+var date_t = new Date();
+var min_date_sortie = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+
+document.getElementById('date_sortie').min = min_date_sortie;
+date_sortie.addEventListener('input', function(){
+    date_retour.disabled = false;
+    date_retour.min = date_sortie.value;
+});
+</script>
+</html>   

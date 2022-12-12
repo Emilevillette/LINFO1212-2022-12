@@ -327,3 +327,8 @@ https.createServer({
 });
 
 
+//REMOOOOVVVVEEEE!!!!!!!!
+app.get('/pre_cart', function (req, res) {
+    //User adds his information and clicks on the validate button
+    res.render('pages/pre_cart');
+});

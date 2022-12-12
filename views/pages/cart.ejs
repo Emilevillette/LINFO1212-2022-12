@@ -6,34 +6,32 @@
 
 <body>
 <%- include('../partials/user_navbar') %>
-  
-  <div class="backg"></div>
 
-  <div class="center">
-    <div class="title">Votre panier contient les éléments ci-dessous:</div>
-        <!-- Liste des commandes-->
-        <table class = tableau >
+<div class="center">
+<div class="title">Votre panier contient les éléments ci-dessous:</div>
+    <!-- Liste des commandes-->
+    <table class = tableau >
+        <tr>
+            <!-- <th>Catégorie du produit</th> -->
+            <th>Produit</th>
+            <th>Quantité</th>
+            <th>Date sortie</th>
+            <th>Date retour</th>
+
+        </tr>
+        <% if (cart !== undefined ) {%>
+        <% for(var i=0; i < cart.length; i++) { %>
             <tr>
-               <!-- <th>Catégorie du produit</th> -->
-                <th>Produit</th>
-                <th>Quantité</th>
-                <th>Date sortie</th>
-                <th>Date retour</th>
-
+                <td><%= cart[i]["model"] %></td>
+                <td><%= cart[i]["quantity"] %></td>
+                <td><%= cart[i]["start_date"] %></td>
+                <td><%= cart[i]["end_date"] %></td>
+                <td><button>🗑️</button></td>
             </tr>
-            <% if (cart !== undefined ) {%>
-            <% for(var i=0; i < cart.length; i++) { %>
-                <tr>
-                    <td><%= cart[i]["model"] %></td>
-                    <td><%= cart[i]["quantity"] %></td>
-                    <td><%= cart[i]["start_date"] %></td>
-                    <td><%= cart[i]["end_date"] %></td>
-                    <td><button>🗑️</button></td>
-                </tr>
-            <% } }%>
+        <% } }%>
 
-        </table>
-        <a href='/checkout' class="log">Confirmer la commande</a>
+    </table>
+    <button class="log"><a class= "link" href='/checkout' class="log">Confirmer la commande</a></button>
 </div>
 
 </body>

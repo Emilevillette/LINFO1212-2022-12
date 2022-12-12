@@ -10,8 +10,6 @@
 <body>
 <%- include('../partials/admin_navbar') %>
 
-<div class="backg"></div>
-
 <div class="center">
     <div class="title">Contenu de l'inventaire:</div>
     <!-- Liste des produit disponibles en stock-->
@@ -51,9 +49,6 @@
     const table_content_id = ["productCategoryId", "id", "description", "quantity"];
     get_and_insert_table("/get_stock", "stock_table", table_head_elements, table_content_id);
 </script>
-<script src="/js/dark_mode.js"></script>
-<script type="text/javascript"
-        src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </body>
 </html>   

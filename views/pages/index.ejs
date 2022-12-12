@@ -6,16 +6,13 @@
 <body>
 <%- include('../partials/index_navbar.ejs') %>
 
-<div class="backg"></div>
-
 <div class="center">
     <div class="main">
         <div class="signup">
             <form>
                 <label class="title_label">Veuillez selectionner la section du site que vous souhaitez accéder:</label>
-                <a href='/category' class="log">User</a>
-                <a href='/login' class="log">Admin</a>
-                <!--Ref à modifier vers la page d'acceuil user quand créée-->
+                <button class="log"><a class="link" href="/category">User</a></button>
+                <button class="log"><a class="link" href='/login'>Admin</a></button>
             </form>
         </div>
     </div>

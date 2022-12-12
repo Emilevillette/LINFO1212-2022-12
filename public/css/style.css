@@ -34,48 +34,35 @@
 
 body {
     background-image: var(--backg);
-    background-attachment: fixed;
+    background-color: rgba(37, 48, 75, 0.5);
+    background-blend-mode: overlay;
+    background-attachment: fixed; 
     background-size: 100% 100%;
-    overflow: scroll;
 }
 
-.backg {
-    content: '';
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: rgba(49, 61, 88, 0.5);
-    background-repeat: no-repeat;;
+.center{
+  position: absolute;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 0 20px;
+  text-align: center;
+}
+.center .title{
+  color: #fff;
+  font-size: 55px;
+  font-weight: 600;
 }
 
-.center {
-    position: absolute;
-    top: 52%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.center .title {
-    color: #fff;
-    margin-top: 10%;
-    font-size: 55px;
-    font-weight: 600;
-}
-
-.main {
-    width: 50%;
-    height: auto;
-    overflow: hidden;
+.main{
+	width: 40%;
+	height: auto;
+	overflow: hidden;
     background: var(--third-color);
-    border-radius: 10px;
-    box-shadow: 5px 20px 50px #000;
+	border-radius: 10px;
+	box-shadow: 5px 20px 50px #000;
     margin: auto;
-    display: grid;
-    grid-template-columns: auto auto auto;
-    gap: 20px;
 }
 
 nav {
@@ -175,6 +162,13 @@ thead tr {
 
 }
 
+th {
+  color: rgba(255, 255, 255, 0.774);
+  background-color: var(--tenth-color);
+  border-top: none;
+  
+}
+
 td:first-child, th:first-child {
     border-left: none;
 
@@ -268,6 +262,10 @@ td:first-child, th:first-child {
     transition: .2s ease-in;
     cursor: pointer;
     margin-bottom: 3em;
+}
+
+button.log a.link{
+    color : rgba(255, 255, 255, 0.671);
 }
 
 .log:hover {
