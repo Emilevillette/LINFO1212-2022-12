@@ -37,6 +37,10 @@ const ProductModel = sequelize.define(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
+        imgLink: {
+            type: DataTypes.TEXT,
+            allowNull: true,
+        }
     }
 );
 

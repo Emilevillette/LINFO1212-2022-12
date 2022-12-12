@@ -1,8 +1,24 @@
 const express = require('express');
 const session = require('express-session');
+
 const bodyparser = require('body-parser');
 const urlencodedParser = bodyparser.urlencoded({extended: true});
 const path = require('path');
+
+const backendThumbPath = './public/img/productThumbnail/'
+const frontThumbPath = 'img/productThumbnail/'
+const multer = require("multer");
+const storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, backendThumbPath)
+    },
+    filename: function (req, file, cb) {
+        cb(null, req.body.name + path.extname(file.originalname) )
+    }
+})
+const upload = multer({storage: storage});
+
+
 
 const https = require('https');
 const fs = require('fs');
@@ -11,12 +27,11 @@ const app = express();
 const public_dir = path.join(__dirname, 'public');
 
 const {sequelize} = require("./config/database");
-
 const {initDB} = require("./models/global");
-
 const Order_mgmt = require("./scripts/order_management");
 const Product_mgmt = require("./scripts/product_management");
 const Account_mgmt = require("./scripts/account_management");
+const {get_all_products_in_category} = require("./scripts/product_management");
 
 app.set('view engine', 'ejs');
 app.set('views', 'views');
@@ -99,8 +114,8 @@ app.get('/login', function (req, res) {
     }
 });
 
-app.get('/logout', function(req, res) {
-    if(req.session.email) {
+app.get('/logout', function (req, res) {
+    if (req.session.email) {
         req.session.destroy();
         res.redirect("/login");
     } else {
@@ -134,13 +149,14 @@ app.get('/add_to_stock', function (req, res) {
     }
 });
 
-app.post('/add_product', urlencodedParser, async function (req, res) {
+app.post('/add_product', upload.single('img'), async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
         //If product already in stock, just increase quantity.
         //Otherwise, create a new product
-        await Product_mgmt.add_to_inventory(req)
+        req.body.imgLink = frontThumbPath + req.file.filename;
+        await Product_mgmt.add_to_inventory(req);
         res.redirect('/visualise_stock');
     }
 });
@@ -175,8 +191,8 @@ app.get('/check_order', function (req, res) {
 });
 
 
-app.get('/get_order', function(req, res) {
-   res.json(Order_mgmt.get_order_by_number(req.query.orderno));
+app.get('/get_order', function (req, res) {
+    res.json(Order_mgmt.get_order_by_number(req.query.orderno));
 });
 
 /**
@@ -204,15 +220,15 @@ app.get('/order_history', async function (req, res) {
 
 app.get('/cart', function (req, res) {
     let cart = req.session.cart;
-    res.render('pages/cart',{cart : cart});
+    res.render('pages/cart', {cart: cart});
 });
 
 /**
  * Add product to cart
  */
-app.post('/add_to_cart', function (req,res) {
+app.post('/add_to_cart', function (req, res) {
     let start_date = req.body.start_date;
-    let end_date = req.body.end_date ;
+    let end_date = req.body.end_date;
     let quantity = req.body.quantity;
     let product_model = req.query.product_model;
     req.session.add_to_cart_message = "Item successfully added to the cart";
@@ -274,8 +290,8 @@ app.get('/category', async function (req, res) {
     res.render('pages/category', {categories: categories});
 });
 
-
-app.get('/get_all_categories', async function(req, res) {
+//useless ?
+app.get('/get_all_categories', async function (req, res) {
     let categories = await Product_mgmt.get_all_categories();
     res.json(categories);
 })
@@ -284,8 +300,10 @@ app.get('/get_all_categories', async function(req, res) {
  * products filtered by category
  */
 
-app.get('/product', function (req, res) {
-    res.render('pages/products');
+app.get('/product', async function (req, res) {
+    let products = await get_all_products_in_category(req.query.category);
+    console.log(products);
+    res.render('pages/products', {products: products, category: req.query.category});
 });
 
 

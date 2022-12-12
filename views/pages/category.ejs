@@ -11,9 +11,9 @@
 <div class="backg"></div>
 <div class="center">
     <div class="disp">
-        <% for(element in categories) { %>
+        <% for(var element in categories) { %>
             <div class="box">
-                <a class="link" href="/product?<%= categories[element]["id"] %>"><button class="log"><%= categories[element]["id"] %></button></a>
+                <a class="link" href="/product?category=<%= encodeURIComponent(categories[element]["id"]) %>"><button class="log"><%= categories[element]["id"] %></button></a>
             </div>
         <% } %>
     </div>

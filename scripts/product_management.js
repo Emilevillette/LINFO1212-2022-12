@@ -24,13 +24,14 @@ async function add_category(name, description) {
  * @param quantity
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
-async function add_model(name, description, cautionAmount, category, quantity) {
+async function add_model(name, description, cautionAmount, category, quantity, imgLink) {
     return ProductModel.create({
         id: name,
         description: description,
         cautionAmount: cautionAmount,
         quantity: quantity,
         productCategoryId: category,
+        imgLink: imgLink,
     });
 }
 
@@ -78,7 +79,7 @@ async function add_multiple_products(qty, name) {
  */
 async function add_to_inventory(req) {
     if (await find_product(req.body.name) === false) {
-        await add_model(req.body.name, req.body.description, req.body.cautionAmount, req.body.category, req.body.quantity);
+        await add_model(req.body.name, req.body.description, req.body.cautionAmount, req.body.category, req.body.quantity, req.body.imgLink);
         return add_multiple_products(req.body.quantity, req.body.name);
     } else {
         await add_multiple_products(req.body.quantity, req.body.name);
@@ -99,4 +100,18 @@ async function get_all_categories(options) {
     return ProductCategory.findAll({raw: true});
 }
 
-module.exports = {add_category, add_model, add_product, add_to_inventory, get_all_products, find_product, get_all_categories}
+async function get_all_products_in_category(categoryId) {
+    console.log(categoryId);
+    return ProductModel.findAll({where: {productCategoryId: categoryId}, raw: true});
+}
+
+module.exports = {
+    add_category,
+    add_model,
+    add_product,
+    add_to_inventory,
+    get_all_products,
+    find_product,
+    get_all_categories,
+    get_all_products_in_category,
+}
