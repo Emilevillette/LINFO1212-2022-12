@@ -316,6 +316,13 @@ app.get('/selected_product', function (req, res) {
     let product = Product_mgmt.find_product(product_model);
     res.render('pages/product.ejs', {product: product, message: req.session.add_to_cart_message});
 });
+
+app.post('/dark_mode',function (req,res){
+    //req.session.dark_mode;
+    console.log('click');
+    res.render('back');
+})
+
 /*************************************************************************************/
 
 https.createServer({
