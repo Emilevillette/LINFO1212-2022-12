@@ -3,58 +3,64 @@
 <!DOCTYPE html>
 <html lang="fr">
 <%- include('../partials/head') %>
-
+<head>
+    <link rel="stylesheet" href="/css/popup.css">
+    <script type="text/javascript" src="/js/popup.js"></script>
+</head>
 <body>
 <%- include('../partials/user_navbar') %>
 
-<div class="center">
-    <div class="title">Votre panier contient les éléments ci-dessous:</div>
-    <!-- Liste des commandes-->
-    <table class=tableau>
-        <tr>
-            <!-- <th>Catégorie du produit</th> -->
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Date sortie</th>
-            <th>Date retour</th>
+<div class="wrapper">
+    <div class="center">
+        <div class="title">Votre panier contient les éléments ci-dessous:</div>
+        <!-- Liste des commandes-->
+        <table class=tableau>
+            <tr>
+                <!-- <th>Catégorie du produit</th> -->
+                <th>Produit</th>
+                <th>Quantité</th>
+                <th>Date sortie</th>
+                <th>Date retour</th>
 
-        </tr>
-        <% if (cart !== undefined ) { %>
-            <% for(element in cart) { %>
-                <tr>
-                    <td><%= cart[element]["name"] %></td>
-                    <td><%= cart[element]["quantity"] %></td>
-                    <td><%= cart[element]["start_date"] %></td>
-                    <td><%= cart[element]["end_date"] %></td>
-                    <td>
-                        <form action="/remove_from_cart" method="post">
-                            <input type="hidden" name="product" value="<%= element %>">
-                            <button>🗑️</button>
-                        </form>
-                    </td>
-                </tr>
-        <% } } %>
-    </table>
+            </tr>
+            <% if (cart !== undefined ) { %>
+                <% for(element in cart) { %>
+                    <tr>
+                        <td><%= cart[element]["name"] %></td>
+                        <td><%= cart[element]["quantity"] %></td>
+                        <td><%= cart[element]["start_date"] %></td>
+                        <td><%= cart[element]["end_date"] %></td>
+                        <td>
+                            <form action="/remove_from_cart" method="post">
+                                <input type="hidden" name="product" value="<%= element %>">
+                                <button>🗑️</button>
+                            </form>
+                        </td>
+                    </tr>
+            <% } } %>
+        </table>
 
-    <div id="popup_checkout" class="popup">
+        <button class="log" onclick="toggle_popup()">Confirmer la commande</button>
+    </div>
+
+    <div id="popup" class="popup_div">
         <div class="center">
             <div class="main">
+                <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
                 <div class="signup">
-                    <form>
+                    <form action="/create_order" method="post">
                         <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                         <input class="in" type="text" name="name" placeholder="Nom complet" required>
                         <input class="in" type="text" name="e-mail" placeholder="Adresse mail" required>
                         <input class="in" type="text" name="num" placeholder="GSM sous la forme +32" required>
                         <input class="in" type="text" name="adr" placeholder="Adresse complete" required>
-                        <button class="log">Confirmer</button>
+                        <button class="log">Soumettre</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 
-    <button class="log" onclick="show_popup()"><a class="link" href='/checkout' class="log">Confirmer la commande</a></button>
 </div>
-
 </body>
 </html>   
