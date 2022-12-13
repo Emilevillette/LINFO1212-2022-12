@@ -4,15 +4,15 @@ const {initDB} = require("./models/global");
 const {sequelize} = require("./config/database");
 
 const cat_list = {
-    "Des Micros de divers types + des filtres": "Blipblop",
-    "De la connectique audio": "Blipblop",
-    "Un lecteur de disque externe": "Blipblop",
-    "Des claviers USB pour ordinateurs": "Blipblop",
-    "Des écrans d'ordinateurs": "Blipblop",
-    "Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur": "Blipblop",
-    "Un Module SMS": "Blipblop",
-    "Des PC portables et des tours": "Blipblop",
-    "Divers connectiques et adaptateurs de connection pour pc": "Blipblop",
+    "Des Micros de divers types + des filtres": "blabla category description blabla",
+    "De la connectique audio": "blabla category description blabla",
+    "Un lecteur de disque externe": "blabla category description blabla",
+    "Des claviers USB pour ordinateurs": "blabla category description blabla",
+    "Des écrans d'ordinateurs": "blabla category description blabla",
+    "Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur": "blabla category description blabla",
+    "Un Module SMS": "blabla category description blabla",
+    "Des PC portables et des tours": "blabla category description blabla",
+    "Divers connectiques et adaptateurs de connection pour pc": "blabla category description blabla",
 }
 
 initDB(sequelize).then(() => {

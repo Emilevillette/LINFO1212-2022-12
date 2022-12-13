@@ -10,16 +10,19 @@
 <div class="center">
     <div class="main">
         <div class="signup">
-            <form>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" name="product_model" value="<%= product_model%>"/>
                 <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                 <small>Date de la sortie du produit:</small>
-                <input class="in" type="date" min="" id="date_sortie" required>
+                <input class="in" type="date" min="" id="date_sortie" name="start_date" required>
                 <small>Date du retour du produit:</small>
-                <input class="in" type="date" min="" id="date_retour" disabled = "true" required>
-                <small>La quantité souhaitée</small>
-                <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value = 1 required>
-                <button class="log" ><a class="link" href='/category'>Confirmer</button></a>
-            </form>           
+                <input class="in" type="date" min="" id="date_retour" name="end_date" disabled required>
+                <small>Quantité souhaitée (<b>disponible : <%= max %></b>)</small>
+                <input class="in" type="number" min="1" max="<%= max %>" name="quantity" placeholder="Quantité" value=1
+                       required>
+                <button class="log">Confirmer</button>
+                </a>
+            </form>
         </div>
     </div>
 </div>
@@ -27,13 +30,13 @@
 
 <!--put on form.js-->
 <script>
-var date_t = new Date();
-var min_date_sortie = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+    var date_t = new Date();
+    var min_date_sortie = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
 
-document.getElementById('date_sortie').min = min_date_sortie;
-date_sortie.addEventListener('input', function(){
-    date_retour.disabled = false;
-    date_retour.min = date_sortie.value;
-});
+    document.getElementById('date_sortie').min = min_date_sortie;
+    date_sortie.addEventListener('input', function () {
+        date_retour.disabled = false;
+        date_retour.min = date_sortie.value;
+    });
 </script>
 </html>   

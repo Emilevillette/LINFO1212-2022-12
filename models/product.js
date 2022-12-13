@@ -58,4 +58,4 @@ const Product = sequelize.define(
     }
 );
 
-module.exports = {Product, ProductModel, ProductCategory}
+module.exports = {Product, ProductModel, ProductCategory};
