@@ -12,6 +12,9 @@
         <% for(var element in categories) { %>
             <div class="box">
                 <a class="link" href="/product?category=<%= encodeURIComponent(categories[element]["id"]) %>"><button class="log"><%= categories[element]["id"] %></button></a>
+                <p>
+                    <%= categories[element]["description"] %>
+                </p>
             </div>
         <% } %>
     </div>
