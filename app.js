@@ -221,8 +221,7 @@ app.get('/order_history', async function (req, res) {
  */
 
 app.get('/cart', function (req, res) {
-    let cart = req.session.cart;
-    res.render('pages/cart', {cart: cart});
+    res.render('pages/cart', {cart: req.cookies.cart});
 });
 
 /**
