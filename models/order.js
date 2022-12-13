@@ -59,6 +59,6 @@ const Quantity = sequelize.define("quantity", {
         allowNull: false,
         primaryKey: true,
     }
-})
+});
 
-module.exports = {Orders, Quantity}
+module.exports = {Orders, Quantity};

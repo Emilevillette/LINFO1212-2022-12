@@ -83,7 +83,7 @@ async function add_to_inventory(req) {
         return add_multiple_products(req.body.quantity, req.body.name);
     } else {
         await add_multiple_products(req.body.quantity, req.body.name);
-        return ProductModel.increment('quantity', {
+        return ProductModel.increment("quantity", {
             by: req.body.quantity,
             where: {
                 id: req.body.name,
@@ -119,4 +119,4 @@ module.exports = {
     get_all_categories,
     get_all_products_in_category,
     get_available_quantity,
-}
+};
