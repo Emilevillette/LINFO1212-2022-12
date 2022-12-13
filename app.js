@@ -241,6 +241,15 @@ app.post('/add_to_cart', urlencodedParser, function (req, res) {
     res.redirect('back'); // redirect to the same page
 });
 
+app.post('/remove_from_cart', urlencodedParser, function (req, res) {
+    if (req.body.product in req.cookies.cart) {
+        delete req.cookies.cart[req.body.product];
+        res.cookie("cart", req.cookies.cart, {secure: true, maxAge: 86400000, httpOnly: true, sameSite: 'strict'});
+    }
+
+    res.redirect('/cart');
+});
+
 /**
  * Checkout
  */

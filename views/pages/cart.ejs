@@ -27,7 +27,10 @@
                     <td><%= cart[element]["start_date"] %></td>
                     <td><%= cart[element]["end_date"] %></td>
                     <td>
-                        <button>🗑️</button>
+                        <form action="/remove_from_cart" method="post">
+                            <input type="hidden" name="product" value="<%= element %>">
+                            <button>🗑️</button>
+                        </form>
                     </td>
                 </tr>
         <% } } %>
