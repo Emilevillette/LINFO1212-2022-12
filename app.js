@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 
 const bodyparser = require('body-parser');
+const cookieParser = require("cookie-parser");
 const urlencodedParser = bodyparser.urlencoded({extended: true});
 const path = require('path');
 
@@ -13,17 +14,18 @@ const storage = multer.diskStorage({
         cb(null, backendThumbPath)
     },
     filename: function (req, file, cb) {
-        cb(null, req.body.name + path.extname(file.originalname) )
+        cb(null, req.body.name + path.extname(file.originalname))
     }
 })
 const upload = multer({storage: storage});
-
 
 
 const https = require('https');
 const fs = require('fs');
 
 const app = express();
+app.use(cookieParser());
+
 const public_dir = path.join(__dirname, 'public');
 
 const {sequelize} = require("./config/database");
@@ -226,18 +228,17 @@ app.get('/cart', function (req, res) {
 /**
  * Add product to cart
  */
-app.post('/add_to_cart', function (req, res) {
-    let start_date = req.body.start_date;
-    let end_date = req.body.end_date;
-    let quantity = req.body.quantity;
-    let product_model = req.query.product_model;
-    req.session.add_to_cart_message = "Item successfully added to the cart";
-    req.session.cart.push({
-        quantity: quantity,
-        model: product_model,
-        start_date: start_date,
-        end_date: end_date
-    });
+app.post('/add_to_cart', urlencodedParser, function (req, res) {
+    if (!req.cookies.cart) {
+        req.cookies.cart = {};
+    }
+    req.cookies.cart[req.body.product_model] = {
+        name: req.body.product_model,
+        start_date: req.body.start_date,
+        end_date: req.body.end_date,
+        quantity: req.body.quantity,
+    }
+    res.cookie("cart", req.cookies.cart, {secure: true, maxAge: 86400000, httpOnly: true, sameSite: 'strict'});
     res.redirect('back'); // redirect to the same page
 });
 
@@ -331,5 +332,5 @@ https.createServer({
 app.get('/pre_cart', async function (req, res) {
     //User adds his information and clicks on the validate button
     let max = await Product_mgmt.get_available_quantity(req.query.product);
-    res.render('pages/pre_cart', {max: max});
+    res.render('pages/pre_cart', {product_model: req.query.product, max: max});
 });
