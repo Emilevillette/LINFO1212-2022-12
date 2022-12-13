@@ -49,6 +49,7 @@ body {
   padding: 0 20px;
   text-align: center;
 }
+
 .center .title{
   color: #fff;
   font-size: 55px;
@@ -71,6 +72,11 @@ nav {
     width: 100%;
     padding: 10px 0;
     z-index: 12;
+}
+
+.logo .icon {
+    width: 30px;
+    cursor: pointer;
 }
 
 #icon {
