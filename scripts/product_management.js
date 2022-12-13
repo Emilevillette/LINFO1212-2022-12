@@ -105,6 +105,10 @@ async function get_all_products_in_category(categoryId) {
     return ProductModel.findAll({where: {productCategoryId: categoryId}, raw: true});
 }
 
+async function get_available_quantity(productModel) {
+    return (await ProductModel.findByPk(productModel)).quantity;
+}
+
 module.exports = {
     add_category,
     add_model,
@@ -114,4 +118,5 @@ module.exports = {
     find_product,
     get_all_categories,
     get_all_products_in_category,
+    get_available_quantity,
 }

@@ -328,7 +328,8 @@ https.createServer({
 
 
 //REMOOOOVVVVEEEE!!!!!!!!
-app.get('/pre_cart', function (req, res) {
+app.get('/pre_cart', async function (req, res) {
     //User adds his information and clicks on the validate button
-    res.render('pages/pre_cart');
+    let max = await Product_mgmt.get_available_quantity(req.query.product);
+    res.render('pages/pre_cart', {max: max});
 });
