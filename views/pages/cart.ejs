@@ -34,9 +34,26 @@
                     </td>
                 </tr>
         <% } } %>
-
     </table>
-    <button class="log"><a class="link" href='/checkout' class="log">Confirmer la commande</a></button>
+
+    <div id="popup_checkout" class="popup">
+        <div class="center">
+            <div class="main">
+                <div class="signup">
+                    <form>
+                        <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
+                        <input class="in" type="text" name="name" placeholder="Nom complet" required>
+                        <input class="in" type="text" name="e-mail" placeholder="Adresse mail" required>
+                        <input class="in" type="text" name="num" placeholder="GSM sous la forme +32" required>
+                        <input class="in" type="text" name="adr" placeholder="Adresse complete" required>
+                        <button class="log">Confirmer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="log" onclick="show_popup()"><a class="link" href='/checkout' class="log">Confirmer la commande</a></button>
 </div>
 
 </body>

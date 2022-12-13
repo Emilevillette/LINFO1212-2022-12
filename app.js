@@ -246,7 +246,6 @@ app.post('/remove_from_cart', urlencodedParser, function (req, res) {
         delete req.cookies.cart[req.body.product];
         res.cookie("cart", req.cookies.cart, {secure: true, maxAge: 86400000, httpOnly: true, sameSite: 'strict'});
     }
-
     res.redirect('/cart');
 });
 
@@ -314,18 +313,6 @@ app.get('/product', async function (req, res) {
     console.log(products);
     res.render('pages/products', {products: products, category: req.query.category});
 });
-
-
-/**
- * Selected product page e.g: when you select an item in amazon,ebay,etc
- */
-
-app.get('/selected_product', function (req, res) {
-    let product_model = req.query.product_model;
-    let product = Product_mgmt.find_product(product_model);
-    res.render('pages/product.ejs', {product: product, message: req.session.add_to_cart_message});
-});
-/*************************************************************************************/
 
 https.createServer({
     key: fs.readFileSync('./key.pem'),
