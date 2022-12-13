@@ -16,7 +16,7 @@
                     <img src="<%= products[element]["imgLink"] %>" alt="">
                 </div>
                 <p>Caution: <%= products[element]["cautionAmount"] %> €</p>
-                <a href="/pre_cart?product=<%= products[element]["id"]%>"><button class="log">Ajouter</button></a>
+                <a class="link" href="/pre_cart?product=<%= products[element]["id"]%>"><button class="log">Ajouter</button></a>
             </div>
         <% } %>
     </div>
