@@ -10,16 +10,17 @@
 <div class="center">
     <div class="main">
         <div class="signup">
-            <form>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" name="product_model" value="<%= product_model%>"/>
                 <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                 <small>Date de la sortie du produit:</small>
-                <input class="in" type="date" min="" id="date_sortie" required>
+                <input class="in" type="date" min="" id="date_sortie" name="start_date" required>
                 <small>Date du retour du produit:</small>
-                <input class="in" type="date" min="" id="date_retour" disabled="true" required>
+                <input class="in" type="date" min="" id="date_retour" name="end_date" disabled required>
                 <small>Quantité souhaitée (<b>disponible : <%= max %></b>)</small>
                 <input class="in" type="number" min="1" max="<%= max %>" name="quantity" placeholder="Quantité" value=1
                        required>
-                <a class="link" href='/category'><button class="log">Confirmer</button></a>
+                <button class="log">Confirmer</button>
                 </a>
             </form>
         </div>
