@@ -50,6 +50,20 @@ const Orders = sequelize.define("orders", {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: true,
+    },
+    quantity: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+    },
+    productId: {
+        //https://stackoverflow.com/questions/41860792/how-can-i-have-a-datatype-of-array-in-mysql-sequelize-instance
+        type: DataTypes.STRING,
+        get() {
+            return this.getDataValue("productId").split(';')
+        },
+        set(ids) {
+            this.setDataValue("productId", ids.join(';'))
+        }
     }
 });
 

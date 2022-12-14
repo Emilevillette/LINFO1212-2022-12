@@ -1,4 +1,5 @@
 const {ProductCategory, ProductModel, Product} = require("../models/product");
+const {sequelize} = require("../config/database");
 
 /**
  * Adds a new category of products to the database
@@ -109,6 +110,16 @@ async function get_available_quantity(productModel) {
     return (await ProductModel.findByPk(productModel)).quantity;
 }
 
+async function get_n_products(productModel, quantity, random = false, attributes = undefined) {
+    return Product.findAll({
+        where: {"productModelId": productModel},
+        limit:quantity,
+        order: random ? sequelize.random() : undefined,
+        raw:true,
+        attributes: attributes
+    })
+}
+
 module.exports = {
     add_category,
     add_model,
@@ -119,4 +130,5 @@ module.exports = {
     get_all_categories,
     get_all_products_in_category,
     get_available_quantity,
+    get_n_products,
 };

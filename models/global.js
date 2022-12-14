@@ -15,10 +15,16 @@ async function initDB(db) {
         ProductModel.hasMany(Product,);
         ProductCategory.hasMany(ProductModel,);
 
-        Receipt.belongsTo(Orders,);
-        Orders.hasMany(Product);
+        ProductModel.hasMany(Orders);
+        Orders.belongsTo(ProductModel);
+
+        Orders.belongsTo(Receipt);
+        Receipt.hasMany(Orders);
+
+        //Product.hasMany(Orders);
+        //Orders.belongsTo(Product);
         //Product.hasMany(Quantity);
-        Orders.hasMany(Quantity);
+        //Orders.hasMany(Quantity);
 
         await db.sync();
     } catch (error) {
