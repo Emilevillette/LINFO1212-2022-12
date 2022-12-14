@@ -264,7 +264,7 @@ app.get("/checkout", function (req, res) {
 
 app.post("/new_order", urlencodedParser, async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
-    await Order_mgmt.create_order(req);
+    await Order_mgmt.create_batch_orders(req);
     //req.session.order_number = await create_receipt();
     req.session.cart = [];
     res.redirect("/order_completed");
