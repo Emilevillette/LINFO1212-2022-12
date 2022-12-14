@@ -19,7 +19,7 @@
                 <img src="<%= products[element]["imgLink"] %>" alt="">
             </div>
             <p>Caution: <%= products[element]["cautionAmount"] %> €</p>
-            <button class="log" onclick="toggle_popup()">Ajouter</button>
+            <button class="log" onclick="toggle_popup();change_product_input('<%= products[element]["id"] %>')">Ajouter</button>
         </div>
     <% } %>
 </div>
@@ -31,6 +31,7 @@
             <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
             <div class="signup">
                 <form action="/add_to_cart" method="post">
+                    <input type="hidden" name="product_model" id="popup_product" value="">
                     <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                     <small>Date de la sortie du produit:</small>
                     <input class="in" type="date" min="" id="date_sortie" name="start_date" required>

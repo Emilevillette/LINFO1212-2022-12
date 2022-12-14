@@ -8,3 +8,7 @@ function toggle_popup() {
         div.style.display = "none";
     }
 }
+
+function change_product_input(productId) {
+    document.getElementById("popup_product").value = productId;
+}
