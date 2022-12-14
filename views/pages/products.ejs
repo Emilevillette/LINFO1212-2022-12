@@ -5,24 +5,60 @@
 
 <body>
 <%- include('../partials/user_navbar') %>
+<head>
+    <link rel="stylesheet" href="/css/popup.css">
+    <script type="text/javascript" src="/js/popup.js"></script>
+</head>
 
-<div class="center">
-    <div class="title">Produits disponibles dans la categorie "<%= category %>":</div>
-    <div class="grid">
-        <% for(var element in products) { %>
-            <div class="box">
-                <h2><%= products[element]["id"] %></h2>
-                <div class="img">
-                    <img src="<%= products[element]["imgLink"] %>" alt="">
-                </div>
-                <p>Caution: <%= products[element]["cautionAmount"] %> €</p>
-                <a class="link" href="/pre_cart?product=<%= products[element]["id"] %>">
-                    <button class="log">Ajouter</button>
-                </a>
+<div class="title">Produits disponibles dans la categorie "<%= category %>":</div>
+<div class="grid">
+    <% for(var element in products) { %>
+        <div class="box">
+            <h2><%= products[element]["id"] %></h2>
+            <div class="img">
+                <img src="<%= products[element]["imgLink"] %>" alt="">
             </div>
-        <% } %>
+            <p>Caution: <%= products[element]["cautionAmount"] %> €</p>
+            <button class="log" onclick="toggle_popup()">Ajouter</button>
+        </div>
+    <% } %>
+</div>
+
+
+<div id="popup" class="popup_div">
+    <div class="center">
+        <div class="main">
+            <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
+            <div class="signup">
+                <form action="/add_to_cart" method="post">
+                    <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
+                    <small>Date de la sortie du produit:</small>
+                    <input class="in" type="date" min="" id="date_sortie" name="start_date" required>
+                    <small>Date du retour du produit:</small>
+                    <input class="in" type="date" min="" id="date_retour" name="end_date" disabled required>
+                    <small>Quantité souhaitée</small>
+                    <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value=1 required>
+                    <button class="log">Confirmer</button>
+                    </a>
+                </form>
+            </div>
+        </div>
     </div>
 </div>
+</body>
+
+<!--put on form.js-->
+<script>
+    var date_t = new Date();
+    var min_date_sortie = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+
+    document.getElementById('date_sortie').min = min_date_sortie;
+    date_sortie.addEventListener('input', function () {
+        date_retour.disabled = false;
+        date_retour.min = date_sortie.value;
+    });
+</script>
+
 </body>
 
 </html>   
