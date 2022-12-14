@@ -19,7 +19,11 @@
                 <img src="<%= products[element]["imgLink"] %>" alt="">
             </div>
             <p>Caution: <%= products[element]["cautionAmount"] %> €</p>
-            <button class="log" onclick="toggle_popup();change_product_input('<%= products[element]["id"] %>')">Ajouter</button>
+            <p>Qté disponible <%= products[element]["quantity"] %></p>
+            <input type="hidden"  id="product_quantity" value="<%= products[element]["quantity"] %>">
+            <button class="log" onclick="toggle_popup();change_product_input('<%= products[element]["id"] %>')">
+                Ajouter
+            </button>
         </div>
     <% } %>
 </div>
@@ -38,7 +42,8 @@
                     <small>Date du retour du produit:</small>
                     <input class="in" type="date" min="" id="date_retour" name="end_date" disabled required>
                     <small>Quantité souhaitée</small>
-                    <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value=1 required>
+                    <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value=1
+                           id="popup_quantity" required>
                     <button class="log">Confirmer</button>
                     </a>
                 </form>

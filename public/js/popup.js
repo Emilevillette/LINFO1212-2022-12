@@ -11,4 +11,5 @@ function toggle_popup() {
 
 function change_product_input(productId) {
     document.getElementById("popup_product").value = productId;
+    document.getElementById("popup_quantity").max = document.getElementById("product_quantity").value;
 }

@@ -24,8 +24,6 @@
     outline: none;
     border: none;
     border-radius: 5px;
-    height: 20px;
-    width: 20px;
     color: rgba(255, 255, 255, 0.671);
     background: var(--seventh-color);
     transition: .2s ease-in;

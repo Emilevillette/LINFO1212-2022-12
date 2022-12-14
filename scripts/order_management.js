@@ -13,6 +13,12 @@ async function get_all_orders() {
     return Orders.findAll({raw: true});
 }
 
+
+/** Find order by number
+ *
+ * @param order_number
+ * @returns {Promise<Model<any, TModelAttributes> | null>}
+ */
 async function get_order_by_number(order_number) {
     return Orders.findByPk(order_number, {raw: true});
 }
@@ -39,6 +45,12 @@ async function create_order(req, item) {
     });
 }
 
+
+/** One order per product in cart
+ *
+ * @param req
+ * @returns {Promise<void>}
+ */
 async function create_batch_orders(req) {
     for (let element in req.cookies.cart) {
         console.log(req.cookies.cart[element]);

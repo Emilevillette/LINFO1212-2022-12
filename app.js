@@ -241,6 +241,9 @@ app.post("/add_to_cart", urlencodedParser, function (req, res) {
     res.redirect("back"); // redirect to the same page
 });
 
+/**
+ * Removes element from the cart cookie
+ */
 app.post("/remove_from_cart", urlencodedParser, function (req, res) {
     if (req.body.product in req.cookies.cart) {
         delete req.cookies.cart[req.body.product];
@@ -320,12 +323,4 @@ https.createServer({
     passphrase: "ingi"
 }, app).listen(8080, () => {
     console.log("Server up at http://localhost:8080/");
-});
-
-
-//REMOOOOVVVVEEEE!!!!!!!!
-app.get("/pre_cart", async function (req, res) {
-    //User adds his information and clicks on the validate button
-    let max = await Product_mgmt.get_available_quantity(req.query.product);
-    res.render("pages/pre_cart", {product_model: req.query.product, max: max});
 });

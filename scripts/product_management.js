@@ -93,29 +93,60 @@ async function add_to_inventory(req) {
     }
 }
 
+
+/** Returns all product models
+ *
+ * @param options
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
 async function get_all_products(options) {
     return ProductModel.findAll({raw: true});
 }
 
+/** Returns all categories
+ *
+ * @param options
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
 async function get_all_categories(options) {
     return ProductCategory.findAll({raw: true});
 }
 
+
+/** Returns all product models in category
+ *
+ * @param categoryId
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
 async function get_all_products_in_category(categoryId) {
     console.log(categoryId);
     return ProductModel.findAll({where: {productCategoryId: categoryId}, raw: true});
 }
 
+/** Returns quantity in stock for a given product model
+ *
+ * @param productModel
+ * @returns {Promise<*>}
+ */
 async function get_available_quantity(productModel) {
     return (await ProductModel.findByPk(productModel)).quantity;
 }
 
+
+/** Returns n products from products model
+ *
+ * @param productModel
+ * @param quantity how many
+ * @param random randomize ?
+ * @param attributes which attributes to select
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
 async function get_n_products(productModel, quantity, random = false, attributes = undefined) {
     return Product.findAll({
         where: {"productModelId": productModel},
-        limit:quantity,
+        limit: quantity,
         order: random ? sequelize.random() : undefined,
-        raw:true,
+        raw: true,
         attributes: attributes
     })
 }
