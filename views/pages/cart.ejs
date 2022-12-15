@@ -50,13 +50,13 @@
             <div class="main">
                 <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
                 <div class="signup">
-                    <form action="/new_order" onsubmit="generatePDF();" id="user_info_form" method="post">
+                    <form action="/new_order" method="post">
                         <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                         <input class="in" type="text" name="name" placeholder="Nom complet" required>
                         <input class="in" type="text" name="email" placeholder="Adresse mail" required>
                         <input class="in" type="text" name="phone_number" placeholder="GSM sous la forme +32" required>
                         <input class="in" type="text" name="address" placeholder="Adresse complete" required>
-                        <button class="log" >Soumettre</button>
+                        <button class="log">Soumettre</button>
                     </form>
                 </div>
             </div>
@@ -65,25 +65,36 @@
 
 </div>
 <script>
-
     function generatePDF() {
         var pdf = new jsPDF
-        pdf.text("LOUEvain-Li-Nux", 20, 20);
-        pdf.text("kot: louvain linux", 20, 30);
-        pdf.text("La  commande que vous avez passé contient les éléments suivants:", 20, 50);
+        var date_t = new Date();
+        var date = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+        var img = new Image()
+        img.src = 'img/llln.png'
+
+        pdf.addImage(img, 'png', 14, 13, 10, 10)
+        pdf.setFontSize(30).setTextColor(47, 64, 109).text("LOUEvain-Li-Nux", 24, 22);
+        pdf.setFontSize(15).setFontStyle("italic").text("kot Louvain Linux", 160, 22);
+        pdf.setFontSize(13).setFontStyle("italic").text("Le: " + date, 170, 32);
+        pdf.setFontSize(16).setFontStyle("bold").text("La  commande que vous avez passé contient les éléments suivants:", 16, 90);
         var table = document.getElementById('commande');
 
         for (var i = 0; i < table.rows.length; i++) {
-            let b = 0
+         for (var j = 0; j < table.rows[i].cells.length; j++) {
+             var cellContent = table.rows[i].cells[j].innerHTML;
+             console.log(i);
+             console.log(table.rows[i].cells[j].innerHTML);
+            if (i<1){
+                pdf.setFontStyle("normal").text(cellContent + " :", 17+(j*50), 110);
+            } else if (i == 1){
+                pdf.setFontSize(10).setFontStyle("normal").text(cellContent, 20+(j*50), 120+(i*10));
+            } else {
+                pdf.setFontStyle("normal").text(cellContent, 20+(j*50), 120+(i*10));
+            }
+            
+         }}
 
-        for (var j = 0; j < table.rows[i].cells.length; j++) {
-            var cellContent = table.rows[i].cells[j].innerHTML;
-
-            pdf.text(cellContent + " :", 10, 70+(b*10));
-            b += 1;
-        }
-        }
-        pdf.save('reçu.pdf');
+         pdf.save('reçu.pdf');
     }
 </script>
 </body>
