@@ -18,8 +18,8 @@ async function initDB(db) {
         ProductModel.hasMany(Orders);
         Orders.belongsTo(ProductModel);
 
-        Orders.belongsTo(Receipt);
         Receipt.hasMany(Orders);
+        Orders.belongsTo(Receipt);
 
         //Product.hasMany(Orders);
         //Orders.belongsTo(Product);

@@ -3,6 +3,7 @@ const {Product} = require("../models/product");
 const {get_n_products} = require("./product_management");
 const {extract_values} = require("./other_utils");
 const {DataTypes} = require("sequelize");
+const {Receipt} = require("../models/receipt");
 
 /**
  * Get all orders from the database
@@ -23,6 +24,10 @@ async function get_order_by_number(order_number) {
     return Orders.findByPk(order_number, {raw: true});
 }
 
+async function get_receipt_by_number(receipt_number) {
+    return Receipt.findByPk(receipt_number, {raw: true});
+}
+
 /**
  * Creates a new client order
  *
@@ -30,7 +35,7 @@ async function get_order_by_number(order_number) {
  * @param item
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
-async function create_order(req, item) {
+async function create_order(req, item, receiptNo) {
     //console.log(extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), "id"));
     return Orders.create({
         address: req.body.address,
@@ -41,7 +46,8 @@ async function create_order(req, item) {
         start_date: item["start_date"],
         end_date: item["end_date"],
         productModelId: item["name"],
-        productId:extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), ["id"]),
+        productId: extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), ["id"]),
+        receiptNCommande: receiptNo
     });
 }
 
@@ -52,10 +58,12 @@ async function create_order(req, item) {
  * @returns {Promise<void>}
  */
 async function create_batch_orders(req) {
+    let receipt = await Receipt.create();
+    let orders = []
     for (let element in req.cookies.cart) {
         console.log(req.cookies.cart[element]);
-        create_order(req, req.cookies.cart[element]);
+        create_order(req, req.cookies.cart[element], receipt["n_commande"]);
     }
 }
 
-module.exports = {get_all_orders, create_order, get_order_by_number, create_batch_orders}
+module.exports = {get_all_orders, create_order, get_order_by_number, get_receipt_by_number, create_batch_orders}

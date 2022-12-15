@@ -193,8 +193,20 @@ app.get("/check_order", function (req, res) {
 });
 
 
-app.get("/get_order", function (req, res) {
-    res.json(Order_mgmt.get_order_by_number(req.query.orderno));
+app.get("/get_order", async function (req, res) {
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        res.json(await Order_mgmt.get_order_by_number(req.query.orderno));
+    }
+});
+
+app.get("/get_receipt", async function (req, res) {
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        res.json(await Order_mgmt.get_receipt_by_number(req.query.receiptno));
+    }
 });
 
 /**

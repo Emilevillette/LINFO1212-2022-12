@@ -2,15 +2,13 @@ const {DataTypes, Model} = require("sequelize");
 
 const {sequelize} = require("../config/database");
 
-class Receipt extends Model {
-}
-
-Receipt.init({
+const Receipt = sequelize.define("receipt", {
     n_commande: {
-        type: DataTypes.TEXT,
+        type: DataTypes.INTEGER,
         allowNull: false,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true,
     }
-}, ({sequelize}));
+});
 
 module.exports = {Receipt};
