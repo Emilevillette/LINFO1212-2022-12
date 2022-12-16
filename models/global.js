@@ -11,7 +11,9 @@ async function initDB(db) {
         console.log("Connection has been established successfully.");
 
         Product.belongsTo(ProductModel,);
-        ProductModel.belongsTo(ProductCategory,);
+        ProductModel.belongsTo(ProductCategory, {
+            onDelete: "cascade"
+        });
         ProductModel.hasMany(Product,);
         ProductCategory.hasMany(ProductModel,);
 

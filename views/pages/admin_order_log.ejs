@@ -10,6 +10,10 @@
 <body>
 <%- include('../partials/admin_navbar') %>
 
+<form id='order_search'>
+    <input type="search" name="orderno">
+</form>
+
 <div class="center">
     <div class="title">Historique des commandes:</div>
     <!-- Liste des commandes-->
@@ -34,13 +38,15 @@
         <!--db à rechecker, commentaire char max needs to be fixed-->
     </table>
 
+</div>
+
+<script type="text/javascript" src="js/table_utils.js"></script>
 
 <script>
-    const table_head_elements = ["Numéro de commande", "Nom complet du client", "Adresse e-mail du client", "Date sortie", "Date retour", "Date vraie sortie", "Date vraie retour", "Commentaire Admin"];
-    const table_content_id = [];
-    get_and_insert_table("/order_history", "log_table", table_head_elements, table_content_id);
+    const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
+    const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"];
+    get_and_insert_table("/get_all_orders?", "order_table", table_head_elements, table_content_id, <%= receiptno %>);
 </script>
-</div>
 
 </body>
 </html>   
