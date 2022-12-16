@@ -31,6 +31,18 @@ function dark_mode() {
     console.log("After " + document.cookie);
 }
 
+// access admin
+window.addEventListener("keydown", access_admin);
+let keysPressed = {};
+function access_admin(event) {
+    
+    keysPressed[event.key] = true;
+    console.log(keysPressed);
+    console.log(event.key);
+    console.log(event.keyCode);
+if (keysPressed['Control'] && keysPressed['a'] && event.keyCode === 76){
+    document.getElementById("admin_butt").hidden = false;
+}}
 
 //sets minimum date in cart
 function min_date(){

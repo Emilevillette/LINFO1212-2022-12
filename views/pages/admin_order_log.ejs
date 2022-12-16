@@ -10,32 +10,19 @@
 <body>
 <%- include('../partials/admin_navbar') %>
 
-<form id='order_search'>
-    <input type="search" name="orderno">
-</form>
+
 
 <div class="center">
     <div class="title">Historique des commandes:</div>
+    <form id='order_search'>
+        <input class="search_bar" type="search" name="orderno">
+        <button class="look_up">👁️</button>
+    </form>
+    
     <!-- Liste des commandes-->
     <table id="order_table">
         <thead></thead>
         <tbody></tbody>
-    </table>
-    <!--<table >
-        
-        <thead>
-        <tr>
-            <th id="order_num">Numéro de commande</th>
-            <th id="client_name">Nom complet du client</th>
-            <th id="client_email">Adresse e-mail du client</th>
-            <th id="S_date">Date sortie</th>
-            <th id="R_date">Date retour</th>
-            <th id="V_S_date">Date vraie sortie</th>
-            <th id="V_R_date">Date vrai retour</th>
-            <th id="admin_com">Commentaire Admin</th>
-        </tr>
-        </thead>-->
-        <!--db à rechecker, commentaire char max needs to be fixed-->
     </table>
 
 </div>
