@@ -51,7 +51,7 @@
             <div class="main">
                 <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
                 <div class="signup">
-                    <form action="/new_order" method="post">
+                    <form action="/new_order" onsubmit="generatePDF()" method="post">
                         <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                         <input class="in" type="text" name="name" placeholder="Nom complet" required>
                         <input class="in" type="text" name="email" placeholder="Adresse mail" required>

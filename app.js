@@ -223,6 +223,25 @@ app.get("/order_history", async function (req, res) {
     }
 });
 
+app.get("/get_all_receipts", async function (req, res) {
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        let receipts = await Order_mgmt.get_all_receipts();
+        res.json(receipts);
+    }
+});
+
+
+app.get("/get_all_orders", async function (req, res) {
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        let orders = await Order_mgmt.get_all_orders();
+        res.json(orders);
+    }
+});
+
 /****************************************************************************************/
 
 /*********************************** Clients pages ***********************************/
