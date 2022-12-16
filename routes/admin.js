@@ -177,13 +177,13 @@ router.get("/get_receipt", async function (req, res) {
  * Admin can check all finished orders
  */
 
-router.get("/order_history", async function (req, res) {
+router.get("/order_history", urlencodedParser,async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
         //Get all FINISHED orders from database
-        let orders = await Order_mgmt.get_all_orders();
-        res.render("pages/admin_order_log", {orders: orders});
+        //console.log(req.query.orderno);
+        res.render("pages/admin_order_log", {receiptno: req.query.receiptno});
     }
 });
 
@@ -197,11 +197,17 @@ router.get("/get_all_receipts", async function (req, res) {
 });
 
 
-router.get("/get_all_orders", async function (req, res) {
+router.get("/get_all_orders", urlencodedParser,async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
-        let orders = await Order_mgmt.get_all_orders();
+        let orders = {}
+        console.log(req.query);
+        if(req.query.receiptno !== 'undefined') {
+            orders = await Order_mgmt.get_orders_by_receipt_number(req.query.receiptno);
+        } else {
+            orders = await Order_mgmt.get_all_orders();
+        }
         res.json(orders);
     }
 });

@@ -76,11 +76,20 @@ async function get_all_receipts() {
 }
 
 
+async function get_orders_by_receipt_number(receiptno) {
+    return Orders.findAll({
+        raw: true, where: {
+            receiptNCommande: receiptno,
+        }
+    });
+}
+
 module.exports = {
     get_all_orders,
     create_order,
     get_order_by_number,
     get_receipt_by_number,
     create_batch_orders,
-    get_all_receipts
+    get_all_receipts,
+    get_orders_by_receipt_number,
 }
