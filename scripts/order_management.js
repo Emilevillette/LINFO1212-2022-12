@@ -66,4 +66,21 @@ async function create_batch_orders(req) {
     }
 }
 
-module.exports = {get_all_orders, create_order, get_order_by_number, get_receipt_by_number, create_batch_orders}
+/**
+ * Get all receipts from the database
+ *
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
+async function get_all_receipts() {
+    return Receipt.findAll({raw: true});
+}
+
+
+module.exports = {
+    get_all_orders,
+    create_order,
+    get_order_by_number,
+    get_receipt_by_number,
+    create_batch_orders,
+    get_all_receipts
+}

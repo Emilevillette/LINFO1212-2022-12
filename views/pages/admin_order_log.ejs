@@ -2,15 +2,18 @@
 <!DOCTYPE html>
 <html lang="fr">
 <%- include('../partials/head') %>
-
+<head>
+    <script type="text/javascript" src="js/table_utils.js"></script>
+</head>
 <body>
 <%- include('../partials/admin_navbar') %>
 
 <div class="center">
     <div id="log" class="title">Historique des commandes:</div>
     <!-- Liste des commandes-->
-    <table class=tableau>
+    <table class=tableau id="order_table">
         <thead>
+        <!--
         <tr>
             <th id="order_num">Numéro de commande</th>
             <th id="client_name">Nom complet du client</th>
@@ -21,10 +24,20 @@
             <th id="V_R_date">Date vrai retour</th>
             <th id="admin_com">Commentaire Admin</th>
         </tr>
+        -->
         </thead>
+        <tbody>
+
+        </tbody>
         <!--db à rechecker, commentaire char max needs to be fixed-->
     </table>
 </div>
+
+<script>
+    const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
+    const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"];
+    get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id);
+</script>
 
 </body>
 </html>   
