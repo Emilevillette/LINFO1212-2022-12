@@ -1,0 +1,37 @@
+/* table */
+
+table {
+    width: 85%;
+    margin: auto;
+    margin-top: 5%;
+    border-collapse: separate;
+    border: var(--eight-color);
+    border-radius: 8px;
+    background-color: var(--third-color);
+}
+
+td, th {
+
+    border-left: solid var(--eight-color);
+    border-top: solid var(--eight-color);
+
+}
+
+thead tr {
+    color: rgba(255, 255, 255, 0.774);
+    background-color: var(--tenth-color);
+    border-top: none;
+
+}
+
+th {
+    color: rgba(255, 255, 255, 0.774);
+    background-color: var(--tenth-color);
+    border-top: none;
+
+}
+
+td:first-child, th:first-child {
+    border-left: none;
+
+}

@@ -1,0 +1,97 @@
+/* search_bar */
+
+.search_bar {
+    width: 350px;
+    text-align: center;
+    transition-duration: 0.5s;
+    background-color: var(--sixth-color);
+    margin-top: 5em;
+    margin-bottom: 3em;
+}
+
+.search_bar:hover {
+    background-color: rgb(192, 196, 229);
+}
+
+.look_up {
+    text-align: center;
+    transition-duration: 0.5s;
+    background-color: var(--sixth-color);
+}
+
+.look_up:hover {
+    background-color: rgb(192, 196, 229);
+}
+
+
+
+/* link */
+
+.link:link {
+    color: var(--secondary-color);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: rgb(117, 84, 84);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.link:active {
+    color: rgba(0, 102, 255, 0.281);
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.link:visited {
+    color: var(--secondary-color);
+    background-color: transparent;
+    text-decoration: none;
+}
+
+
+
+/* button */
+
+.but {
+    width: 60%;
+    height: 40px auto;
+    margin: 10px auto;
+    justify-content: center;
+    display: block;
+    color: rgba(255, 255, 255, 0.671);
+    background: var(--seventh-color);
+    font-size: 1em;
+    font-weight: bold;
+    margin-top: 20px;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    transition: .2s ease-in;
+    cursor: pointer;
+    margin-bottom: 3em;
+}
+
+button.log a.link {
+    color: rgba(255, 255, 255, 0.671);
+}
+
+.but:hover {
+    background: var(--eight-color);
+}
+
+/* input */
+
+.in {
+    width: 60%;
+    background: var(--sixth-color);
+    justify-content: center;
+    display: flex;
+    margin: 20px auto;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}

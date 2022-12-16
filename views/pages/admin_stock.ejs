@@ -4,6 +4,7 @@
 <html lang="fr">
 <%- include('../partials/head') %>
 <head>
+    <link rel="stylesheet" href="/css/table.css">
     <script type="text/javascript" src="js/table_utils.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 </head>
@@ -14,36 +15,12 @@
 <div class="center">
     <div class="title">Contenu de l'inventaire:</div>
     <!-- Liste des produit disponibles en stock-->
-    <table class="tableau" id="stock_table">
-        <thead>
-        <!--
-        <tr>
-            <th>Modèle du produit</th>
-            <th>Brève description du produit</th>
-            <th>Disponible</th>
-            <th>Nombre en stock</th>
-        </tr>
-        -->
-        </thead>
-        <!--fetch from database (exemple juste pour pouvoir visualiser)-->
-        <tbody>
-        <!--
-        <tr>
-            <td>De la connectique audio</td>
-            <td>Câble adaptateur audio InLine® 3,5 mm Stéréo femelle à femelle, dont la bande de roulement est 0,2 m
-            </td>
-            <td>✓</td>
-            <td>7</td>
-            <td>
-                <button>🗑️</button>
-            </td>
-        </tr>
-        -->
-        </tbody>
-
+    <table id="stock_table">
+        <thead></thead>
+        <tbody></tbody>
     </table>
-    <button class="log" onclick="generatePDF()">Genérer un PDF qui contient tous les produits en stock</button>
-    <button class="log">Enregistrer les modifications</button>
+    <button class="but" onclick="generatePDF()">Genérer un PDF qui contient tous les produits en stock</button>
+    <button class="but">Enregistrer les modifications</button>
 </div>
 
 <script>
