@@ -20,6 +20,7 @@ const upload = multer({storage: storage});
 const Account_mgmt = require("../scripts/account_management");
 const Product_mgmt = require("../scripts/product_management");
 const Order_mgmt = require("../scripts/order_management");
+const path = require("path");
 
 /*********************************** Admin only pages ***********************************/
 
