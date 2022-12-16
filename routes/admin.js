@@ -20,7 +20,7 @@ const upload = multer({storage: storage});
 const Account_mgmt = require("../scripts/account_management");
 const Product_mgmt = require("../scripts/product_management");
 const Order_mgmt = require("../scripts/order_management");
-const path = require("path");
+
 /*********************************** Admin only pages ***********************************/
 
 /**
@@ -183,6 +183,25 @@ router.get("/order_history", async function (req, res) {
         //Get all FINISHED orders from database
         let orders = await Order_mgmt.get_all_orders();
         res.render("pages/admin_order_log", {orders: orders});
+    }
+});
+
+router.get("/get_all_receipts", async function (req, res) {
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        let receipts = await Order_mgmt.get_all_receipts();
+        res.json(receipts);
+    }
+});
+
+
+router.get("/get_all_orders", async function (req, res) {
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        let orders = await Order_mgmt.get_all_orders();
+        res.json(orders);
     }
 });
 
