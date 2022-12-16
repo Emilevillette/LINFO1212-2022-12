@@ -15,7 +15,7 @@
 **How to run the website:**
 
 Firstly, make sure that Node JS is installed in your machine, here's a link to download it if needed [Download Node JS page](https://nodejs.org/en/download/) \
-Then, you'll go to a terminal and enter `npm install`. With that you can now enter in that same terminal `node app`. \
+Then, you'll go to a terminal and enter `npm install`. With that you can now enter in that same terminal `node init_database` and then `node app`. \
 When all the previous tasks are done you can access our website [LOUEvain-Li-Nux](https://localhost:8080/)
 
 **Composition of files:**
