@@ -4,7 +4,7 @@
 //Check dark_mode cookie and turn it on if needed
 window.onload = (event) => {
     setDark_mode();
-}
+};
 
 function setDark_mode(){
     if (!document.cookie.includes("dark_mode")){
@@ -40,7 +40,7 @@ window.addEventListener("keydown", access_admin);
         console.log(keysPressed);
         console.log(event.key);
         console.log(event.keyCode);
-    if (keysPressed['Control'] && keysPressed['a'] && event.keyCode === 76){
+    if (keysPressed["Control"] && keysPressed["a"] && event.keyCode === 76){
         document.getElementById("admin_butt").hidden = false;
     }}
 
@@ -62,6 +62,7 @@ function min_date(){
 function generatePDF() {
   // eslint-disable-next-line no-undef
   var pdf = new jsPDF;
+  
   var date_t = new Date();
   var date = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
   var img = new Image();
@@ -76,13 +77,11 @@ function generatePDF() {
   var table = document.getElementById("commande");
   var b = 0;
   var c = 120;
-
+  console.log('here');
   for (var i = 0; i < table.rows.length; i++) {
       b+=1;
    for (var j = 0; j < table.rows[i].cells.length; j++) {
        var cellContent = table.rows[i].cells[j].innerHTML;
-       console.log(i);
-       console.log(table.rows[i].cells[j].innerHTML);
       if (b==15){
           pdf.addPage();
           b = 1;
@@ -95,46 +94,19 @@ function generatePDF() {
       } else {
           pdf.setFontStyle("normal").text(cellContent, 20+(j*50), c+(b*10));
       }
-      
-   }}
 
-   pdf.save("reçu.pdf");
+   /*pdf.save("reçu.pdf");*/
+   return pdf;
+   
+}}}
+
+function mail(){
+    var pdf = generatePDF();
+    var email = document.getElementById("email").value;
+    console.log(email);
+
+    var link = document.getElementById("mail_");
+    link.href = "mailto" + email + "?subject=Document&body=Please find the attached document.&attach=" + pdf;
+    console.log("here");
+
 }
-
-
-
-
-//Modify
-function translate(hash) {
-    // Define the language reload anchors
-    var language = {
-      Eng: {
-          login: "Login",
-          e_mail: "Email adress",
-          log: "Order history",
-          order_num: "Order number",
-          client_name: "Client's full name",
-          client_email: "Client's mail adress",
-          S_date: "Borrowing date",
-          R_date: "Return date",
-          V_S_date: "Real borrowing date",
-          V_R_date: "Real return date",
-          admin_com: "Admin's comment",
-          enter_o_num: "Please enter the order number you wish to view below:",
-        
-      },
-    };
-  
-    // Check if a hash value exists in the URL
-    if (hash) {
-      // Set the content of the webpage
-      // depending on the hash values
-      if (hash == "#Eng") {
-        login.placeholder = language.Eng.login;
-        e_mail.placeholder = language.Eng.e_mail;
-        enter_o_num.textContent = language.Eng.enter_o_num;
-      } else {
-        location.reload();
-      }
-    }
-  }
