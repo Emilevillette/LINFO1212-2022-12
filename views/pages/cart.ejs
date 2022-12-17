@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/popup.css">
     <link rel="stylesheet" href="/css/table.css">
     <script type="text/javascript" src="/js/popup.js"></script>
+    <script type="text/javascript" src="/js/empty2.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
 </head>
 
@@ -13,48 +14,53 @@
 <%- include('../partials/user_navbar') %>
 <div>
     <div class="center">
-        <div class="title">Votre panier contient les éléments ci-dessous:</div>
-        <!-- Liste des commandes-->
-        <table id="commande" class=tableau>
-            <tr>
-                <!-- <th>Catégorie du produit</th> -->
-                <th>Produit</th>
-                <th>Quantité</th>
-                <th>Date sortie</th>
-                <th>Date retour</th>
-            </tr>
-            <% if (cart !== undefined ) { %>
-                <% for(element in cart) { %>
-                    <tr>
-                        <td><%= cart[element]["name"] %></td>
-                        <td><%= cart[element]["quantity"] %></td>
-                        <td><%= cart[element]["start_date"] %></td>
-                        <td><%= cart[element]["end_date"] %></td>
-                        <td>
-                            <form action="/remove_from_cart" method="post">
-                                <input type="hidden" name="product" value="<%= element %>">
-                                <button>🗑️</button>
-                            </form>
-                        </td>
-                    </tr>
-            <% } } %>
-        </table>
-        <button class="but" onclick="toggle_popup()">Confirmer la commande</button>
-        
-    </div>
-    <div id="popup" class="popup_div">
-        <div class="center">
-             <div class="main">
-                 <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
-                    <form action="/new_order" onsubmit="generatePDF();" id="user_info_form" method="post">
-                        <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
-                        <input class="in" type="text" name="name" placeholder="Nom complet" required>
-                        <input class="in" type="text" name="email" placeholder="Adresse mail" required>
-                        <input class="in" type="text" name="phone_number" placeholder="GSM sous la forme +32" required>
-                        <input class="in" type="text" name="address" placeholder="Adresse complete" required>
-                        <button class="but">Soumettre</button>
-                    </form>
-             </div>
+        <div id="full" hidden>
+            <div class="title">Votre panier contient les éléments ci-dessous:</div>
+            <!-- Liste des commandes-->
+            <table id="commande" class=tableau>
+                <tr>
+                    <!-- <th>Catégorie du produit</th> -->
+                    <th>Produit</th>
+                    <th>Quantité</th>
+                    <th>Date sortie</th>
+                    <th>Date retour</th>
+                </tr>
+                <% if (cart !== undefined ) { %>
+                    <% for(element in cart) { %>
+                        <tr>
+                            <td><%= cart[element]["name"] %></td>
+                            <td><%= cart[element]["quantity"] %></td>
+                            <td><%= cart[element]["start_date"] %></td>
+                            <td><%= cart[element]["end_date"] %></td>
+                            <td>
+                                <form action="/remove_from_cart" method="post">
+                                    <input type="hidden" name="product" value="<%= element %>">
+                                    <button>🗑️</button>
+                                </form>
+                            </td>
+                        </tr>
+                <% } } %>
+            </table>
+            <button class="but" onclick="toggle_popup()">Confirmer la commande</button>
+            
+        </div>
+        <div id="popup" class="popup_div">
+            <div class="center">
+                <div class="main">
+                    <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
+                        <form action="/new_order" onsubmit="generatePDF();" id="user_info_form" method="post">
+                            <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
+                            <input class="in" type="text" name="name" placeholder="Nom complet" required>
+                            <input class="in" type="text" name="email" placeholder="Adresse mail" required>
+                            <input class="in" type="text" name="phone_number" placeholder="GSM sous la forme +32" required>
+                            <input class="in" type="text" name="address" placeholder="Adresse complete" required>
+                            <button class="but">Soumettre</button>
+                        </form>
+                </div>
+            </div>
+        </div>
+        <div id="empty" hidden>
+            <div class="title">Votre panier est vide pensez à le remplir 👀</div>
         </div>
     </div>
 </div>

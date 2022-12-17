@@ -18,19 +18,21 @@
     --seventh-color: rgba(96, 111, 155, 0.74);
     --eight-color: rgb(87, 97, 131);
     --tenth-color: rgb(52, 47, 65);
+    --eleventh-color:rgb(92, 87, 87); 
 }
 
 .dark-theme {
     --backg: url(../img/background2.jpg);
     --primary-color: #1b1b1b;
     --secondary-color: rgb(112, 128, 173);
-    --third-color: rgba(96, 111, 155, 0.74);
-    --fourth-color: rgba(196, 193, 193, 0.89);
+    --third-color: rgba(113, 129, 177, 0.911);
+    --fourth-color: rgba(223, 219, 219, 0.918);
     --fifth-color: rgb(29, 27, 34);
-    --sixth-color: #4241418e;
+    --sixth-color: #6d676794;
     --seventh-color: rgba(139, 151, 189, 0.74);
     --eight-color: rgb(178, 182, 194);
     --tenth-color: #1b1b1bbe;
+    --eleventh-color:rgb(206, 204, 204); 
 }
 
 body{
@@ -101,6 +103,7 @@ p {
 
 .title_label {
     color: var(--fourth-color);
+    z-index: 999;
     font-size: 2.3em;
     justify-content: center;
     display: flex;

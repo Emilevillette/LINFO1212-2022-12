@@ -33,16 +33,16 @@ function dark_mode() {
 
 // access admin
 window.addEventListener("keydown", access_admin);
-let keysPressed = {};
-function access_admin(event) {
-    
-    keysPressed[event.key] = true;
-    console.log(keysPressed);
-    console.log(event.key);
-    console.log(event.keyCode);
-if (keysPressed['Control'] && keysPressed['a'] && event.keyCode === 76){
-    document.getElementById("admin_butt").hidden = false;
-}}
+    let keysPressed = {};
+    function access_admin(event) {
+        
+        keysPressed[event.key] = true;
+        console.log(keysPressed);
+        console.log(event.key);
+        console.log(event.keyCode);
+    if (keysPressed['Control'] && keysPressed['a'] && event.keyCode === 76){
+        document.getElementById("admin_butt").hidden = false;
+    }}
 
 //sets minimum date in cart
 function min_date(){
@@ -70,6 +70,7 @@ function generatePDF() {
   pdf.addImage(img, "png", 14, 13, 10, 10);
   pdf.setFontSize(30).setTextColor(47, 64, 109).text("LOUEvain-Li-Nux", 24, 22);
   pdf.setFontSize(15).setFontStyle("italic").text("kot Louvain Linux", 160, 22);
+  pdf.setFontSize(13).setFontStyle("italic").text("Dirirgez vous au Rue Constantin Meunier 12, 1348 Ottignies-Louvain-la-Neuve\n" + "avec votre catre d'identité afin de récupérer votre commande", 24, 60);
   pdf.setFontSize(13).setFontStyle("italic").text("Le: " + date, 170, 32);
   pdf.setFontSize(16).setFontStyle("bold").text("La  commande que vous avez passé contient les éléments suivants:", 16, 90);
   var table = document.getElementById("commande");

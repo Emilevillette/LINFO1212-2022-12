@@ -5,6 +5,7 @@
 <head>
     <link rel="stylesheet" href="/css/table.css">
     <script type="text/javascript" src="js/table_utils.js"></script>
+    <script type="text/javascript" src="/js/empty.js"></script>
 </head>
 
 <body>
@@ -13,21 +14,26 @@
 
 
 <div class="center">
-    <div class="title">Historique des commandes:</div>
-    <form id='order_search'>
-        <input class="search_bar" type="search" name="orderno">
-        <button class="look_up">👁️</button>
-    </form>
-    
-    <!-- Liste des commandes-->
-    <table id="order_table">
-        <thead></thead>
-        <tbody></tbody>
-    </table>
+    <div id="full"  hidden>
+        <div class="title">Historique des commandes:</div>
+        <form id='order_search'>
+            <input class="search_bar" type="search" name="orderno">
+            <button class="look_up">👁️</button>
+        </form>
+        
+        <!-- Liste des commandes-->
+        <table id="order_table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="empty" hidden>
+        <div class="title">Vous n'avez aucune commande</div>
+    </div>
 
 </div>
 
-<script type="text/javascript" src="js/table_utils.js"></script>
 
 <script>
     const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
