@@ -3,6 +3,7 @@ const router = express.Router();
 
 const bodyparser = require("body-parser");
 const urlencodedParser = bodyparser.urlencoded({extended: true});
+const jsonparser = bodyparser.json();
 
 const frontThumbPath = "img/productThumbnail/";
 const backendThumbPath = "./public/img/productThumbnail/";
@@ -21,6 +22,7 @@ const Account_mgmt = require("../scripts/account_management");
 const Product_mgmt = require("../scripts/product_management");
 const Order_mgmt = require("../scripts/order_management");
 const path = require("path");
+const url = require("url");
 
 /*********************************** Admin only pages ***********************************/
 
@@ -177,7 +179,7 @@ router.get("/get_receipt", async function (req, res) {
  * Admin can check all finished orders
  */
 
-router.get("/order_history", urlencodedParser,async function (req, res) {
+router.get("/order_history", urlencodedParser, async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
@@ -197,19 +199,40 @@ router.get("/get_all_receipts", async function (req, res) {
 });
 
 
-router.get("/get_all_orders", urlencodedParser,async function (req, res) {
+router.get("/get_all_orders", urlencodedParser, async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
         let orders = {}
         console.log(req.query);
-        if(req.query.receiptno !== 'undefined') {
+        if (req.query.receiptno !== 'undefined') {
             orders = await Order_mgmt.get_orders_by_receipt_number(req.query.receiptno);
         } else {
             orders = await Order_mgmt.get_all_orders();
         }
         res.json(orders);
     }
+});
+
+
+router.post("/mark_archived", jsonparser, async function (req, res) {
+    await Order_mgmt.mark_archived(req.body.orderno);
+    res.sendStatus(200);
+});
+
+router.post("/mark_payed", jsonparser, async function (req, res) {
+    await Order_mgmt.mark_payed(req.body.orderno);
+    res.sendStatus(200);
+});
+
+router.post("/picked_up", jsonparser, async function (req, res) {
+    await Order_mgmt.mark_picked_up(req.body.orderno, req.body.date);
+    res.sendStatus(200);
+});
+
+router.post("/dropped_off", jsonparser, async function (req, res) {
+    await Order_mgmt.mark_dropped_off(req.body.orderno, req.body.date);
+    res.sendStatus(200);
 });
 
 module.exports = router;

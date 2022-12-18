@@ -47,7 +47,9 @@ async function create_order(req, item, receiptNo) {
         end_date: item["end_date"],
         productModelId: item["name"],
         productId: extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), ["id"]),
-        receiptNCommande: receiptNo
+        receiptNCommande: receiptNo,
+        is_archived: false,
+        is_payed: false,
     });
 }
 
@@ -84,6 +86,31 @@ async function get_orders_by_receipt_number(receiptno) {
     });
 }
 
+async function mark_archived(orderno) {
+    let order = await Orders.findByPk(orderno);
+    order.is_archived = !order.is_archived;
+    return order.save();
+}
+
+async function mark_payed(orderno) {
+    let order = await Orders.findByPk(orderno);
+    order.is_payed = !order.is_payed;
+    return order.save();
+}
+
+async function mark_picked_up(orderno, date) {
+    console.log(date);
+    let order = await Orders.findByPk(orderno);
+    order.date_client_pickup = new Date(date);
+    return order.save();
+}
+
+async function mark_dropped_off(orderno, date) {
+    let order = await Orders.findByPk(orderno);
+    order.date_client_return = new Date(date);
+    return order.save();
+}
+
 module.exports = {
     get_all_orders,
     create_order,
@@ -92,4 +119,8 @@ module.exports = {
     create_batch_orders,
     get_all_receipts,
     get_orders_by_receipt_number,
+    mark_archived,
+    mark_payed,
+    mark_picked_up,
+    mark_dropped_off
 }

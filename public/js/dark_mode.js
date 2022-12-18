@@ -105,8 +105,8 @@ function mail(){
     var email = document.getElementById("email").value;
     console.log(email);
 
-    var link = document.getElementById("mail_");
-    link.href = "mailto" + email + "?subject=Document&body=Please find the attached document.&attach=" + pdf;
-    console.log("here");
+    //var link = document.getElementById("mail_");
+    //link.href = "mailto" + email + "?subject=Document&body=Please find the attached document.&attach=" + pdf;
+    //console.log("here");
 
 }

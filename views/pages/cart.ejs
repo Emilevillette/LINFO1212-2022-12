@@ -42,20 +42,22 @@
                 <% } } %>
             </table>
             <button class="but" onclick="toggle_popup()">Confirmer la commande</button>
-            
+
         </div>
         <div id="popup" class="popup_div">
             <div class="center">
                 <div class="main">
-                    <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
-                        <form action="/new_order" id="user_info_form" method="post">
-                            <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
-                            <input class="in" type="text" name="name" placeholder="Nom complet" required>
-                            <input class="in" type="email" id="email" name="email" placeholder="Adresse mail" required>
-                            <input class="in" type="tel" pattern="[0][4][0-9]{8}" name="phone_number" placeholder="GSM sous la forme 0491923459" required>
-                            <input class="in" type="text" name="address" placeholder="Adresse complete" required>
-                            <button class="but" onclick="mail()"><a id="mail_to" href="">Soumettre</a></button>
-                        </form>
+                    <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span>
+                    </button>
+                    <form action="/new_order" id="user_info_form" method="post">
+                        <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
+                        <input class="in" type="text" name="name" placeholder="Nom complet" required>
+                        <input class="in" type="email" id="email" name="email" placeholder="Adresse mail" required>
+                        <input class="in" type="tel" pattern="[0][4][0-9]{8}" name="phone_number"
+                               placeholder="GSM sous la forme 0491923459" required>
+                        <input class="in" type="text" name="address" placeholder="Adresse complete" required>
+                        <button class="but" onclick="mail()"><a id="mail_to" href="">Soumettre</a></button>
+                    </form>
                 </div>
             </div>
         </div>
