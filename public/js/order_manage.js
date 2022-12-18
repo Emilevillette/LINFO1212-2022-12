@@ -27,7 +27,6 @@ async function mark_payed() {
 async function mark_picked_up() {
     let orderno = document.getElementById("popup_var").value;
     let date = document.getElementById("cmd_clt_gone").value;
-    console.log(date);
     await fetch("/picked_up", {
         method: "POST",
         headers: {
@@ -44,7 +43,6 @@ async function mark_picked_up() {
 async function mark_dropped_off() {
     let orderno = document.getElementById("popup_var").value;
     let date = document.getElementById("cmd_clt_back").value;
-    console.log(date);
     await fetch("/dropped_off", {
         method: "POST",
         headers: {

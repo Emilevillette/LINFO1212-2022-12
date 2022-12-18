@@ -36,7 +36,6 @@ async function get_receipt_by_number(receipt_number) {
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
 async function create_order(req, item, receiptNo) {
-    //console.log(extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), "id"));
     return Orders.create({
         address: req.body.address,
         email: req.body.email,
@@ -63,7 +62,6 @@ async function create_batch_orders(req) {
     let receipt = await Receipt.create();
     let orders = []
     for (let element in req.cookies.cart) {
-        console.log(req.cookies.cart[element]);
         create_order(req, req.cookies.cart[element], receipt["n_commande"]);
     }
 }
@@ -99,7 +97,6 @@ async function mark_payed(orderno) {
 }
 
 async function mark_picked_up(orderno, date) {
-    console.log(date);
     let order = await Orders.findByPk(orderno);
     order.date_client_pickup = new Date(date);
     return order.save();

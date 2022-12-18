@@ -52,7 +52,6 @@ async function get_and_insert_table(path, tableId, thead_elements, tbody_ids, ma
             button.setAttribute("value", stock_data[element]["id"]);
             button.addEventListener("click", function () {
                 document.getElementById("popup_var").setAttribute("value", button.value);
-                console.log(stock_data[element]["is_payed"]);
                 document.getElementById("payed").checked = !!Number(stock_data[element]["is_payed"]);
                 document.getElementById("archive").checked = !!Number(stock_data[element]["is_archived"]);
                 document.getElementById("cmd_clt_gone").value = stock_data[element]["date_client_pickup"].split(" ")[0];
