@@ -47,9 +47,8 @@
         <div id="popup" class="popup_div">
             <div class="center">
                 <div class="main">
-                    <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span>
-                    </button>
-                    <form action="/new_order" id="user_info_form" method="post">
+                    <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
+                    <form action="/new_order" onsubmit="generatePDF()"; id="user_info_form" method="post">
                         <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
                         <input class="in" type="text" name="name" placeholder="Nom complet" required>
                         <input class="in" type="email" id="email" name="email" placeholder="Adresse mail" required>
