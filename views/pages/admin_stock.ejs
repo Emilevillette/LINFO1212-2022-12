@@ -21,7 +21,6 @@
             <thead></thead>
             <tbody></tbody>
         </table>
-        <button class="but">Enregistrer les modifications</button>
     </div>
 
     <div id="empty" hidden>
@@ -31,8 +30,8 @@
 
 <!--need to fix get_stock-->
 <script>
-    const table_head_elements = ["Catégorie", "Modèle", "Description", "Quantité"];
-    const table_content_id = ["productCategoryId", "id", "description", "quantity"];
+    const table_head_elements = ["Catégorie", "Modèle", "Description", "Quantité disp.","Quantité tot."];
+    const table_content_id = ["productCategoryId", "id", "description", "quantity", "maxQuantity"];
     get_and_insert_table("/get_stock", "stock_table", table_head_elements, table_content_id);
 </script>
 
