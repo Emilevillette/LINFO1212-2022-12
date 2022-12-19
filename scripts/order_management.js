@@ -1,5 +1,5 @@
 const {Orders} = require("../models/order");
-const {Product} = require("../models/product");
+const {Product, ProductModel} = require("../models/product");
 const {get_n_products} = require("./product_management");
 const {extract_values} = require("./other_utils");
 const {DataTypes} = require("sequelize");
@@ -36,7 +36,7 @@ async function get_receipt_by_number(receipt_number) {
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
 async function create_order(req, item, receiptNo) {
-    return Orders.create({
+    await Orders.create({
         address: req.body.address,
         email: req.body.email,
         phone_number: req.body.phone_number,
@@ -50,6 +50,12 @@ async function create_order(req, item, receiptNo) {
         is_archived: false,
         is_payed: false,
     });
+    await ProductModel.decrement("quantity", {
+        by: item["quantity"],
+        where: {
+            id: item["name"],
+        }
+    })
 }
 
 
@@ -60,7 +66,6 @@ async function create_order(req, item, receiptNo) {
  */
 async function create_batch_orders(req) {
     let receipt = await Receipt.create();
-    let orders = []
     for (let element in req.cookies.cart) {
         create_order(req, req.cookies.cart[element], receipt["n_commande"]);
     }
@@ -87,6 +92,21 @@ async function get_orders_by_receipt_number(receiptno) {
 async function mark_archived(orderno) {
     let order = await Orders.findByPk(orderno);
     order.is_archived = !order.is_archived;
+    if(order.is_archived === true) {
+        await ProductModel.increment("quantity", {
+            by: order["quantity"],
+            where: {
+                id: order["productModelId"],
+            }
+        });
+    } else {
+        await ProductModel.decrement("quantity", {
+            by: order["quantity"],
+            where: {
+                id: order["productModelId"],
+            }
+        });
+    }
     return order.save();
 }
 

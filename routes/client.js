@@ -64,7 +64,7 @@ router.post("/new_order", urlencodedParser, async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
     await Order_mgmt.create_batch_orders(req);
     //req.session.order_number = await create_receipt();
-    req.session.cart = [];
+    res.clearCookie("cart");
     res.redirect("/order_completed");
 });
 
