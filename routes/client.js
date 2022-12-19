@@ -69,11 +69,10 @@ router.post("/new_order", urlencodedParser, async function (req, res) {
 });
 
 //Order completed
-/*
-app.get('/order_completed',function (req,res){
+router.get('/order_completed',function (req,res){
     let order_number = req.session.order_number;
-    res.render('order_completed',{order_number: order_number});
-});*/
+    res.render('pages/order',{order_number: order_number});
+});
 
 /**
  * Main page
