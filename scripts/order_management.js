@@ -62,13 +62,20 @@ async function create_order(req, item, receiptNo) {
 /** One order per product in cart
  *
  * @param req
- * @returns {Promise<void>}
+ * @returns {Promise<{autoIncrement: boolean, allowNull: boolean, type: IntegerDataTypeConstructor, primaryKey: boolean}>}
  */
 async function create_batch_orders(req) {
     let receipt = await Receipt.create();
     for (let element in req.cookies.cart) {
         create_order(req, req.cookies.cart[element], receipt["n_commande"]);
     }
+    return receipt["n_commande"];
+}
+
+async function get_latest_order() {
+    return Receipt.findOne({
+        order: [ [ 'n_commande', 'DESC' ]],
+    });
 }
 
 /**
@@ -139,5 +146,6 @@ module.exports = {
     mark_archived,
     mark_payed,
     mark_picked_up,
-    mark_dropped_off
+    mark_dropped_off,
+    get_latest_order
 }
