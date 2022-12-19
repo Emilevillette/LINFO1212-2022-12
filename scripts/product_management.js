@@ -126,7 +126,6 @@ async function get_all_categories(options) {
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
 async function get_all_products_in_category(categoryId) {
-    console.log(categoryId);
     return ProductModel.findAll({where: {productCategoryId: categoryId}, raw: true});
 }
 

@@ -32,13 +32,13 @@ Here's a briefly explanation of the files of our project:
   - Functions used in the app.js
 - models: 
   - Database related files in sequelize
-- public: 
+- public: Endpoint accessible by the user 
   - Images
   - Stylesheets 
   - Js scripts
 - config:
-  - database ...
-- 
+  - database configuration
+
 
 **Testing:**
 

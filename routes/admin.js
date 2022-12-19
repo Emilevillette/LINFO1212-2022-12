@@ -8,6 +8,7 @@ const jsonparser = bodyparser.json();
 const frontThumbPath = "img/productThumbnail/";
 const backendThumbPath = "./public/img/productThumbnail/";
 const multer = require("multer");
+//Configure multer file destination
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, backendThumbPath);
@@ -216,23 +217,39 @@ router.get("/get_all_orders", urlencodedParser, async function (req, res) {
 
 
 router.post("/mark_archived", jsonparser, async function (req, res) {
-    await Order_mgmt.mark_archived(req.body.orderno);
-    res.sendStatus(200);
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        await Order_mgmt.mark_archived(req.body.orderno);
+        res.sendStatus(200);
+    }
 });
 
 router.post("/mark_payed", jsonparser, async function (req, res) {
-    await Order_mgmt.mark_payed(req.body.orderno);
-    res.sendStatus(200);
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        await Order_mgmt.mark_payed(req.body.orderno);
+        res.sendStatus(200);
+    }
 });
 
 router.post("/picked_up", jsonparser, async function (req, res) {
-    await Order_mgmt.mark_picked_up(req.body.orderno, req.body.date);
-    res.sendStatus(200);
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        await Order_mgmt.mark_picked_up(req.body.orderno, req.body.date);
+        res.sendStatus(200);
+    }
 });
 
 router.post("/dropped_off", jsonparser, async function (req, res) {
-    await Order_mgmt.mark_dropped_off(req.body.orderno, req.body.date);
-    res.sendStatus(200);
+    if (!req.session.email) {
+        res.redirect("/login");
+    } else {
+        await Order_mgmt.mark_dropped_off(req.body.orderno, req.body.date);
+        res.sendStatus(200);
+    }
 });
 
 module.exports = router;
