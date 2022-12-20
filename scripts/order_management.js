@@ -1,5 +1,5 @@
 const {Orders} = require("../models/order");
-const {Product} = require("../models/product");
+const {Product, ProductModel} = require("../models/product");
 const {get_n_products} = require("./product_management");
 const {extract_values} = require("./other_utils");
 const {DataTypes} = require("sequelize");
@@ -36,8 +36,7 @@ async function get_receipt_by_number(receipt_number) {
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
 async function create_order(req, item, receiptNo) {
-    //console.log(extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), "id"));
-    return Orders.create({
+    await Orders.create({
         address: req.body.address,
         email: req.body.email,
         phone_number: req.body.phone_number,
@@ -47,23 +46,36 @@ async function create_order(req, item, receiptNo) {
         end_date: item["end_date"],
         productModelId: item["name"],
         productId: extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), ["id"]),
-        receiptNCommande: receiptNo
+        receiptNCommande: receiptNo,
+        is_archived: false,
+        is_payed: false,
     });
+    await ProductModel.decrement("quantity", {
+        by: item["quantity"],
+        where: {
+            id: item["name"],
+        }
+    })
 }
 
 
 /** One order per product in cart
  *
  * @param req
- * @returns {Promise<void>}
+ * @returns {Promise<{autoIncrement: boolean, allowNull: boolean, type: IntegerDataTypeConstructor, primaryKey: boolean}>}
  */
 async function create_batch_orders(req) {
     let receipt = await Receipt.create();
-    let orders = []
     for (let element in req.cookies.cart) {
-        console.log(req.cookies.cart[element]);
         create_order(req, req.cookies.cart[element], receipt["n_commande"]);
     }
+    return receipt["n_commande"];
+}
+
+async function get_latest_order() {
+    return Receipt.findOne({
+        order: [ [ 'n_commande', 'DESC' ]],
+    });
 }
 
 /**
@@ -76,11 +88,64 @@ async function get_all_receipts() {
 }
 
 
+async function get_orders_by_receipt_number(receiptno) {
+    return Orders.findAll({
+        raw: true, where: {
+            receiptNCommande: receiptno,
+        }
+    });
+}
+
+async function mark_archived(orderno) {
+    let order = await Orders.findByPk(orderno);
+    order.is_archived = !order.is_archived;
+    if(order.is_archived === true) {
+        await ProductModel.increment("quantity", {
+            by: order["quantity"],
+            where: {
+                id: order["productModelId"],
+            }
+        });
+    } else {
+        await ProductModel.decrement("quantity", {
+            by: order["quantity"],
+            where: {
+                id: order["productModelId"],
+            }
+        });
+    }
+    return order.save();
+}
+
+async function mark_payed(orderno) {
+    let order = await Orders.findByPk(orderno);
+    order.is_payed = !order.is_payed;
+    return order.save();
+}
+
+async function mark_picked_up(orderno, date) {
+    let order = await Orders.findByPk(orderno);
+    order.date_client_pickup = new Date(date);
+    return order.save();
+}
+
+async function mark_dropped_off(orderno, date) {
+    let order = await Orders.findByPk(orderno);
+    order.date_client_return = new Date(date);
+    return order.save();
+}
+
 module.exports = {
     get_all_orders,
     create_order,
     get_order_by_number,
     get_receipt_by_number,
     create_batch_orders,
-    get_all_receipts
+    get_all_receipts,
+    get_orders_by_receipt_number,
+    mark_archived,
+    mark_payed,
+    mark_picked_up,
+    mark_dropped_off,
+    get_latest_order
 }

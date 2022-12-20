@@ -1,0 +1,35 @@
+/* navigation bar */
+
+nav {
+    position: relative;
+    background: var(--primary-color);
+    width: 100%;
+    padding: 10px 0;
+    z-index: 12;
+}
+
+.logo .icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+#icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+nav .menu {
+    max-width: 1250px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.menu .logo a {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-size: 40px;
+    font-weight: 600;
+}

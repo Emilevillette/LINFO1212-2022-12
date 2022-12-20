@@ -6,7 +6,7 @@ const ProductCategory = sequelize.define(
         id: {
             type: DataTypes.TEXT,
             allowNull: false,
-            primaryKey:true,
+            primaryKey: true,
             defaultValue: "Other"
         },
         description: {
@@ -40,6 +40,10 @@ const ProductModel = sequelize.define(
         imgLink: {
             type: DataTypes.TEXT,
             allowNull: true,
+        },
+        maxQuantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
         }
     }
 );

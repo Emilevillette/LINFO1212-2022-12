@@ -33,6 +33,7 @@ async function add_model(name, description, cautionAmount, category, quantity, i
         quantity: quantity,
         productCategoryId: category,
         imgLink: imgLink,
+        maxQuantity: quantity,
     });
 }
 
@@ -84,7 +85,13 @@ async function add_to_inventory(req) {
         return add_multiple_products(req.body.quantity, req.body.name);
     } else {
         await add_multiple_products(req.body.quantity, req.body.name);
-        return ProductModel.increment("quantity", {
+        await ProductModel.increment("quantity", {
+            by: req.body.quantity,
+            where: {
+                id: req.body.name,
+            }
+        });
+        return ProductModel.increment("maxQuantity", {
             by: req.body.quantity,
             where: {
                 id: req.body.name,
@@ -119,7 +126,6 @@ async function get_all_categories(options) {
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
 async function get_all_products_in_category(categoryId) {
-    console.log(categoryId);
     return ProductModel.findAll({where: {productCategoryId: categoryId}, raw: true});
 }
 

@@ -62,18 +62,29 @@ router.get("/checkout", function (req, res) {
 
 router.post("/new_order", urlencodedParser, async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
-    await Order_mgmt.create_batch_orders(req);
-    //req.session.order_number = await create_receipt();
-    req.session.cart = [];
-    res.redirect("/order_completed");
+    let receiptid = await Order_mgmt.create_batch_orders(req);
+
+    res.clearCookie("cart");
+    res.redirect(`/order_completed?receiptno=${receiptid}`);
+});
+
+router.get("/next_order_no", urlencodedParser, async function(req, res){
+    let retval = (await Order_mgmt.get_latest_order());
+    if(retval=== null) {
+        retval = 1;
+    } else {
+        retval = retval["n_commande"];
+    }
+    res.json({orderno: retval});
 });
 
 //Order completed
-/*
-app.get('/order_completed',function (req,res){
+router.get('/order_completed',function (req,res){
     let order_number = req.session.order_number;
-    res.render('order_completed',{order_number: order_number});
-});*/
+    res.render('pages/order',{order_number: req.query.receiptno});
+});
+
+
 
 /**
  * Main page

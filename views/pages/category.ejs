@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="fr">
 <%- include('../partials/head') %>
+<head>
+    <link rel="stylesheet" href="/css/prod_disp.css">
+</head>
 
 <body>
 <%- include('../partials/user_navbar') %>
@@ -10,13 +13,14 @@
 <div class="disp">
     <% for(var element in categories) { %>
         <div class="box">
-            <a class="link" href="/product?category=<%= encodeURIComponent(categories[element]["id"]) %>"><button class="log"><%= categories[element]["id"] %></button></a>
+            <a class="link" href="/product?category=<%= encodeURIComponent(categories[element]["id"]) %>"><button class="but"><%= categories[element]["id"] %></button></a>
             <p>
                 <%= categories[element]["description"] %>
             </p>
         </div>
     <% } %>
 </div>
+
 </body>
 
 </html>

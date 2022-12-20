@@ -15,9 +15,12 @@ const products = require('./routes/products');
 const {sequelize} = require("./config/database");
 const {initDB} = require("./models/global");
 
+const bodyparser = require("body-parser");
+
+
 app.set("view engine", "ejs");
 app.set("views", "views");
-
+app.use(bodyparser.json());
 initDB(sequelize).then(() => {
     console.log("databse startup process complete");
 });

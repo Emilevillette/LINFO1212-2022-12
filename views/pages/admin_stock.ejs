@@ -4,81 +4,35 @@
 <html lang="fr">
 <%- include('../partials/head') %>
 <head>
+    <link rel="stylesheet" href="/css/table.css">
     <script type="text/javascript" src="js/table_utils.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <script type="text/javascript" src="/js/empty.js"></script>
 </head>
 
 <body>
 <%- include('../partials/admin_navbar') %>
 
 <div class="center">
-    <div class="title">Contenu de l'inventaire:</div>
-    <!-- Liste des produit disponibles en stock-->
-    <table class="tableau" id="stock_table">
-        <thead>
-        <!--
-        <tr>
-            <th>Modèle du produit</th>
-            <th>Brève description du produit</th>
-            <th>Disponible</th>
-            <th>Nombre en stock</th>
-        </tr>
-        -->
-        </thead>
-        <!--fetch from database (exemple juste pour pouvoir visualiser)-->
-        <tbody>
-        <!--
-        <tr>
-            <td>De la connectique audio</td>
-            <td>Câble adaptateur audio InLine® 3,5 mm Stéréo femelle à femelle, dont la bande de roulement est 0,2 m
-            </td>
-            <td>✓</td>
-            <td>7</td>
-            <td>
-                <button>🗑️</button>
-            </td>
-        </tr>
-        -->
-        </tbody>
+    <div id="full" hidden>
+        <div class="title">Contenu de l'inventaire:</div>
+        <!-- Liste des produit disponibles en stock-->
+        <table id="stock_table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
 
-    </table>
-    <button class="log" onclick="generatePDF()">Genérer un PDF qui contient tous les produits en stock</button>
-    <button class="log">Enregistrer les modifications</button>
+    <div id="empty" hidden>
+        <div class="title">Votre stock est vide pensez à le remplir 👀</div>
+    </div>
 </div>
 
+<!--need to fix get_stock-->
 <script>
-    const table_head_elements = ["Catégorie", "Modèle", "Description", "Quantité"];
-    const table_content_id = ["productCategoryId", "id", "description", "quantity"];
+    const table_head_elements = ["Catégorie", "Modèle", "Description", "Quantité disp.","Quantité tot."];
+    const table_content_id = ["productCategoryId", "id", "description", "quantity", "maxQuantity"];
     get_and_insert_table("/get_stock", "stock_table", table_head_elements, table_content_id);
-</script>
-
-<script>
-    
-    function generatePDF() {
-        var pdf = new jsPDF
-         pdf.text("LOUEvain-Li-Nux", 20, 20);
-         pdf.text("kot: louvain linux", 20, 30);
-         pdf.text("La  commande que vous avez passé contient les éléments suivants:", 20, 50);
-         var table = document.getElementById('stock_table');
-        for (var i = 0; i < table.rows.length; i++) {
-        let b = 0
-         for (var j = 0; j < table.rows[i].cells.length; j++) {
-             var cellContent = table.rows[i].cells[j].innerHTML;
-             console.log(i);
-             console.log(table.rows[i].cells[j].innerHTML);
-             
-            if (i<1){
-                pdf.text(cellContent + " :", 20+(b*50), 70);
-            } else{
-                pdf.text(cellContent, 20+(b*50), 80+(i*10));
-                
-            }
-             b += 1;
-         }}
-
-
-         pdf.save('reçu.pdf');
-    }
 </script>
 
 </body>

@@ -8,32 +8,30 @@
 
 <div class="center">
     <div class="main">
-
-        <div class="signup">
-            <form method="post" action="/add_product" enctype="multipart/form-data">
-                <label class="title_label">Rajouter un élément au stock</label>
-                <input class="in" type="text" name="name" placeholder="Nom" required>
-                <input class="in" type="text" name="description" placeholder="Description" required>
-                <input class="in" type="number" name="cautionAmount" placeholder="Caution" required>
-                <input class="in" type="number" name="quantity" placeholder="Quantité" required>
-                <label for="img">Selectionner image:</label>
-                <input type="file" id="img" name="img" accept="image/*"  required>
-                <select class="in" list="categories" name="category" placeholder="Catégorie" required>
-                    <!--<datalist id="categories">-->
-                        <option>Des Micros de divers types + des filtres</option>
-                        <option>De la connectique audio</option>
-                        <option>Un lecteur de disque externe</option>
-                        <option>Des claviers USB pour ordinateurs</option>
-                        <option>Des écrans d'ordinateurs</option>
-                        <option>Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</option>
-                        <option>Un Module SMS</option>
-                        <option>Des PC portables et des tours</option>
-                        <option>Divers connectiques et adaptateurs de connection pour pc</option>
-                    <!--</datalist>-->
-                </select>
-                <button class="log">Rajouter au stock</button>
-            </form>
-        </div>
+        <form method="post" action="/add_product" enctype="multipart/form-data">
+            <label class="title_label">Rajouter un élément au stock</label>
+            <input class="in" type="text" name="name" placeholder="Nom" required>
+            <input class="in" type="text" name="description" placeholder="Description" required>
+            <input class="in" type="number" name="cautionAmount" placeholder="Caution" required>
+            <input class="in" type="number" name="quantity" placeholder="Quantité" required>
+            <p><label for="img" >Selectionnez une image:</label></p>
+            <input type="file" id="img" name="img" accept="image/*"  required>
+            <select class="in" list="categories" name="category" placeholder="Catégorie" required>
+                
+                <!--<datalist id="categories">-->
+                    <option>Des Micros de divers types + des filtres</option>
+                    <option>De la connectique audio</option>
+                    <option>Un lecteur de disque externe</option>
+                    <option>Des claviers USB pour ordinateurs</option>
+                    <option>Des écrans d'ordinateurs</option>
+                    <option>Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</option>
+                    <option>Un Module SMS</option>
+                    <option>Des PC portables et des tours</option>
+                    <option>Divers connectiques et adaptateurs de connection pour pc</option>
+                <!--</datalist>-->
+            </select>
+            <button class="but">Rajouter au stock</button>
+        </form>
     </div>
 </div>
 </body>

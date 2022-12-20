@@ -3,40 +3,62 @@
 <html lang="fr">
 <%- include('../partials/head') %>
 <head>
+    <link rel="stylesheet" href="/css/table.css">
     <script type="text/javascript" src="js/table_utils.js"></script>
+    <script type="text/javascript" src="/js/empty.js"></script>
+    <link rel="stylesheet" href="/css/popup.css">
+    <script type="text/javascript" src="/js/popup.js"></script>
+    <script type="text/javascript" src="/js/order_manage.js"></script>
 </head>
+
 <body>
 <%- include('../partials/admin_navbar') %>
 
-<div class="center">
-    <div id="log" class="title">Historique des commandes:</div>
-    <!-- Liste des commandes-->
-    <table class=tableau id="order_table">
-        <thead>
-        <!--
-        <tr>
-            <th id="order_num">Numéro de commande</th>
-            <th id="client_name">Nom complet du client</th>
-            <th id="client_email">Adresse e-mail du client</th>
-            <th id="S_date">Date sortie</th>
-            <th id="R_date">Date retour</th>
-            <th id="V_S_date">Date vraie sortie</th>
-            <th id="V_R_date">Date vrai retour</th>
-            <th id="admin_com">Commentaire Admin</th>
-        </tr>
-        -->
-        </thead>
-        <tbody>
 
-        </tbody>
-        <!--db à rechecker, commentaire char max needs to be fixed-->
-    </table>
+<div class="center">
+    <div id="full" hidden>
+        <div class="title">Historique des commandes:</div>
+        <form id='order_search'>
+            <input class="search_bar" type="search" name="orderno">
+            <button class="look_up">👁️</button>
+        </form>
+
+        <!-- Liste des commandes-->
+        <table id="order_table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="empty" hidden>
+        <div class="title">Vous n'avez aucune commande</div>
+    </div>
+
+</div>
+
+<div id="popup" class="popup_div">
+    <div class="center">
+        <div class="main">
+            <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
+            <label class="title_label" id="orderlabel">Gérer la commande:</label>
+            <input type="hidden" id="popup_var">
+            <label for="cmd_clt_gone">Commande récupérée par le client: </label>
+            <input type="date" id="cmd_clt_gone" onchange="mark_picked_up()"><br>
+            <label for="cmd_clt_back">Commande ramenée par le client: </label>
+            <input type="date" id="cmd_clt_back" onchange="mark_dropped_off()"><br>
+            <label for="payed">Caution payée: </label>
+            <input type="checkbox" id="payed" onchange="mark_payed()"><br>
+            <label for="archive">Archiver : </label>
+            <input type="checkbox" id="archive" onchange="mark_archived()">
+        </div>
+    </div>
 </div>
 
 <script>
     const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
     const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"];
-    get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id);
+    get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id, true, <%= receiptno %>);
+    empty();
 </script>
 
 </body>
