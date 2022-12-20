@@ -67,15 +67,20 @@ async function generatePDF() {
     var date_t = new Date();
     var date = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
     var img = new Image();
-    let cmd_no = await (await fetch("/next_order_no")).json();
     img.src = "img/llln.png";
+    let cmd_no = await (await fetch("/next_order_no")).json();
+    var iframe = document.getElementById("iframe");
+    var doc = iframe.contentWindow.document;
+    var table = doc.getElementById("commande");
+    console.log(table);
+    
     pdf.addImage(img, "png", 14, 13, 10, 10);
     pdf.setFontSize(30).setTextColor(47, 64, 109).text("LOUEvain-Li-Nux", 24, 22);
     pdf.setFontSize(15).setFontStyle("italic").text("kot Louvain Linux", 160, 22);
-    pdf.setFontSize(13).setFontStyle("italic").text(`Dirirgez vous au Rue Constantin Meunier 12, 1348 Ottignies-Louvain-la-Neuve\n" + "avec votre catre d'identité afin de récupérer votre commande N°${cmd_no["orderno"]}`, 24, 60);
+    pdf.setFontSize(13).setFontStyle("italic").text(`Dirirgez vous au Rue Constantin Meunier 12, 1348 Ottignies-Louvain-la-Neuve\n avec votre catre d'identité afin de récupérer votre commande N°${cmd_no["orderno"]}`, 24, 60);
     pdf.setFontSize(13).setFontStyle("italic").text("Le: " + date, 170, 32);
-    pdf.setFontSize(16).setFontStyle("bold").text(`La  commande N°${cmd_no["orderno"]} que vous avez passé contient les éléments suivants:`, 16, 90);
-    var table = document.getElementById("commande");
+    pdf.setFontSize(14).setFontStyle("bold").text(`La  commande N°${cmd_no["orderno"]} que vous avez passé contient les éléments suivants:`, 12, 90);
+
     var b = 0;
     var c = 120;
     for (var i = 0; i < table.rows.length; i++) {
