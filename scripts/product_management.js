@@ -151,6 +151,12 @@ async function get_n_products(productModel, quantity, random = false, attributes
     })
 }
 
+async function delete_product(produitmodel){
+    await ProductModel.destroy({
+        where: {id : produitmodel}
+    });
+};
+
 module.exports = {
     add_category,
     add_model,
@@ -161,5 +167,6 @@ module.exports = {
     get_all_categories,
     get_all_products_in_category,
     get_available_quantity,
-    get_n_products,
+    delete_product,
+    get_n_products
 };

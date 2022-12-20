@@ -12,10 +12,31 @@ describe('Find products', () => {
     });
 });
 
-/*describe("Add a product to inventory",() => {
-    test('Add a product',() => {
-        Product_mgmt.add_product();
-        const product = Product_mgmt.find_product(); // We try to find the new product to make sure its added
-        expect(product).toBeDefined();
+//https://codewithhugo.com/express-request-response-mocking/
+const mockRequest = (sessionData, body) => ({
+    session: { data: sessionData },
+    body
+});
+
+describe("Add a product to inventory",() => {
+    afterAll(() => {
+        //Deletes the test product
+        Product_mgmt.delete_product('RTX 4090');
+    });
+    test('Add a product', async () => {
+        const req = mockRequest(
+            {},
+            {
+                name: 'RTX 4090',
+                description: 'The most wanted',
+                cautionAmount: 3000,
+                category: 'Des PC portable et des tours',
+                quantity: 1,
+                imgLink: 'rtx.png',
+            }
+        );
+        await Product_mgmt.add_to_inventory(req);
+        const product = await Product_mgmt.find_product('RTX 4090'); // We try to find the new product to make sure its added
+        expect(product).toBeTruthy();
     })
-})*/
+});
