@@ -5,20 +5,14 @@
 
 <body>
 <%- include('../partials/user_navbar') %>
-<head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
-</head>
 
 <div class="center">
     <div class="main">
         <h1>Veuillez présenter le code de commande ci-dessous au Kot-à-Projet Louvain-li-Nux afin de récupérer votre
             commande:</h1>
         <h2><u><%= order_number %></u></h2>
-        <button class="but" onclick="generatePDF()">Géner un pdf contenant votre reçu</button>
     </div>
 </div>
-<iframe src="https://localhost:8080/cart" id="iframe" hidden></iframe>
-
 
 </body>
 

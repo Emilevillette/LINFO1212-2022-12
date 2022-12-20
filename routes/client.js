@@ -69,7 +69,13 @@ router.post("/new_order", urlencodedParser, async function (req, res) {
 });
 
 router.get("/next_order_no", urlencodedParser, async function(req, res){
-    res.json({orderno: (await Order_mgmt.get_latest_order())["n_commande"]});
+    let retval = (await Order_mgmt.get_latest_order());
+    if(retval=== null) {
+        retval = 1;
+    } else {
+        retval = retval["n_commande"];
+    }
+    res.json({orderno: retval});
 });
 
 //Order completed
