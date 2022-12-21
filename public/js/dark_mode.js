@@ -1,5 +1,32 @@
 /* eslint-disable no-unused-vars */
+function t(){
+    console.log("here");
+    const elements = document.querySelectorAll("*");
+    var language = {
+        eng:{
+            login: "Log in",
+            pwd:"password",
+            o_history: "Order history",
+            no_order: "You have no orders",
+            orderlabel: "Manage order:",
+            order_picked_up:"The client picked up the order",
+            order_brought_back: "The client brought back the order",
+            payed_deposit: "The deposit was payed",
+            archived: "Archived",
+    }};
+    function aux_fun(elem_id){
+        try{
+            elem_id.innerHTML = language.eng.elem_id;
+            console.log(language.eng.no_order);
+        }catch (TypeError){
+            console.log(language.eng.elem_id);
+        }
+    }
+    for (const element of elements) {
+        aux_fun(element.id);
+    }
 
+}
 
 //Check dark_mode cookie and turn it on if needed
 window.onload = (event) => {
@@ -101,6 +128,7 @@ async function generatePDF() {
     }
     pdf.save("reçu.pdf");
 }
+
 
 
 /* !!!!!!MODIFY OR REMOVE !!!!!*/

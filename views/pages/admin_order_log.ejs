@@ -17,7 +17,7 @@
 
 <div class="center">
     <div id="full" hidden>
-        <div class="title">Historique des commandes:</div>
+        <div class="title" id="o_history">Historique des commandes:</div>
         <form id='order_search'>
             <input class="search_bar" type="search" name="orderno">
             <button class="look_up">👁️</button>
@@ -31,7 +31,7 @@
     </div>
 
     <div id="empty" hidden>
-        <div class="title">Vous n'avez aucune commande</div>
+        <div class="title" id="no_order">Vous n'avez aucune commande</div>
     </div>
 
 </div>
@@ -42,13 +42,13 @@
             <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
             <label class="title_label" id="orderlabel">Gérer la commande:</label>
             <input type="hidden" id="popup_var">
-            <label for="cmd_clt_gone">Commande récupérée par le client: </label>
+            <label for="cmd_clt_gone" id="order_picked_up">Commande récupérée par le client: </label>
             <input type="date" id="cmd_clt_gone" onchange="mark_picked_up()"><br>
-            <label for="cmd_clt_back">Commande ramenée par le client: </label>
+            <label for="cmd_clt_back" id="order_brought_back">Commande ramenée par le client: </label>
             <input type="date" id="cmd_clt_back" onchange="mark_dropped_off()"><br>
-            <label for="payed">Caution payée: </label>
+            <label for="payed" id="payed_deposit">Caution payée: </label>
             <input type="checkbox" id="payed" onchange="mark_payed()"><br>
-            <label for="archive">Archiver : </label>
+            <label for="archive" id="archived">Archiver : </label>
             <input type="checkbox" id="archive" onchange="mark_archived()">
         </div>
     </div>
