@@ -1,10 +1,93 @@
 /* eslint-disable no-unused-vars */
-
-
 //Check dark_mode cookie and turn it on if needed
 window.onload = (event) => {
+    set_translate();
     setDark_mode();
 };
+
+var language = {
+    eng:{
+        login: "Log in",
+        pwd:"password",
+        o_history: "Order history",
+        no_order: "You have no orders",
+        orderlabel: "Manage order:",
+        order_picked_up:"The client picked up the order",
+        order_brought_back: "The client brought back the order",
+        payed_deposit: "The deposit was payed",
+        archived: "Archived",
+        signup: "Sign up",
+        add_to_stock: "Add to stock",
+        mics:"Microphones of various types + filters",
+        audio:"Audio connectors",
+        disk:"An external disk drive",
+        keybords:"USB keyboards for computers",
+        monitors:"Computer monitors",
+        reseau:"Network connectors (ethernet): switches, cables and a router",
+        sms:"An SMS Module",
+        laptops:"Laptops and Towers",
+        pc_connect:"Various connectors and connection adapters for pc",
+        stock:"Your stock contains the following elements:",
+        empty_stock:"Your stock is empty 👀",
+        cart_title:"Your cart contains the following elements:",
+        product:"Product",
+        quantity:"Quantity",
+        start_date:"Start date",
+        end_date:"End date",
+        order_confrim:"Confirm you order",
+        fill:"Please fill out this form",
+        submit:"submit",
+        empty_cart:"Your cart is empty 👀",
+        title_index_stock:"Which page would you like to access",
+        add_stock:"Add to stock",
+        visualise_stock:"Visualise stock",
+        out:"Please present the order code below to Kot-à-Projet Louvain-li-Nux in order to collect your ordered:",
+        products_title:"Products avaible in the section ?????????",
+        add:"Add",
+        shop:"Shop",
+
+}};
+
+function aux_t(elem_id){
+    if(language.eng[elem_id.id] != undefined){
+        try{
+            elem_id.innerHTML = language.eng[elem_id.id];
+            }catch (TypeError){ /* empty */ }
+    }
+}
+
+function set_translate() {
+    const elements = document.querySelectorAll("*");
+    var icon = document.getElementById("trans");
+    if (!document.cookie.includes("eng")) {
+        document.cookie = "eng=Off";
+    } else if (document.cookie.includes("eng=On")) {
+        for (const element of elements) {
+            aux_t(element);
+        }
+        icon.src = "/img/eng.png";
+        document.cookie = "eng=On";
+    }
+}
+
+function t(){
+    const elements = document.querySelectorAll("*");
+    console.log("Before " + document.cookie);
+    var icon = document.getElementById("trans");
+    if (document.cookie.includes("eng=On")) {
+        for (const element of elements) {
+            aux_t(element);
+        }
+        icon.src = "/img/eng.png";
+        document.cookie = "eng=On";
+    } else {
+        location.reload();
+        icon.src = "/img/fr.png";
+        document.cookie = "eng=Off";
+    }
+    console.log("After " + document.cookie);
+
+}
 
 function setDark_mode() {
     if (!document.cookie.includes("dark_mode")) {
@@ -101,6 +184,7 @@ async function generatePDF() {
     }
     pdf.save("reçu.pdf");
 }
+
 
 
 /* !!!!!!MODIFY OR REMOVE !!!!!*/

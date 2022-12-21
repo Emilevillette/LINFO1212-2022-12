@@ -15,15 +15,14 @@
 <div>
     <div class="center">
         <div id="full" hidden>
-            <div class="title">Votre panier contient les éléments ci-dessous:</div>
+            <div class="title" id="cart_title">Votre panier contient les éléments ci-dessous:</div>
             <!-- Liste des commandes-->
             <table id="commande" class=tableau>
                 <tr>
-                    <!-- <th>Catégorie du produit</th> -->
-                    <th>Produit</th>
-                    <th>Quantité</th>
-                    <th>Date sortie</th>
-                    <th>Date retour</th>
+                    <th id="product">Produit</th>
+                    <th id="quantity">Quantité</th>
+                    <th id="start_date">Date sortie</th>
+                    <th id="end_date">Date retour</th>
                 </tr>
                 <% if (cart !== undefined ) { %>
                     <% for(element in cart) { %>
@@ -41,7 +40,7 @@
                         </tr>
                 <% } } %>
             </table>
-            <button class="but" onclick="toggle_popup()">Confirmer la commande</button>
+            <button class="but" onclick="toggle_popup()" id="order_confirm">Confirmer la commande</button>
 
         </div>
         <div id="popup" class="popup_div">
@@ -49,19 +48,18 @@
                 <div class="main">
                     <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
                     <form action="/new_order" onsubmit="generatePDF()"; id="user_info_form" method="post">
-                        <label class="title_label">Veuillez remplir les champs ci-dessous:</label>
+                        <label class="title_label" id="fill">Veuillez remplir les champs ci-dessous:</label>
                         <input class="in" type="text" name="name" placeholder="Nom complet" required>
                         <input class="in" type="email" id="email" name="email" placeholder="Adresse mail" required>
-                        <input class="in" type="tel" pattern="[0][4][0-9]{8}" name="phone_number"
-                               placeholder="GSM sous la forme 0491923459" required>
+                        <input class="in" type="tel" pattern="[0][4][0-9]{8}" name="phone_number" placeholder="GSM sous la forme 0491923459" required>
                         <input class="in" type="text" name="address" placeholder="Adresse complete" required>
-                        <button class="but">Soumettre</button>
+                        <button class="but" id="submit">Soumettre</button>
                     </form>
                 </div>
             </div>
         </div>
         <div id="empty" hidden>
-            <div class="title">Votre panier est vide pensez à le remplir 👀</div>
+            <div class="title" id="empty_cart">Votre panier est vide pensez à le remplir 👀</div>
         </div>
     </div>
 </div>

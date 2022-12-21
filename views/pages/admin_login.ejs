@@ -1,6 +1,4 @@
 <!--login-admin page-->
-<!--to do:renvoie vers log commande par defaut, menu nav barre avec toutes les autres pages admin + centrer-->
-<!--change nav_bar, current for easy access-->
 <!DOCTYPE html>
 <html lang="fr">
 <%- include('../partials/head') %>
@@ -11,10 +9,10 @@
 <div class="center">
     <div class="main">
         <form method="post" action="/connect_admin">
-            <label class="title_label">Se connecter</label>
-            <input class="in" type="text" name="email" placeholder="Adresse mail" required>
+            <label class="title_label" id="login">Se connecter</label>
+            <input class="in" type="text" name="email" placeholder="Email" required>
             <input class="in" type="password" name="password" placeholder="Mot de passe" required>
-            <button class="but">Se connecter</button>
+            <button class="but" id="login">Se connecter</button>
         </form>
     </div>
 </div>
