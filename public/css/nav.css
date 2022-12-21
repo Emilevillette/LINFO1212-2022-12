@@ -17,6 +17,10 @@ nav {
     width: 30px;
     cursor: pointer;
 }
+#trans{
+    width: 30px;
+    cursor: pointer;
+}
 
 nav .menu {
     max-width: 1250px;
