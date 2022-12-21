@@ -43,10 +43,9 @@ body{
 
 .center {
     position: relative;
-    margin-top: 12%;
     padding: 0 20px;
     text-align: center;
-    margin-top: 15%;
+    margin-top: 11%;
 }
 
 .center .title {
@@ -74,6 +73,7 @@ body{
     border-radius: 10px;
     box-shadow: 5px 20px 50px #000;
     margin: 20px auto auto;
+    margin-bottom: 5em;
 }
 
 h1 {
