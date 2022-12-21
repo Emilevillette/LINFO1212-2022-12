@@ -49,10 +49,10 @@
                     <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true">&times;</span></button>
                     <form action="/new_order" onsubmit="generatePDF()"; id="user_info_form" method="post">
                         <label class="title_label" id="fill">Veuillez remplir les champs ci-dessous:</label>
-                        <input class="in" type="text" name="name" placeholder="Nom complet" required>
-                        <input class="in" type="email" id="email" name="email" placeholder="Adresse mail" required>
-                        <input class="in" type="tel" pattern="[0][4][0-9]{8}" name="phone_number" placeholder="GSM sous la forme 0491923459" required>
-                        <input class="in" type="text" name="address" placeholder="Adresse complete" required>
+                        <input class="in" type="text" id="name" name="name" placeholder="Nom complet" required>
+                        <input class="in" type="email" id="email" name="email" placeholder="Email" required>
+                        <input class="in" type="tel" id="GSM" pattern="[0][4][0-9]{8}" name="phone_number" placeholder="GSM sous la forme 0491923459" required>
+                        <input class="in" type="text" id="adress" name="address" placeholder="Adresse complete" required>
                         <button class="but" id="submit">Soumettre</button>
                     </form>
                 </div>
