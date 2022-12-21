@@ -6,55 +6,91 @@ window.onload = (event) => {
 };
 
 var language = {
-    eng:{
+    fr : {
+        login:"Se connecter",
+        pwd:"mot",
+        o_history: "Historique des commandes:",
+        no_order: "Vous n'avez aucune commande",
+        orderlabel: "Gérer la commande:",
+        order_picked_up: "Commande récupérée par le client: ",
+        order_brought_back: "Commande ramenée par le client: ",
+        payed_deposit: "Caution payée: ",
+        archived: "Archiver : ",
+        signup: "Créer le compte",
+        add_to_stock: "Rajouter un élément au stock",
+        mics: "Des Micros de divers types + des filtres",
+        audio: "De la connectique audio",
+        disk: "Un lecteur de disque externe",
+        keybords: "Des claviers USB pour ordinateurs",
+        monitors: "Des écrans d'ordinateurs",
+        reseau: "Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur",
+        sms: "Un Module SMS",
+        laptops: "Des PC portables et des tours",
+        pc_connect: "Divers connectiques et adaptateurs de connection pour pc",
+        stock: "Contenu de l'inventaire:",
+        empty_stock: "Votre stock est vide pensez à le remplir 👀",
+        cart_title: "Votre panier contient les éléments ci-dessous:",
+        product: "Produit",
+        quantity: "Quantité",
+        start_date: "Date sortie",
+        end_date: "Date retour",
+        order_confirm: "Confirmer la commande",
+        fill: "Veuillez remplir les champs ci-dessous:",
+        submit: "Confirmer",
+        empty_cart: "Votre panier est vide pensez à le remplir 👀",
+        title_index_stock: "Veuillez selectionner la page que vous souhaitez accéder:",
+        add_stock: "Rajouter un élément au stock",
+        visualise_stock: "Visualiser les produits en stock",
+        out: "Veuillez présenter le code de commande ci-dessous au Kot-à-Projet Louvain-li-Nux afin de récupérer votre commande:",
+        products_title: "Produits disponibles dans la categorie:",
+        add: "Ajouter",
+        shop: "Boutique",
+        quantity_disp: "Quantité disponible",
+        deposit: "Caution",
+    
+    },
+    eng : {
         login: "Log in",
-        pwd:"password",
+        pwd: "password",
         o_history: "Order history",
         no_order: "You have no orders",
         orderlabel: "Manage order:",
-        order_picked_up:"The client picked up the order",
+        order_picked_up: "The client picked up the order",
         order_brought_back: "The client brought back the order",
         payed_deposit: "The deposit was payed",
         archived: "Archived",
         signup: "Sign up",
         add_to_stock: "Add to stock",
-        mics:"Microphones of various types + filters",
-        audio:"Audio connectors",
-        disk:"An external disk drive",
-        keybords:"USB keyboards for computers",
-        monitors:"Computer monitors",
-        reseau:"Network connectors (ethernet): switches, cables and a router",
-        sms:"An SMS Module",
-        laptops:"Laptops and Towers",
-        pc_connect:"Various connectors and connection adapters for pc",
-        stock:"Your stock contains the following elements:",
-        empty_stock:"Your stock is empty 👀",
-        cart_title:"Your cart contains the following elements:",
-        product:"Product",
-        quantity:"Quantity",
-        start_date:"Start date",
-        end_date:"End date",
-        order_confrim:"Confirm you order",
-        fill:"Please fill out this form",
-        submit:"submit",
-        empty_cart:"Your cart is empty 👀",
-        title_index_stock:"Which page would you like to access",
-        add_stock:"Add to stock",
-        visualise_stock:"Visualise stock",
-        out:"Please present the order code below to Kot-à-Projet Louvain-li-Nux in order to collect your ordered:",
-        products_title:"Products avaible in the section ?????????",
-        add:"Add",
-        shop:"Shop",
-
-}};
-
-function aux_t(elem_id){
-    if(language.eng[elem_id.id] != undefined){
-        try{
-            elem_id.innerHTML = language.eng[elem_id.id];
-            }catch (TypeError){ /* empty */ }
-    }
-}
+        mics: "Microphones of various types + filters",
+        audio: "Audio connectors",
+        disk: "An external disk drive",
+        keybords: "USB keyboards for computers",
+        monitors: "Computer monitors",
+        reseau: "Network connectors (ethernet): switches, cables and a router",
+        sms: "An SMS Module",
+        laptops: "Laptops and Towers",
+        pc_connect: "Various connectors and connection adapters for pc",
+        stock: "Your stock contains the following elements:",
+        empty_stock: "Your stock is empty 👀",
+        cart_title: "Your cart contains the following elements:",
+        product: "Product",
+        quantity: "Quantity",
+        start_date: "Start date",
+        end_date: "End date",
+        order_confirm: "Confirm you order",
+        fill: "Please fill out this form",
+        submit: "submit",
+        empty_cart: "Your cart is empty 👀",
+        title_index_stock: "Which page would you like to access",
+        add_stock: "Add to stock",
+        visualise_stock: "Visualise stock",
+        out: "Please present the order code below to Kot-à-Projet Louvain-li-Nux in order to collect your ordered:",
+        products_title: "Products avaible in the section",
+        add: "Add",
+        shop: "Shop",
+        quantity_disp: "Quantity available",
+        deposit: "Deposit",
+    }};
 
 function set_translate() {
     const elements = document.querySelectorAll("*");
@@ -62,31 +98,35 @@ function set_translate() {
     if (!document.cookie.includes("eng")) {
         document.cookie = "eng=Off";
     } else if (document.cookie.includes("eng=On")) {
-        for (const element of elements) {
-            aux_t(element);
+        aux_t(language.eng);
+        icon.src = "/img/fr.png";
+    }
+}
+
+function aux_t(lang){
+    const elements = document.querySelectorAll("*");
+    for (const element of elements) {
+        if(language.eng[element.id] != undefined){
+            try{
+                element.innerHTML = lang[element.id];
+                }catch (TypeError){ /* empty */ }
         }
-        icon.src = "/img/eng.png";
-        document.cookie = "eng=On";
     }
 }
 
 function t(){
-    const elements = document.querySelectorAll("*");
-    console.log("Before " + document.cookie);
     var icon = document.getElementById("trans");
-    if (document.cookie.includes("eng=On")) {
-        for (const element of elements) {
-            aux_t(element);
-        }
-        icon.src = "/img/eng.png";
+    console.log("Before " + document.cookie);   
+    if (document.cookie.includes("eng=Off")) {
+        aux_t(language.eng);
+        icon.src = "/img/fr.png";
         document.cookie = "eng=On";
     } else {
-        location.reload();
-        icon.src = "/img/fr.png";
+        aux_t(language.fr);
+        icon.src = "/img/eng.png";
         document.cookie = "eng=Off";
     }
     console.log("After " + document.cookie);
-
 }
 
 function setDark_mode() {
@@ -183,17 +223,4 @@ async function generatePDF() {
         }
     }
     pdf.save("reçu.pdf");
-}
-
-
-
-/* !!!!!!MODIFY OR REMOVE !!!!!*/
-function mail() {
-    var pdf = generatePDF();
-    var email = document.getElementById("email").value;
-    console.log(email);
-
-    var link = document.getElementById("mail_");
-    link.href = "mailto" + email + "?subject=Document&body=Please find the attached document.&attach=" + pdf;
-    console.log("here");
 }

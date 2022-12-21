@@ -12,7 +12,7 @@
 <body>
 <%- include('../partials/user_navbar') %>
 
-<div class="title" id="products_title">Produits disponibles dans la categorie "<%= category %>":</div>
+<div class="title"><span id="products_title">Produits disponibles dans la categorie</span>"<%= category %>":</div>
 <div class="grid">
     <% for(var element in products) { %>
         <div class="box">
@@ -20,8 +20,8 @@
             <div class="img">
                 <img src="<%= products[element]["imgLink"] %>" alt="">
             </div>
-            <p>Caution: <%= products[element]["cautionAmount"] %> €</p>
-            <p>Qté disponible <%= products[element]["quantity"] %></p>
+            <p id="deposit">Caution:</p><p> <%= products[element]["cautionAmount"] %> €</p>
+            <p id="quantity_disp">Quantité disponible</p><p><%= products[element]["quantity"] %></p>
             <input type="hidden"  id="product_quantity" value="<%= products[element]["quantity"] %>">
             <button class="but" id="add" onclick="toggle_popup();change_product_input('<%= products[element]["id"] %>')">
                 Ajouter
