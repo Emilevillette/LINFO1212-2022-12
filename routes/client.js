@@ -80,7 +80,6 @@ router.get("/next_order_no", urlencodedParser, async function(req, res){
 
 //Order completed
 router.get('/order_completed',function (req,res){
-    let order_number = req.session.order_number;
     res.render('pages/order',{order_number: req.query.receiptno});
 });
 

@@ -165,8 +165,6 @@ async function delete_product(produitmodel){
 
 module.exports = {
     add_category,
-    add_model,
-    add_product,
     add_to_inventory,
     get_all_products,
     find_product,

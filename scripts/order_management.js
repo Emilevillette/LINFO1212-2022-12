@@ -1,8 +1,7 @@
 const {Orders} = require("../models/order");
-const {Product, ProductModel} = require("../models/product");
+const {ProductModel} = require("../models/product");
 const {get_n_products} = require("./product_management");
 const {extract_values} = require("./other_utils");
-const {DataTypes} = require("sequelize");
 const {Receipt} = require("../models/receipt");
 
 /**
@@ -67,7 +66,7 @@ async function create_order(req, item, receiptNo) {
 async function create_batch_orders(req) {
     let receipt = await Receipt.create();
     for (let element in req.cookies.cart) {
-        create_order(req, req.cookies.cart[element], receipt["n_commande"]);
+        await create_order(req, req.cookies.cart[element], receipt["n_commande"]);
     }
     return receipt["n_commande"];
 }

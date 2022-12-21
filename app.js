@@ -21,8 +21,9 @@ const bodyparser = require("body-parser");
 app.set("view engine", "ejs");
 app.set("views", "views");
 app.use(bodyparser.json());
+
 initDB(sequelize).then(() => {
-    console.log("databse startup process complete");
+    console.log("database startup process complete");
 });
 
 app.use(express.static(public_dir));

@@ -67,12 +67,12 @@ const Orders = sequelize.define("orders", {
     }
 });
 
-const Quantity = sequelize.define("quantity", {
+/*const Quantity = sequelize.define("quantity", {
     quantity: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
     }
-});
+});*/
 
-module.exports = {Orders, Quantity};
+module.exports = {Orders};

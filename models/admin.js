@@ -2,7 +2,7 @@ const {DataTypes} = require("sequelize");
 
 const {sequelize} = require("../config/database");
 
-const Users = sequelize.define("users", {
+const Admins = sequelize.define("admins", {
     email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -21,4 +21,4 @@ const Users = sequelize.define("users", {
     }
 }, {});
 
-module.exports = {Users};
+module.exports = {Admins};

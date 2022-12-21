@@ -1,7 +1,7 @@
 const {Product, ProductModel, ProductCategory} = require("./product");
-const {Users} = require("./users");
+const {Admins} = require("./admin");
 const {Receipt} = require("./receipt");
-const {Orders, Quantity} = require("./order");
+const {Orders} = require("./order");
 
 //Initialize database
 async function initDB(db) {
@@ -10,12 +10,14 @@ async function initDB(db) {
         await db.authenticate();
         console.log("Connection has been established successfully.");
 
-        Product.belongsTo(ProductModel,);
+        Product.belongsTo(ProductModel, {
+            onDelete: "cascade"
+        });
         ProductModel.belongsTo(ProductCategory, {
             onDelete: "cascade"
         });
-        ProductModel.hasMany(Product,);
-        ProductCategory.hasMany(ProductModel,);
+        ProductModel.hasMany(Product);
+        ProductCategory.hasMany(ProductModel);
 
         ProductModel.hasMany(Orders);
         Orders.belongsTo(ProductModel);

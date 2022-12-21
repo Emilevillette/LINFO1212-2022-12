@@ -1,11 +1,11 @@
 const bcrypt = require("bcrypt");
-const {Users} = require("../models/users");
+const {Admins} = require("../models/admin");
 
 /**
  * Creates an admin account
  *
- * @param email the user's email address
- * @param password the user's password
+ * @param email the admins email address
+ * @param password the admins password
  * @param is_main_admin
  * @returns {Promise<string>}
  */
@@ -14,7 +14,7 @@ async function create_account(email, password, is_main_admin) {
         return "create_fail";
     }
 
-    await Users.create({
+    await Admins.create({
         email: email,
         password_hash: await hash_password(password),
         is_main_admin: is_main_admin,
@@ -26,11 +26,11 @@ async function create_account(email, password, is_main_admin) {
 /**
  * Returns account if it exists, false otherwise
  *
- * @param email the user's email address
+ * @param email the admins email address
  * @returns {Promise<Model<any, TModelAttributes>|boolean>}
  */
 async function check_existing(email) {
-    const account = await Users.findByPk(email);
+    const account = await Admins.findByPk(email);
     if (account) {
         return account;
     } else {
@@ -41,8 +41,8 @@ async function check_existing(email) {
 /**
  * Gets the admin account that it's trying to connect
  *
- * @param email the user's email address
- * @param password the user's password
+ * @param email the admins email address
+ * @param password the admins password
  * @returns {Promise<{code: string, data: null, pass: boolean}|{code: string, data: (Model<*, TModelAttributes>|boolean), pass: boolean}>}
  */
 async function get_account(email, password) {
@@ -74,8 +74,8 @@ async function get_account(email, password) {
 /**
  * Checks if the password is correct
  *
- * @param providedPassword user-provided password
- * @param hash user password hash in database
+ * @param providedPassword admin-provided password
+ * @param hash admin password hash in database
  * @returns {Promise<void|*>}
  */
 async function check_password(providedPassword, hash) {
@@ -83,9 +83,9 @@ async function check_password(providedPassword, hash) {
 }
 
 /**
- * Hashes the user's password
+ * Hashes the admins password
  *
- * @param password user-provided password
+ * @param password admin-provided password
  * @returns {Promise<void|*>}
  */
 async function hash_password(password) {
@@ -99,7 +99,7 @@ async function hash_password(password) {
  * @returns {Promise<number>}
  */
 async function delete_account(email){
-    await Users.destroy({
+    await Admins.destroy({
         where: {email : email}
     });
 }
