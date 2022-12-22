@@ -16,7 +16,7 @@ function set_translate() {
     }
 }
 
-function translate(){
+function translate_page(){
     let icon = document.getElementById("trans");
     if (document.cookie.includes("eng=Off")) {
         aux_translate(language.eng);
