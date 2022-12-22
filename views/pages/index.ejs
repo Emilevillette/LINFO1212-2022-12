@@ -6,17 +6,20 @@
 <body>
 <%- include('../partials/index_navbar.ejs') %>
 
-<div class="center">
-    <div class="main">
-        <label id="index_title" class="title_label">Veuillez selectionner la section du site que vous souhaitez accéder:</label>
-        <a class="link" href="/category">
-            <button class="but">User</button>
-        </a>
-        <a class="link" href='/login' id="admin_butt" hidden>
-            <button class="but">Admin</button>
-        </a>
-    </div>
+
+<img class="index_img"src="/img/llln.png" alt="">
+<div >
+    <a id="user_but" class="link" href="/category">
+        <button id="user_but2"  class="index_buttons" >User</button>
+    </a>
+    
 </div>
 </body>
 
-</html>   
+<script>
+    $('#content').animate({'margin-top': '50px'}, 1000);
+</script>
+
+</html>    <!--<marquee  behavior="scroll" direction="up">        
+    <img src="/img/llln.png" alt="">
+</marquee>  -->
