@@ -1,9 +1,5 @@
 /* eslint-disable no-unused-vars */
 const form = document.getElementById("order_search");
-window.onload = (event) => {
-    if (document.URL.includes("/visualise_stock")){
-        table("stock");
-}};
 
 function table(type, receiptno){
     var tables = {
