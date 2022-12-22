@@ -27,14 +27,6 @@ const url = require("url");
 
 /*********************************** Admin only pages ***********************************/
 
-/**
- * Admin main page
- */
-/*
-app.get('/main_admin', function (req,res){
-    res.render('pages/main_admin');
-});*/
-
 /********* Account related *********/
 
 /**
@@ -251,6 +243,7 @@ router.post("/dropped_off", jsonparser, async function (req, res) {
         res.sendStatus(200);
     }
 });
+
 
 module.exports = router;
 

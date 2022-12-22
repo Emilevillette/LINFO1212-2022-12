@@ -12,7 +12,7 @@ describe('Orders Testing',() => {
         //Creates an order for testing
         const req = mockRequest(
             {
-                adress: "Test",
+                address: "Test",
                 email: "test@test.com",
                 phone_number: "000000000",
                 name: "Test"

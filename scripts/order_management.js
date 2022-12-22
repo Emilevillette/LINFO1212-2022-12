@@ -10,7 +10,7 @@ const {Receipt} = require("../models/receipt");
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
 async function get_all_orders() {
-    return Orders.findAll({raw: true});
+    return await Orders.findAll({raw: true});
 }
 
 
@@ -20,11 +20,11 @@ async function get_all_orders() {
  * @returns {Promise<Model<any, TModelAttributes> | null>}
  */
 async function get_order_by_number(order_number) {
-    return Orders.findByPk(order_number, {raw: true});
+    return await Orders.findByPk(order_number, {raw: true});
 }
 
 async function get_receipt_by_number(receipt_number) {
-    return Receipt.findByPk(receipt_number, {raw: true});
+    return await Receipt.findByPk(receipt_number, {raw: true});
 }
 
 /**
@@ -72,7 +72,7 @@ async function create_batch_orders(req) {
 }
 
 async function get_latest_order() {
-    return Receipt.findOne({
+    return await Receipt.findOne({
         order: [ [ 'n_commande', 'DESC' ]],
     });
 }
@@ -83,12 +83,12 @@ async function get_latest_order() {
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
 async function get_all_receipts() {
-    return Receipt.findAll({raw: true});
+    return await Receipt.findAll({raw: true});
 }
 
 
 async function get_orders_by_receipt_number(receiptno) {
-    return Orders.findAll({
+    return await Orders.findAll({
         raw: true, where: {
             receiptNCommande: receiptno,
         }
