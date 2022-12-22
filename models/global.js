@@ -1,5 +1,4 @@
 const {Product, ProductModel, ProductCategory} = require("./product");
-const {Admins} = require("./admin");
 const {Receipt} = require("./receipt");
 const {Orders} = require("./order");
 
@@ -10,14 +9,19 @@ async function initDB(db) {
         await db.authenticate();
         console.log("Connection has been established successfully.");
 
-        Product.belongsTo(ProductModel, {
-            onDelete: "cascade"
+        ProductModel.hasMany(Product, {
+            //Upon ProductModel changing, all Product associated with that model get changed
+            onUpdate: "cascade",
+            onDelete: "set null" //Set null for security reasons
         });
-        ProductModel.belongsTo(ProductCategory, {
-            onDelete: "cascade"
-        });
-        ProductModel.hasMany(Product);
+        Product.belongsTo(ProductModel);
+
         ProductCategory.hasMany(ProductModel);
+        ProductModel.belongsTo(ProductCategory, {
+            //Upon ProductCategory changing, all ProductModel associated with that model get changed
+            onUpdate: "cascade",
+            onDelete: "set null" //Set null for security reasons
+        });
 
         ProductModel.hasMany(Orders);
         Orders.belongsTo(ProductModel);
@@ -25,12 +29,7 @@ async function initDB(db) {
         Receipt.hasMany(Orders);
         Orders.belongsTo(Receipt);
 
-        //Product.hasMany(Orders);
-        //Orders.belongsTo(Product);
-        //Product.hasMany(Quantity);
-        //Orders.hasMany(Quantity);
-
-        await db.sync();
+        await db.sync({ force: true });
     } catch (error) {
         console.error("Unable to connect to the database:", error);
     }

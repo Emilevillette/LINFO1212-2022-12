@@ -8,11 +8,6 @@ const ProductCategory = sequelize.define(
             allowNull: false,
             primaryKey: true,
             defaultValue: "Other"
-        },
-        description: {
-            type: DataTypes.TEXT,
-            allowNull: true,
-            defaultValue: "No description for this product category",
         }
     }
 );
