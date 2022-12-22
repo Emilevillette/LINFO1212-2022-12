@@ -1,5 +1,5 @@
 /**
- * You can access the admin button by clicking Ctrl + A + L
+ * Function that shows transforms the 'shop' button to an 'admin' button by pressing CTRL + A + L
  */
 
 window.addEventListener("keydown", access_admin);
@@ -9,6 +9,6 @@ function access_admin(event) {
     keysPressed[event.key] = true;
     if (keysPressed["Control"] && keysPressed["a"] && event.keyCode === 76) {
         document.getElementById("user_but").href = "/login";
-        document.getElementById("user_but2").innerHTML = "Admin";
+        document.getElementById("shop").innerHTML = "Admin";
     }
 }
