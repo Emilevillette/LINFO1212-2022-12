@@ -1,6 +1,31 @@
-const form = document.getElementById('order_search');
+/* eslint-disable no-unused-vars */
+const form = document.getElementById("order_search");
+window.onload = (event) => {
+    console.log(document.URL.includes("/visualise_stock"));
+    if (document.URL.includes("/visualise_stock")){
+        table("stock");
+}};
+
+function table(type, receiptno){
+    var tables = {
+        order:{
+            get: "/get_all_orders",
+            tab : "order_table",
+            table_heads : ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"],
+            table_content : ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"],
+        },
+        stock : {
+            get :"/get_stock",
+            tab : "stock_table",
+            table_heads : ["Catégorie", "Modèle", "Description", "Quantité disp.","Quantité tot."],
+            table_content : ["productCategoryId", "id", "description", "quantity", "maxQuantity"],
+        }
+    };
+    get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content); 
+}
+
 if (form !== null) {
-    form.addEventListener('submit', event => {
+    form.addEventListener("submit", event => {
         // check if the form element has the correct id
         // prevent the default form submission behavior
         event.preventDefault();
@@ -11,6 +36,7 @@ if (form !== null) {
         const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"];
         get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id, data.get("orderno"));
     });
+    empty();
 }
 
 
@@ -62,8 +88,5 @@ async function get_and_insert_table(path, tableId, thead_elements, tbody_ids, ma
             cell.appendChild(button);
         }
     }
-    if (manage_button === true) {
-
-    }
+    if (manage_button === true){/** */}
 }
-

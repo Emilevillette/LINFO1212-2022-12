@@ -25,14 +25,9 @@
     <div id="empty" hidden>
         <div class="title" id="empty_stock">Votre stock est vide pensez à le remplir 👀</div>
     </div>
-</div>
-
-
 <script>
-    const table_head_elements = ["Catégorie", "Modèle", "Description", "Quantité disp.","Quantité tot."];
-    const table_content_id = ["productCategoryId", "id", "description", "quantity", "maxQuantity"];
-    get_and_insert_table("/get_stock", "stock_table", table_head_elements, table_content_id);
+    table("stock");
 </script>
-
+</script>
 </body>
 </html>   

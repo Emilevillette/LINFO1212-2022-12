@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 //Check dark_mode cookie and turn it on if needed
 window.onload = (event) => {
     set_translate();
     setDark_mode();
-    console.log(document.cookie);
 };
 
 function set_translate() {
@@ -70,7 +70,6 @@ function dark_mode() {
 // access admin
 window.addEventListener("keydown", access_admin);
 let keysPressed = {};
-
 function access_admin(event) {
     keysPressed[event.key] = true;
     if (keysPressed["Control"] && keysPressed["a"] && event.keyCode === 76) {

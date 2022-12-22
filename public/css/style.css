@@ -19,7 +19,6 @@
     --eight-color: rgb(87, 97, 131);
     --tenth-color: rgb(52, 47, 65);
     --eleventh-color:rgb(92, 87, 87); 
-    --twelfth-color: rgb(184, 196, 228);
 }
 
 .dark-theme {
@@ -34,7 +33,6 @@
     --eight-color: rgb(178, 182, 194);
     --tenth-color: #1b1b1bbe;
     --eleventh-color:rgb(206, 204, 204);
-    --twelfth-color: rgba(89, 98, 129, 0.87);
 }
 
 body{
@@ -122,8 +120,6 @@ p {
 }
 
 
-
-
 .index_img{
     width:600px;
     position:fixed;
@@ -132,28 +128,9 @@ p {
     animation:slide_up 1.5s forwards;
 }
 
-.index_buttons{
-    width: 45%;
-    margin-left: 2em;
-    justify-content: center;
-    display: block;
-    color: var(--secondary-color);
-    background: var(--twelfth-color);
-    font-size: 1.5em;
-    font-weight: bold;
-    outline: none;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    position:fixed;
-    opacity:0;
-    margin-top: 2em;
-    animation:slide_down 1.5s forwards;
-}
-
 @keyframes slide_up{
     from{opacity:0;top:70%}
-    to{opacity:0.87;top:20%;}
+    to{opacity:0.87;top:25%;}
 }
 @keyframes slide_down{
     from{opacity:0;top:20%;}
