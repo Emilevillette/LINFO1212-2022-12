@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 const form = document.getElementById("order_search");
 
+// This function sets the right parametrs for the get_and_insert_table().
 function table(type, receiptno){
     var tables = {
         order:{
@@ -34,7 +35,7 @@ if (form !== null) {
     empty();
 }
 
-
+// This function inserts headers and content onto the tables.
 async function get_and_insert_table(path, tableId, thead_elements, tbody_ids, manage_button, receiptno) {
     let stock_data;
     if (receiptno !== "undefined") {

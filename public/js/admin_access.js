@@ -1,7 +1,4 @@
-/**
- * Function that shows transforms the 'shop' button to an 'admin' button by pressing CTRL + A + L
- */
-
+// This function transforms the 'shop' button to an 'admin' button by pressing CTRL + A + L.
 window.addEventListener("keydown", access_admin);
 let keysPressed = {};
 
