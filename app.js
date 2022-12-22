@@ -51,5 +51,5 @@ https.createServer({
     cert: fs.readFileSync("./cert.pem"),
     passphrase: "ingi"
 }, app).listen(8080, () => {
-    console.log("Server up at http://localhost:8080/");
+    console.log("Server up at https://localhost:8080/");
 });

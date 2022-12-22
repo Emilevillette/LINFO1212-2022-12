@@ -6,7 +6,7 @@
  */
 
 function set_translate() {
-    //const elements = document.querySelectorAll("*");
+    const elements = document.querySelectorAll("*");
     let icon = document.getElementById("trans");
     if (!document.cookie.includes("eng")) {
         document.cookie = "eng=Off";
@@ -43,6 +43,7 @@ function aux_translate(lang){
     }
 }
 
+
 /* Translated text */
 const language = {
     fr : {
@@ -50,7 +51,7 @@ const language = {
         pwd:"mot de passe",
         o_history: "Historique des commandes:",
         no_order: "Vous n'avez aucune commande",
-        orderlabel: "Gérer la commande:",
+        order_label: "Gérer la commande:",
         order_picked_up: "Commande récupérée par le client: ",
         order_brought_back: "Commande ramenée par le client: ",
         payed_deposit: "Caution payée: ",
@@ -88,14 +89,14 @@ const language = {
         deposit: "Caution",
         name: "Nom Complet",
         GSM:"GSM sous la forme 0491923459",
-        address:"Adresse complete"
+        address:"Adresse complete",
     },
     eng : {
         login: "Log in",
         pwd: "password",
         o_history: "Order history",
         no_order: "You have no orders",
-        orderlabel: "Manage order:",
+        oder_label: "Manage order:",
         order_picked_up: "The client picked up the order",
         order_brought_back: "The client brought back the order",
         payed_deposit: "The deposit was payed",
@@ -123,7 +124,7 @@ const language = {
         quantity_disp: "Quantity available",
         deposit: "Deposit",
         name: "Full Name",
-        GSM:"Phone number in the form 0491923459",
-        address:"Your full address"
+        GSM: "Phone number in the form 0491923459",
+        address: "Your full adress",
     }
 };

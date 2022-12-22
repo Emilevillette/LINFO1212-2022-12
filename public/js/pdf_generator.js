@@ -1,12 +1,15 @@
-//generates pdf in cart
+/**
+ * Function that generates a pdf with the clien order
+ */
+
 async function generatePDF() {
     // eslint-disable-next-line no-undef
-    var pdf = new jsPDF;
-    var date_t = new Date();
-    var date = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
-    var img = new Image();
+    const pdf = new jsPDF;
+    const date_t = new Date();
+    const date = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);
+    const img = new Image();
     let cmd_no = await (await fetch("/next_order_no")).json();
-    img.src = "img/llln.png";
+    img.src = "img/logo_lln.png";
     pdf.addImage(img, "png", 14, 13, 10, 10);
     pdf.setFontSize(30).setTextColor(47, 64, 109).text("LOUEvain-Li-Nux", 24, 22);
     pdf.setFontSize(15).setFontStyle("italic").text("kot Louvain Linux", 160, 22);
@@ -19,21 +22,21 @@ async function generatePDF() {
         pdf.setFontSize(13).setFontStyle("italic").text("Le: " + date, 170, 32);
         pdf.setFontSize(14).setFontStyle("bold").text(`La  commande N°${cmd_no["orderno"]} que vous avez passé contient les éléments suivants:`, 12, 90);
     }
-    var table = document.getElementById("commande");
-    var b = 0;
-    var c = 120;
-    for (var i = 0; i < table.rows.length; i++) {
+    const table = document.getElementById("commande");
+    let b = 0;
+    let c = 120;
+    for (let i = 0; i < table.rows.length; i++) {
         b += 1;
-        for (var j = 0; j < table.rows[i].cells.length; j++) {
-            var cellContent = table.rows[i].cells[j].innerHTML;
-            if (b == 15) {
+        for (let j = 0; j < table.rows[i].cells.length; j++) {
+            let cellContent = table.rows[i].cells[j].innerHTML;
+            if (b === 15) {
                 pdf.addPage();
                 b = 1;
                 c = 20;
             }
             if (i < 1) {
                 pdf.setFontStyle("normal").text(cellContent + " :", 17 + (j * 50), 110);
-            } else if (i == 1) {
+            } else if (i === 1) {
                 pdf.setFontSize(10).setFontStyle("normal").text(cellContent, 20 + (j * 50), c + (b * 10));
             } else {
                 pdf.setFontStyle("normal").text(cellContent, 20 + (j * 50), c + (b * 10));

@@ -8,6 +8,7 @@ let keysPressed = {};
 function access_admin(event) {
     keysPressed[event.key] = true;
     if (keysPressed["Control"] && keysPressed["a"] && event.keyCode === 76) {
-        document.getElementById("admin_butt").hidden = false;
+        document.getElementById("user_but").href = "/login";
+        document.getElementById("user_but2").innerHTML = "Admin";
     }
 }
