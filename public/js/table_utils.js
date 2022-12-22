@@ -9,15 +9,21 @@ function table(type, receiptno){
             tab : "order_table",
             table_heads : ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"],
             table_content : ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"],
+            man: true,
         },
         stock : {
             get :"/get_stock",
             tab : "stock_table",
             table_heads : ["Catégorie", "Modèle", "Description", "Quantité disp.","Quantité tot."],
             table_content : ["productCategoryId", "id", "description", "quantity", "maxQuantity"],
+            man: false,
         }
     };
-    get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content); 
+    if (document.cookie.includes("eng=On")) {
+        tables.order.table_heads = ["Order number", "Full name", "Email", "quantity", "Model", "Release date", "Return date", "Pickup customer date", "Dropoff customer date", "Received"];
+        tables.stock.table_heads = ["Category", "Model", "Description", "Available quantity", "Total quantity."];
+    }
+    get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content,tables[type].man); 
 }
 
 if (form !== null) {
