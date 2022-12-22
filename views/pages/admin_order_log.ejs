@@ -53,13 +53,8 @@
         </div>
     </div>
 </div>
-
 <script>
-    const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
-    const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"];
-    get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id, true, <%= receiptno %>);
-    empty();
-    
+    table('order', <%= receiptno %>);
 </script>
 
 </body>
