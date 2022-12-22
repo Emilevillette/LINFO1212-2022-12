@@ -1,9 +1,5 @@
-/**
- * Function that generates a pdf with the clien order
- */
-
+// This function generates a pdf of the client's cart elements in the language that is selected for the website.
 async function generatePDF() {
-    // eslint-disable-next-line no-undef
     const pdf = new jsPDF;
     const date_t = new Date();
     const date = new Date(date_t.getTime() + 24 * 60 * 60 * 1000).toISOString().substring(0, 10);

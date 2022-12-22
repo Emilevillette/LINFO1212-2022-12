@@ -4,7 +4,6 @@
  * - French
  * - English
  */
-
 function set_translate() {
     const elements = document.querySelectorAll("*");
     let icon = document.getElementById("trans");
