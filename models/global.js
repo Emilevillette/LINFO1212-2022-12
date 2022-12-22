@@ -29,7 +29,7 @@ async function initDB(db) {
         Receipt.hasMany(Orders);
         Orders.belongsTo(Receipt);
 
-        await db.sync({ force: true });
+        await db.sync();
     } catch (error) {
         console.error("Unable to connect to the database:", error);
     }
