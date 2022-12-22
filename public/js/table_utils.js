@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-const form = document.getElementById("order_search");
 
 // This function sets the right parametrs for the get_and_insert_table().
 function table(type, receiptno){
@@ -26,6 +25,8 @@ function table(type, receiptno){
     get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content,tables[type].man); 
 }
 
+
+const form = document.getElementById("order_search");
 if (form !== null) {
     form.addEventListener("submit", event => {
         // check if the form element has the correct id
