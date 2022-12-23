@@ -27,13 +27,13 @@ If you initialized the database like mentioned before, a super-admin account has
 
 **Composition of files:**
 
-Here's a briefly explanation of the files of our project:
+Here's a brief explanation of the files of our project:
 - test: 
   - All Tests. 
-  - _To access read the Testing section_
+  - To access read the Testing section_
 - views: 
   - EJS pages
-- specificaitons:
+- specifications:
   - Features' description
 - scripts: 
   - Functions used in the app.js
@@ -53,3 +53,4 @@ To test our functions go to a terminal and enter `npm test`. \
 **Warning !! `npm install` must be done before the testing!!**
 
 **IMPORTANT**: If you do the tests make sure that you do `node init_database` before and after they're done
+if there's an error when doing that command just delete `louevainlinux.sqlite` and redo the command.
