@@ -70,13 +70,13 @@ router.post("/new_order", urlencodedParser, async function (req, res) {
 });
 
 router.get("/next_order_no", urlencodedParser, async function (req, res) {
-    let retval = (await Order_mgmt.get_latest_order());
-    if(retval=== null) {
-        retval = 1;
+    let receipt = await Order_mgmt.get_latest_order();
+    if (receipt === null) {
+        receipt = 1;
     } else {
-        retval = retval["id"];
+        receipt = receipt["id"];
     }
-    res.json({orderno: retval});
+    res.json({orderno: receipt});
 });
 
 /**
