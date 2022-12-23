@@ -3,22 +3,22 @@ const User_mgmt = require("./scripts/account_management");
 const {initDB} = require("./models/global");
 const {sequelize} = require("./config/database");
 
-const cat_list = {
-    "Des Micros de divers types + des filtres": "blabla category description blabla",
-    "De la connectique audio": "blabla category description blabla",
-    "Un lecteur de disque externe": "blabla category description blabla",
-    "Des claviers USB pour ordinateurs": "blabla category description blabla",
-    "Des écrans d'ordinateurs": "blabla category description blabla",
-    "Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur": "blabla category description blabla",
-    "Un Module SMS": "blabla category description blabla",
-    "Des PC portables et des tours": "blabla category description blabla",
-    "Divers connectiques et adaptateurs de connection pour pc": "blabla category description blabla",
-}
+const cat_list = [
+    "Des Micros de divers types + des filtres",
+    "De la connectique audio",
+    "Un lecteur de disque externe",
+    "Des claviers USB pour ordinateurs",
+    "Des écrans d'ordinateurs",
+    "Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur",
+    "Un Module SMS",
+    "Des PC portables et des tours",
+    "Divers connectiques et adaptateurs de connection pour pc"
+]
 
 initDB(sequelize).then(() => {
     console.log("databse startup process complete");
-    for(const [name, desc] of Object.entries(cat_list)) {
-        Product_mgmt.add_category(name, desc);
+    for(let name of cat_list) {
+        Product_mgmt.add_category(name);
     }
 
     User_mgmt.create_account("admin@louvainlinux.org", "supersecurepwd", true);

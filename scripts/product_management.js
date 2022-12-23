@@ -8,10 +8,9 @@ const {sequelize} = require("../config/database");
  * @param description product's description
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
-async function add_category(name, description) {
+async function add_category(name) {
     return ProductCategory.create({
-        id: name,
-        description: description,
+        id: name
     });
 }
 

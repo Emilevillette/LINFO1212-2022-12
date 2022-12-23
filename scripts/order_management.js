@@ -32,6 +32,7 @@ async function get_receipt_by_number(receipt_number) {
  *
  * @param req all the queries entered by the client
  * @param item
+ * @param receiptNo
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
 async function create_order(req, item, receiptNo) {
