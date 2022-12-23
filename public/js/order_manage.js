@@ -19,7 +19,7 @@ async function mark_archived() {
 /**
  * This function allows us to mark orders as paid in our database.
  */
-async function mark_payed() {
+async function mark_paid() {
 
     let orderno = document.getElementById("popup_var").value;
     await fetch("/mark_payed", {
