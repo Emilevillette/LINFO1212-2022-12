@@ -27,23 +27,6 @@ async function table(type, receiptno){
     empty();
 }
 
-
-const form = document.getElementById("order_search");
-if (form !== null) {
-    form.addEventListener("submit", event => {
-        // check if the form element has the correct id
-        // prevent the default form submission behavior
-        event.preventDefault();
-
-        // get the form data
-        const data = new FormData(event.target);
-        const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
-        const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptId"];
-        get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id, data.get("orderno"));
-    });
-    empty();
-}
-
 // This function inserts headers and content onto the tables.
 async function get_and_insert_table(path, tableId, thead_elements, tbody_ids, manage_button, receiptno) {
     let stock_data;

@@ -186,7 +186,7 @@ router.get("/order_history", urlencodedParser, async function (req, res) {
         res.redirect("/login");
     } else {
         //Get all FINISHED orders from database
-        res.render("pages/admin_order_log", {receiptno: req.query.receiptno});
+        res.render("pages/admin_order_log", {receiptno: req.query.orderno});
     }
 });
 
