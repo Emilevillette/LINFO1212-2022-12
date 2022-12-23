@@ -65,7 +65,7 @@ describe('Orders Testing',() => {
         expect(order["id"]).toBe(1);
     });
     /*
-    This test requires to create a product but we got a race condition problem and I don't know how to fix it AHHH
+    This test requires to create a product, but we get a race condition problem and I don't know how to fix it AHHH
 
     test('Mark an order as archived', async () => {
         const order = await Order_mgmt.mark_archived(1);
