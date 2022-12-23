@@ -97,6 +97,7 @@ const language = {
         name: "Nom Complet",
         GSM:"GSM sous la forme 0491923459",
         address:"Adresse complete",
+        cookie:"🍪 En utilisant ce site, vous acceptez des cookies qui améliorent votre navigation",
     },
     eng : {
         login: "Log in",
@@ -133,5 +134,6 @@ const language = {
         name: "Full Name",
         GSM: "Phone number in the form 0491923459",
         address: "Your full adress",
+        cookie: "🍪 By using this site, you accept cookies that improve your navigation",
     }
 };

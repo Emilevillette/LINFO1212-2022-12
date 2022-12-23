@@ -4,6 +4,7 @@ table {
     width: 85%;
     margin: auto;
     margin-top: 5%;
+    margin-bottom: 5%;
     border-collapse: separate;
     border: var(--eight-color);
     border-radius: 8px;

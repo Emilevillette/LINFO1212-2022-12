@@ -23,11 +23,8 @@ function table(type, receiptno){
             man: false,
         }
     };
-    if (document.cookie.includes("eng=On")) {
-        tables.order.table_heads = ["Order number", "Full name", "Email", "quantity", "Model", "Release date", "Return date", "Pickup customer date", "Dropoff customer date", "Received"];
-        tables.stock.table_heads = ["Category", "Model", "Description", "Available quantity", "Total quantity."];
-    }
-    get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content,tables[type].man); 
+    get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content, tables[type].man, receiptno);
+    empty();
 }
 
 
@@ -92,7 +89,7 @@ async function get_and_insert_table(path, tableId, thead_elements, tbody_ids, ma
                 document.getElementById("cmd_clt_back").value = stock_data[element]["date_client_return"].split(" ")[0];
 
                 document.getElementById("orderlabel").innerText = `Gérer la commande N° ${stock_data[element]["id"]}`
-            })
+            });
             cell.appendChild(button);
         }
     }
