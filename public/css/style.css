@@ -136,3 +136,17 @@ p {
     from{opacity:0;top:20%;}
     to{opacity:1;top:50%}
 }
+
+#cookie{
+    left: -100%;
+    animation: slide-right 25s linear infinite;
+}
+
+@keyframes slide-right {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
