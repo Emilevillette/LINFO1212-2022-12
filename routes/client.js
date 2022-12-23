@@ -62,20 +62,16 @@ router.get("/checkout", function (req, res) {
 
 router.post("/new_order", urlencodedParser, async function (req, res) {
     //For all items in cart create an order of the same person then create a receipt with the order number
-    let receiptid = await Order_mgmt.create_batch_orders(req);
+    await Order_mgmt.create_batch_orders(req);
+    let receipt = await Order_mgmt.get_latest_order();
 
     res.clearCookie("cart");
-    res.redirect(`/order_completed?receiptno=${receiptid}`);
+    res.redirect(`/order_completed?receiptno=${receipt["id"]}`);
 });
 
 router.get("/next_order_no", urlencodedParser, async function(req, res){
-    let retval = (await Order_mgmt.get_latest_order());
-    if(retval=== null) {
-        retval = 1;
-    } else {
-        retval = retval["n_commande"];
-    }
-    res.json({orderno: retval});
+    let receipt = await Order_mgmt.get_latest_order();
+    res.json({orderno: receipt["id"]});
 });
 
 /**

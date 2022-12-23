@@ -106,7 +106,7 @@ router.get("/add_to_stock", function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
-        res.render("pages/admin_stock_manage");
+        res.render("pages/admin_add_stock");
     }
 });
 

@@ -169,7 +169,7 @@ async function delete_product(product_model){
     await ProductModel.destroy({
         where: {id : product_model}
     });
-};
+}
 
 module.exports = {
     add_category,

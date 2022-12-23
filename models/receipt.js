@@ -1,13 +1,13 @@
-const {DataTypes, Model} = require("sequelize");
+const {DataTypes} = require("sequelize");
 
 const {sequelize} = require("../config/database");
 
 const Receipt = sequelize.define("receipt", {
-    n_commande: {
+    id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         primaryKey: true,
-        autoIncrement: true,
+        autoIncrement: true
     }
 });
 

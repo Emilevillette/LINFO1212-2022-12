@@ -47,9 +47,9 @@ async function create_order(req, item, receiptNo) {
         end_date: item["end_date"],
         productModelId: item["name"],
         productId: extract_values(await get_n_products(item["name"], item["quantity"], true, ["id"]), ["id"]),
-        receiptNCommande: receiptNo,
+        receiptId: receiptNo,
         is_archived: false,
-        is_payed: false,
+        is_paid: false,
     });
     await ProductModel.decrement("quantity", {
         by: item["quantity"],
@@ -59,18 +59,17 @@ async function create_order(req, item, receiptNo) {
     })
 }
 
-
-/** One order per product in cart
+/**
+ * Creates a complete order with all items in cart
  *
- * @param cart all the items in the cart
- * @returns {Promise<{autoIncrement: boolean, allowNull: boolean, type: IntegerDataTypeConstructor, primaryKey: boolean}>}
+ * @param cart
+ * @returns {Promise<void>}
  */
 async function create_batch_orders(cart) {
     let receipt = await Receipt.create();
     for (let element in cart.cookies.cart) {
-        await create_order(cart, cart.cookies.cart[element], receipt["n_commande"]);
+        await create_order(cart, cart.cookies.cart[element], receipt["id"]);
     }
-    return receipt["n_commande"];
 }
 
 /**
@@ -80,7 +79,7 @@ async function create_batch_orders(cart) {
  */
 async function get_latest_order() {
     return await Receipt.findOne({
-        order: [ [ 'n_commande', 'DESC' ]],
+        order: [ [ 'id', 'DESC' ]]
     });
 }
 
@@ -101,8 +100,9 @@ async function get_all_receipts() {
  */
 async function get_orders_by_receipt_number(receiptno) {
     return await Orders.findAll({
-        raw: true, where: {
-            receiptNCommande: receiptno,
+        raw: true,
+        where: {
+            receiptId: receiptno
         }
     });
 }
@@ -142,7 +142,7 @@ async function mark_archived(orderno) {
  */
 async function mark_paid(orderno) {
     let order = await Orders.findByPk(orderno);
-    order.is_payed = !order.is_payed;
+    order.is_paid = !order.is_paid;
     return order.save();
 }
 
@@ -172,6 +172,14 @@ async function mark_dropped_off(orderno, date) {
     return order.save();
 }
 
+async function delete_order(orderno){
+    await Orders.destroy({
+        where: {
+            id : orderno
+        }
+    });
+}
+
 module.exports = {
     get_all_orders,
     create_order,
@@ -184,5 +192,6 @@ module.exports = {
     mark_paid,
     mark_picked_up,
     mark_dropped_off,
-    get_latest_order
+    get_latest_order,
+    delete_order
 }

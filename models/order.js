@@ -41,7 +41,7 @@ const Orders = sequelize.define("orders", {
         type: DataTypes.DATE,
         allowNull: true
     },
-    is_payed: {
+    is_paid: {
         type: DataTypes.BOOLEAN,
         defaultValue: false,
         allowNull: true

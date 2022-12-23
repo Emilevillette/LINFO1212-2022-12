@@ -51,3 +51,5 @@ Here's a briefly explanation of the files of our project:
 
 To test our functions go to a terminal and enter `npm test`. \
 **Warning !! `npm install` must be done before the testing!!**
+
+**IMPORTANT**: If you do the tests make sure that you do `node init_database` before and after they're done

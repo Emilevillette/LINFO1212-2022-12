@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 
 /**
- * This function sets the right parametrs for the get_and_insert_table().
+ * This function sets the right parameters for the get_and_insert_table().
  *
  * @param type
  * @param receiptno
@@ -12,7 +12,7 @@ function table(type, receiptno){
             get: "/get_all_orders",
             tab : "order_table",
             table_heads : ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"],
-            table_content : ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"],
+            table_content : ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptId"],
             man: true,
         },
         stock : {
@@ -38,7 +38,7 @@ if (form !== null) {
         // get the form data
         const data = new FormData(event.target);
         const table_head_elements = ["Numéro de commande", "Nom complet", "Email", "quantité", "Modèle", "Date sortie", "Date retour", "Date client pickup", "Date client dropoff", "Recu"];
-        const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptNCommande"];
+        const table_content_id = ["id", "name", "email", "quantity", "productModelId", "start_date", "end_date", "date_client_pickup", "date_client_return", "receiptId"];
         get_and_insert_table("/get_all_orders", "order_table", table_head_elements, table_content_id, data.get("orderno"));
     });
     empty();
@@ -83,7 +83,7 @@ async function get_and_insert_table(path, tableId, thead_elements, tbody_ids, ma
             button.setAttribute("value", stock_data[element]["id"]);
             button.addEventListener("click", function () {
                 document.getElementById("popup_var").setAttribute("value", button.value);
-                document.getElementById("payed").checked = !!Number(stock_data[element]["is_payed"]);
+                document.getElementById("paid").checked = !!Number(stock_data[element]["is_paid"]);
                 document.getElementById("archive").checked = !!Number(stock_data[element]["is_archived"]);
                 document.getElementById("cmd_clt_gone").value = stock_data[element]["date_client_pickup"].split(" ")[0];
                 document.getElementById("cmd_clt_back").value = stock_data[element]["date_client_return"].split(" ")[0];
