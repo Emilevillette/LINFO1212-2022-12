@@ -69,18 +69,22 @@ router.post("/new_order", urlencodedParser, async function (req, res) {
     res.redirect(`/order_completed?receiptno=${receipt["id"]}`);
 });
 
-router.get("/next_order_no", urlencodedParser, async function(req, res){
+router.get("/next_order_no", urlencodedParser, async function (req, res) {
     let receipt = await Order_mgmt.get_latest_order();
-    res.json({orderno: receipt["id"]});
+    if (receipt === null) {
+        receipt = 1;
+    } else {
+        receipt = receipt["id"];
+    }
+    res.json({orderno: receipt});
 });
 
 /**
  * Order completed page
  */
-router.get('/order_completed',function (req,res){
-    res.render('pages/order',{order_number: req.query.receiptno});
+router.get('/order_completed', function (req, res) {
+    res.render('pages/order', {order_number: req.query.receiptno});
 });
-
 
 
 /**

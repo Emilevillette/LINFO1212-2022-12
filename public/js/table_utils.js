@@ -6,7 +6,7 @@
  * @param type
  * @param receiptno
  */
-function table(type, receiptno){
+async function table(type, receiptno){
     var tables = {
         order:{
             get: "/get_all_orders",
@@ -23,7 +23,7 @@ function table(type, receiptno){
             man: false,
         }
     };
-    get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content, tables[type].man, receiptno);
+    await get_and_insert_table(tables[type].get, tables[type].tab, tables[type].table_heads, tables[type].table_content, tables[type].man, receiptno);
     empty();
 }
 
