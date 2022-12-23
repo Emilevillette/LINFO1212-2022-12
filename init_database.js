@@ -16,10 +16,9 @@ const cat_list = [
 ]
 
 initDB(sequelize).then(() => {
-    console.log("databse startup process complete");
     for(let name of cat_list) {
         Product_mgmt.add_category(name);
     }
-
     User_mgmt.create_account("admin@louvainlinux.org", "supersecurepwd", true);
+    console.log("database startup process complete");
 });
