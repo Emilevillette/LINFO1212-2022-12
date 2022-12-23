@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/css/popup.css">
     <script type="text/javascript" src="/js/popup.js"></script>
     <script type="text/javascript" src="/js/order_manage.js"></script>
+    <script type="text/javascript" src="/js/min.js"></script>
 </head>
 
 <body>
@@ -43,18 +44,20 @@
             <label class="title_label" id="orderlabel">Gérer la commande :</label>
             <input type="hidden" id="popup_var">
             <label for="cmd_clt_gone" id="order_picked_up">Commande récupérée par le client: </label>
-            <input type="date" id="cmd_clt_gone" onchange="mark_picked_up()"><br>
+            <input type="date" id="cmd_clt_gone" class="in" onclick="min_date('cmd_clt_gone', 'cmd_clt_back')" onchange="mark_picked_up()"><br>
             <label for="cmd_clt_back" id="order_brought_back">Commande ramenée par le client: </label>
-            <input type="date" id="cmd_clt_back" onchange="mark_dropped_off()"><br>
+            <input type="date" id="cmd_clt_back" class="in" onchange="mark_dropped_off()"  disabled><br>
             <label for="paid" id="paid_deposit">Caution payée: </label>
-            <input type="checkbox" id="paid" onchange="mark_paid()"><br>
+            <input type="checkbox" id="paid" class="in" onclick="min_date('cmd_clt_gone', 'cmd_clt_back')" onchange="mark_paid()"><br>
             <label for="archive" id="archived">Archiver : </label>
-            <input type="checkbox" id="archive" onchange="mark_archived()">
+            <input type="checkbox" id="archive" class="in" onchange="mark_archived()">
         </div>
     </div>
 </div>
 <script>
     table('order', <%= receiptno %>);
+    console.log(document.querySelector("tbody").innerHTML);
+    empty();
 </script>
 
 </body>

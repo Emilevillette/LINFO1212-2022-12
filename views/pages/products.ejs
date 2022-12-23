@@ -40,9 +40,9 @@
                 <input type="hidden" name="product_model" id="popup_product" value="">
                 <label class="title_label" id="fill">Veuillez remplir les champs ci-dessous:</label>
                 <small id="start_date">Date de la sortie du produit:</small>
-                <input class="in" type="date" min="" onclick="min_date()" id="date_sortie" name="start_date" required>
+                <input class="in" type="date" min="" onclick="min_date('date_sortie','date_retour')" id="date_sortie" name="start_date" required>
                 <small id="end_date">Date du retour du produit:</small>
-                <input class="in" type="date" min="" onclick="min_date()" id="date_retour" name="end_date" disabled required>
+                <input class="in" type="date" min="" onclick="min_date('date_sortie','date_retour')" id="date_retour" name="end_date" disabled required>
                 <small id="quantity">Quantité souhaitée</small>
                 <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value=1 id="popup_quantity" required>
                 <button class="but" id="submit">Confirmer</button>
