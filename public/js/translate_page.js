@@ -10,7 +10,6 @@
  * Used in onload.js
  */
 function set_translate() {
-    const elements = document.querySelectorAll("*");
     let icon = document.getElementById("trans");
     if (!document.cookie.includes("eng")) {
         document.cookie = "eng=Off";
@@ -83,7 +82,7 @@ const language = {
         end_date: "Date retour",
         order_confirm: "Confirmer la commande",
         fill: "Veuillez remplir les champs ci-dessous:",
-        submit: "Confirmer",
+        submit_test: "Confirmer",
         empty_cart: "Votre panier est vide pensez à le remplir 👀",
         title_index_stock: "Veuillez selectionner la page que vous souhaitez accéder:",
         add_stock: "Rajouter un élément au stock",
@@ -121,7 +120,7 @@ const language = {
         end_date: "End date",
         order_confirm: "Confirm you order",
         fill: "Please fill out this form",
-        submit: "submit",
+        submit_test: "submit",
         empty_cart: "Your cart is empty 👀",
         title_index_stock: "Which page would you like to access",
         add_stock: "Add to stock",
