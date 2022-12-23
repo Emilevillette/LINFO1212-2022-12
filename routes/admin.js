@@ -9,7 +9,7 @@ const urlencodedParser = bodyparser.urlencoded({extended: true});
 const jsonparser = bodyparser.json();
 
 const frontThumbPath = "img/productThumbnail/";
-const backendThumbPath = path_admin.join(__dirname,"../public/img/productThumbnail/");
+const backendThumbPath = path_admin.join(__dirname, "../public/img/productThumbnail/");
 fs.mkdir(path_admin.join(__dirname, "../public/img/productThumbnail/"), (err) => {
     if (err) {
         return console.error(err);
