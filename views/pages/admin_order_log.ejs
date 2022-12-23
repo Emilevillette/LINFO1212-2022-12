@@ -40,7 +40,7 @@
 <div id="popup" class="popup_div">
     <div class="center">
         <div class="main">
-            <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true" onclick=location.reload()>&times;</span></button>
+            <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true" onclick="window.location.reload()">&times;</span></button>
             <label class="title_label" id="order_label">Gérer la commande :</label>
             <input type="hidden" id="popup_var">
             <label for="cmd_clt_gone" id="order_picked_up">Commande récupérée par le client: </label>
@@ -56,7 +56,6 @@
 </div>
 <script>
     table('order', <%= receiptno %>);
-    console.log(document.querySelector("tbody").innerHTML);
     empty();
 </script>
 
