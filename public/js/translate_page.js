@@ -134,7 +134,7 @@ const language = {
         name: "Full Name",
         GSM: "Phone number in the form 0491923459",
         address: "Your full adress",
-        cookie: "🍪 By using this site, you accept cookies that improve your navigation",
+        cookie: "🍪 By using this website, you accept cookies that improve your navigation",
         choose_img:"Choose  an image:"
     }
 };
