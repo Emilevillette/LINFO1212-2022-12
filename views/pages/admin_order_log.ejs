@@ -1,0 +1,78 @@
+<!--log commandes page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+<head>
+    <link rel="stylesheet" href="/css/table.css">
+    <script type="text/javascript" src="js/table_utils.js"></script>
+    <script type="text/javascript" src="/js/db_table_empty.js"></script>
+    <link rel="stylesheet" href="/css/popup.css">
+    <script type="text/javascript" src="/js/popup.js"></script>
+    <script type="text/javascript" src="/js/order_manage.js"></script>
+    <script type="text/javascript" src="/js/min.js"></script>
+</head>
+
+<body>
+<%- include('../partials/admin_navbar') %>
+
+
+<div class="center">
+    <div id="full" hidden>
+        <div class="title" id="o_history">Historique des commandes:</div>
+        <form id='order_search'>
+            <input class="search_bar" type="search" name="orderno">
+            <button class="look_up">👁️</button>
+        </form>
+
+        <!-- Liste des commandes-->
+        <table id="order_table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="empty" hidden>
+        <div class="title" id="no_order">Vous n'avez aucune commande</div>
+        <form id='order_search'>
+            <input class="search_bar" type="search" name="orderno">
+            <button class="look_up">👁️</button>
+        </form>
+    </div>
+
+</div>
+
+<div id="popup" class="popup_div">
+    <div class="center">
+        <div class="main">
+            <button class="popup_close" onclick="toggle_popup()"><span aria-hidden="true" onclick="window.location.reload()">&times;</span></button>
+            <label class="title_label" id="order_label">Gérer la commande :</label>
+            <input type="hidden" id="popup_var">
+            <label for="cmd_clt_gone" id="order_picked_up">Commande récupérée par le client: </label>
+            <input type="date" id="cmd_clt_gone" class="in" onclick="min_date('cmd_clt_gone', 'cmd_clt_back')" onchange="mark_picked_up()"><br>
+            <label for="cmd_clt_back" id="order_brought_back">Commande ramenée par le client: </label>
+            <input type="date" id="cmd_clt_back" class="in" onchange="mark_dropped_off()"  disabled><br>
+            <label for="paid" id="paid_deposit">Caution payée: </label>
+            <input type="checkbox" id="paid" class="in" onclick="min_date('cmd_clt_gone', 'cmd_clt_back')" onchange="mark_paid()"><br>
+            <label for="archive" id="archived">Archiver : </label>
+            <input type="checkbox" id="archive" class="in" onchange="mark_archived()">
+        </div>
+    </div>
+</div>
+<script>
+    table('order', <%= receiptno %>);
+    empty();
+</script>
+
+</body>
+</html>   
+
+
+
+
+
+
+
+
+
+
+

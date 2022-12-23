@@ -1,0 +1,21 @@
+<!--login-admin page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+
+<body>
+<%- include('../partials/index_navbar') %>
+
+<div class="center">
+    <div class="main">
+        <form method="post" action="/connect_admin">
+            <label class="title_label" id="login">Se connecter</label>
+            <input class="in" type="text" name="email" placeholder="Email" required>
+            <input class="in" type="password" id="pwd" name="password" placeholder="Mot de passe" required>
+            <button class="but" id="login">Se connecter</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>   

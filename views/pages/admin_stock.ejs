@@ -1,0 +1,34 @@
+<!--stock - admin page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+<head>
+    <link rel="stylesheet" href="/css/table.css">
+    <script type="text/javascript" src="js/table_utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"></script>
+    <script type="text/javascript" src="/js/db_table_empty.js"></script>
+</head>
+
+<body>
+<%- include('../partials/admin_navbar') %>
+
+<div class="center">
+    <div id="full" hidden>
+        <div class="title" id="stock">Contenu de l'inventaire:</div>
+        <!-- Liste des produit disponibles en stock-->
+        <table id="stock_table">
+            <thead></thead>
+            <tbody></tbody>
+        </table>
+    </div>
+
+    <div id="empty" hidden>
+        <div class="title" id="empty_stock">Votre stock est vide pensez à le remplir 👀</div>
+    </div>
+</div>
+
+<script>
+    table("stock");
+</script>
+</body>
+</html>   

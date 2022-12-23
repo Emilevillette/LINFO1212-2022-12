@@ -111,3 +111,9 @@ louevainlinux.sqlite
 #HTTPS certificates
 key.pem
 cert.pem
+
+#mac .ds_store files
+.DS_Store
+
+#Product thumbnails
+./public/img/productThumbnail/

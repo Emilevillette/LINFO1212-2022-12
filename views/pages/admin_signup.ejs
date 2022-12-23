@@ -1,0 +1,22 @@
+<!--stock-admin page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+
+<body>
+<%- include('../partials/admin_navbar') %>
+
+<div class="center">
+    <div class="main">
+        <form action="/create_admin" method="post">
+            <label class="title_label" id="signup">Créer un compte admin</label>
+            <input class="in" type="text" id="name" name="full_name" placeholder="Nom Complet" required>
+            <input class="in" type="email" pattern="[a-zA-Z0-9._%+-]{3,64}@[a-zA-Z0-9.-]{2,63}\.[a-zA-Z]{2,4}$" name="email" placeholder="Email" required>
+            <input class="in" type="password" id="pwd" name="password" placeholder="Mot de passe" required>
+            <button class="but" id="signup">Créer le compte</button>
+        </form>
+    </div>
+</div>
+</body>
+
+</html>   

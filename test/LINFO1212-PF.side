@@ -1,0 +1,244 @@
+{
+  "id": "a7c7f317-cb21-4c19-8026-66701e37efe8",
+  "version": "2.0",
+  "name": "LINFO1212-PF",
+  "url": "https://localhost:8080",
+  "tests": [{
+    "id": "21166d42-0885-4ace-bdae-134b6da41fb4",
+    "name": "add product",
+    "commands": [{
+      "id": "c87ace83-a05f-4b68-80a1-21aa4d3f156f",
+      "comment": "",
+      "command": "open",
+      "target": "/logout",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "68625ff8-566e-408c-bbc8-e0b32fbebc51",
+      "comment": "",
+      "command": "open",
+      "target": "/login",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "479c1d40-b4f0-409a-ae49-3d01a0872b6e",
+      "comment": "",
+      "command": "click",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.in:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "24b76135-f203-4259-9edb-4b76d2f95c05",
+      "comment": "",
+      "command": "type",
+      "target": "name=email",
+      "targets": [
+        ["name=email", "name"],
+        ["css=.in:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='email']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "admin@louvainlinux.org"
+    }, {
+      "id": "cd6bb28e-077a-4ccc-8049-98aecc4fcf5e",
+      "comment": "",
+      "command": "type",
+      "target": "name=password",
+      "targets": [],
+      "value": "supersecurepwd"
+    }, {
+      "id": "8ea0f6f0-fb7b-473f-b7b6-b17158a78356",
+      "comment": "",
+      "command": "sendKeys",
+      "target": "name=password",
+      "targets": [
+        ["name=password", "name"],
+        ["css=.in:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='password']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "${KEY_ENTER}"
+    }, {
+      "id": "89f3447c-36bd-4908-b3cf-574d370a4e03",
+      "comment": "",
+      "command": "executeScript",
+      "target": "return [...Array(10).keys()];",
+      "targets": [],
+      "value": "x"
+    }, {
+      "id": "11f29530-9ac9-4a0f-a724-ae9868656bd4",
+      "comment": "",
+      "command": "forEach",
+      "target": "x",
+      "targets": [],
+      "value": "itr"
+    }, {
+      "id": "805e98df-a8af-4cd9-a832-ec5a11aa569e",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Stock",
+      "targets": [
+        ["linkText=Stock", "linkText"],
+        ["css=.link:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Stock')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/stock')]", "xpath:href"],
+        ["xpath=//nav/div/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Stock')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "45fc919f-b7a2-4df3-829b-1d5c536c35dd",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Rajouter un élément au stock",
+      "targets": [
+        ["linkText=Rajouter un élément au stock", "linkText"],
+        ["css=.log:nth-child(2)", "css:finder"],
+        ["xpath=//a[contains(text(),'Rajouter un élément au stock')]", "xpath:link"],
+        ["xpath=//a[contains(@href, '/add_to_stock')]", "xpath:href"],
+        ["xpath=//form/a", "xpath:position"],
+        ["xpath=//a[contains(.,'Rajouter un élément au stock')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4263489e-9068-4d9a-bf79-32e0425ceaef",
+      "comment": "",
+      "command": "click",
+      "target": "name=name",
+      "targets": [
+        ["name=name", "name"],
+        ["css=.in:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='name']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ab336f1d-3c0b-4d3b-82e6-8ac1869f9e73",
+      "comment": "",
+      "command": "type",
+      "target": "name=name",
+      "targets": [
+        ["name=name", "name"],
+        ["css=.in:nth-child(2)", "css:finder"],
+        ["xpath=//input[@name='name']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "test element ${itr}"
+    }, {
+      "id": "ae2ff621-ba67-4825-9ab8-ceb02139f56e",
+      "comment": "",
+      "command": "type",
+      "target": "name=description",
+      "targets": [
+        ["name=description", "name"],
+        ["css=.in:nth-child(3)", "css:finder"],
+        ["xpath=//input[@name='description']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": "this is a description for the test element ${itr}"
+    }, {
+      "id": "1b53eec8-9247-4334-bbc2-991eff91c35e",
+      "comment": "",
+      "command": "type",
+      "target": "name=cautionAmount",
+      "targets": [
+        ["name=cautionAmount", "name"],
+        ["css=.in:nth-child(4)", "css:finder"],
+        ["xpath=//input[@name='cautionAmount']", "xpath:attributes"],
+        ["xpath=//input[3]", "xpath:position"]
+      ],
+      "value": "${itr}1234"
+    }, {
+      "id": "62f96c45-dfe5-4012-b714-763802587433",
+      "comment": "",
+      "command": "click",
+      "target": "id=img",
+      "targets": [
+        ["id=img", "id"],
+        ["name=img", "name"],
+        ["css=#img", "css:finder"],
+        ["xpath=//input[@id='img']", "xpath:attributes"],
+        ["xpath=//input[5]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ea4370a1-c737-44ec-b9b3-86da30a6e75e",
+      "comment": "",
+      "command": "type",
+      "target": "id=img",
+      "targets": [],
+      "value": "C:\\Users\\emile\\Webstorm projects\\LINFO1212_Projet_Final\\public\\img\\llln.png"
+    }, {
+      "id": "406db7a7-ff30-47cf-aae7-3eb46a3b0376",
+      "comment": "",
+      "command": "type",
+      "target": "name=quantity",
+      "targets": [
+        ["name=quantity", "name"],
+        ["css=.in:nth-child(5)", "css:finder"],
+        ["xpath=//input[@name='quantity']", "xpath:attributes"],
+        ["xpath=//input[4]", "xpath:position"]
+      ],
+      "value": "1${itr}"
+    }, {
+      "id": "78ca7a0c-7150-4d48-87dc-821ee993dcad",
+      "comment": "",
+      "command": "click",
+      "target": "name=category",
+      "targets": [
+        ["name=category", "name"],
+        ["css=.in:nth-child(6)", "css:finder"],
+        ["xpath=//select[@name='category']", "xpath:attributes"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "d605dbf4-4d12-4e1f-9bd5-72e0229191cc",
+      "comment": "",
+      "command": "select",
+      "target": "name=category",
+      "targets": [],
+      "value": "label=Un lecteur de disque externe"
+    }, {
+      "id": "b331acec-a75d-4671-a066-8936776f1165",
+      "comment": "",
+      "command": "click",
+      "target": "css=.but",
+      "targets": [
+        ["css=.log", "css:finder"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Rajouter au stock')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4b5a0606-7841-4a99-b4dc-fb207512bfcb",
+      "comment": "",
+      "command": "end",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "fb400d08-9f71-456d-b673-69d823ce196f",
+      "comment": "",
+      "command": "close",
+      "target": "",
+      "targets": [],
+      "value": ""
+    }]
+  }],
+  "suites": [{
+    "id": "531fc085-91da-4de7-b661-7ac359321d81",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["21166d42-0885-4ace-bdae-134b6da41fb4"]
+  }],
+  "urls": ["https://localhost:8080/"],
+  "plugins": []
+}

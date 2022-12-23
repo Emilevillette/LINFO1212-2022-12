@@ -4,7 +4,7 @@
   "description": "Service de gestion d'inventaire pour le kot-à-projet Louvain-li-Nux",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,7 +17,18 @@
   },
   "homepage": "https://github.com/Emilevillette/LINFO1212_Projet_Final#readme",
   "dependencies": {
+    "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
-    "express": "^4.18.2"
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.8",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "multer": "^1.4.5-lts.1",
+    "sequelize": "^6.25.6",
+    "sqlite3": "^5.1.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.29.0",
+    "jest": "^29.3.1"
   }
 }

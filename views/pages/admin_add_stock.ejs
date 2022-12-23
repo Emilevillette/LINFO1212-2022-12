@@ -1,0 +1,41 @@
+<!--Add stock - admin page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+
+<body>
+<%- include('../partials/admin_navbar') %>
+
+<div class="center">
+    <div class="main">
+        <form method="post" action="/add_product" enctype="multipart/form-data">
+            <label class="title_label" id="add_to_stock">Rajouter un élément au stock</label>
+            <input class="in" type="text" name="name" id="name" placeholder="Nom Complet" required>
+            <input class="in" type="text" name="description" id="" placeholder="Description" required>
+            <input class="in" type="number" name="cautionAmount" placeholder="Caution" required>
+            <input class="in" type="number" name="quantity" placeholder="Quantité" required>
+            <p><label for="img" id="choose_img">Selectionnez une image:</label></p>
+            <input type="file" id="img" name="img" accept="image/*"  required>
+            <select class="in" list="categories" name="category" placeholder="Catégorie" required>
+                <!--<datalist id="categories">-->
+                    <!-- Not dynamic -->
+                    <option id="mics">Des Micros de divers types + des filtres</option>
+                    <option id="audio">De la connectique audio</option>
+                    <option id="disk">Un lecteur de disque externe</option>
+                    <option id="keyboards">Des claviers USB pour ordinateurs</option>
+                    <option id="monitors">Des écrans d'ordinateurs</option>
+                    <option id="reseau">Connectiques réseaux (ethernet) : des switchs, des câbles et un routeur</option>
+                    <option id="sms">Un Module SMS</option>
+                    <option id="laptops">Des PC portables et des tours</option>
+                    <option id="pc_connect">Divers connectiques et adaptateurs de connection pour pc</option>
+                <!--</datalist>-->
+            </select>
+            <button class="but" id="add_to_stock">Rajouter au stock</button>
+        </form>
+    </div>
+</div>
+</body>
+<script>
+    console.log(document.getElementById("img").innerHTML);
+</script>
+</html>   

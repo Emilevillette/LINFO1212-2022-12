@@ -1,0 +1,58 @@
+<!--stock-display page-->
+<!DOCTYPE html>
+<html lang="fr">
+<%- include('../partials/head') %>
+<head>
+    <link rel="stylesheet" href="/css/prod_disp.css">
+    <link rel="stylesheet" href="/css/popup.css">
+    <script type="text/javascript" src="/js/popup.js"></script>
+    <script type="text/javascript" src="/js/min.js"></script>
+</head>
+
+
+<body>
+<%- include('../partials/user_navbar') %>
+
+<div class="title"><span id="products_title">Produits disponibles dans la categorie</span>"<%= category %>":</div>
+<div class="grid">
+    <% for(var element in products) { %>
+        <div class="box">
+            <h2><%= products[element]["id"] %></h2>
+            <div class="img">
+                <img src="<%= products[element]["imgLink"] %>" alt="">
+            </div>
+            <p id="deposit">Caution:</p><p> <%= products[element]["cautionAmount"] %> €</p>
+            <p id="quantity_disp">Quantité disponible</p><p><%= products[element]["quantity"] %></p>
+            <input type="hidden"  id="product_quantity" value="<%= products[element]["quantity"] %>">
+            <button class="but" id="add" onclick="toggle_popup();change_product_input('<%= products[element]["id"] %>')">
+                Ajouter
+            </button>
+        </div>
+    <% } %>
+</div>
+
+
+<div id="popup" class="popup_div">
+    <div class="center">
+        <div class="main">
+            <button class="popup_close" onclick="toggle_popup()" >&times;</button>
+            <form action="/add_to_cart" method="post">
+                <input type="hidden" name="product_model" id="popup_product" value="">
+                <label class="title_label" id="fill">Veuillez remplir les champs ci-dessous:</label>
+                <small id="start_date">Date de la sortie du produit:</small>
+                <input class="in" type="date" min="" onclick="min_date('date_sortie','date_retour')" id="date_sortie" name="start_date" required>
+                <small id="end_date">Date du retour du produit:</small>
+                <input class="in" type="date" min="" onclick="min_date('date_sortie','date_retour')" id="date_retour" name="end_date" disabled required>
+                <small id="quantity">Quantité souhaitée</small>
+                <input class="in" type="number" min="1" name="quantity" placeholder="Quantité" value=1 id="popup_quantity" required>
+                <button class="but" id="submit">Confirmer</button>
+                </a>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+
+
+</html>   
