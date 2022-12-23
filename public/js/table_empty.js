@@ -1,4 +1,6 @@
-// This function hides the tables (that do not import elements from the db) when they're empty and displays a message.
+/**
+ * This function hides the tables (that do not import elements from the db) when they're empty and displays a message.
+ */
 window.addEventListener("load", empty);
 
 function empty() {

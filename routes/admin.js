@@ -177,7 +177,6 @@ router.get("/order_history", urlencodedParser, async function (req, res) {
         res.redirect("/login");
     } else {
         //Get all FINISHED orders from database
-        //console.log(req.query.orderno);
         res.render("pages/admin_order_log", {receiptno: req.query.receiptno});
     }
 });
@@ -197,7 +196,6 @@ router.get("/get_all_orders", urlencodedParser, async function (req, res) {
         res.redirect("/login");
     } else {
         let orders = {}
-        console.log(req.query);
         if (req.query.receiptno !== 'undefined') {
             orders = await Order_mgmt.get_orders_by_receipt_number(req.query.receiptno);
         } else {
@@ -207,6 +205,9 @@ router.get("/get_all_orders", urlencodedParser, async function (req, res) {
     }
 });
 
+/**
+ * Stock manager
+ */
 
 router.post("/mark_archived", jsonparser, async function (req, res) {
     if (!req.session.email) {
@@ -221,7 +222,7 @@ router.post("/mark_payed", jsonparser, async function (req, res) {
     if (!req.session.email) {
         res.redirect("/login");
     } else {
-        await Order_mgmt.mark_payed(req.body.orderno);
+        await Order_mgmt.mark_paid(req.body.orderno);
         res.sendStatus(200);
     }
 });

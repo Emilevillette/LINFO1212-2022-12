@@ -1,4 +1,5 @@
-/** Extract a list of values from dictionaries in a list
+/**
+ * Extract a list of values from dictionaries in a list
  *
  * @param dict_list
  * @param attribute_name

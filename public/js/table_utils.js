@@ -1,6 +1,11 @@
 /* eslint-disable no-unused-vars */
 
-// This function sets the right parametrs for the get_and_insert_table().
+/**
+ * This function sets the right parametrs for the get_and_insert_table().
+ *
+ * @param type
+ * @param receiptno
+ */
 function table(type, receiptno){
     var tables = {
         order:{

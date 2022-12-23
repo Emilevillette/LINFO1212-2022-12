@@ -4,6 +4,11 @@
  * - French
  * - English
  */
+
+/**
+ * Set the language on page load
+ * Used in onload.js
+ */
 function set_translate() {
     const elements = document.querySelectorAll("*");
     let icon = document.getElementById("trans");
@@ -15,6 +20,9 @@ function set_translate() {
     }
 }
 
+/**
+ * Translate the page to French or English
+ */
 function translate_page(){
     let icon = document.getElementById("trans");
     if (document.cookie.includes("eng=Off")) {
@@ -43,7 +51,7 @@ function aux_translate(lang){
 }
 
 
-/* Translated text */
+/** Translated text */
 const language = {
     fr : {
         login:"Se connecter",

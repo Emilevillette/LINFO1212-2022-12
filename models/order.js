@@ -55,10 +55,10 @@ const Orders = sequelize.define("orders", {
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    comments: {
+    /**comments: {
         type: DataTypes.TEXT,
         allowNull: true
-    },
+    },*/
     productId: {
         //https://stackoverflow.com/questions/41860792/how-can-i-have-a-datatype-of-array-in-mysql-sequelize-instance
         type: DataTypes.STRING,

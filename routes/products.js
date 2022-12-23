@@ -15,12 +15,11 @@ router.get("/category", async function (req, res) {
 });
 
 /**
- * products filtered by category
+ * Products filtered by category
  */
 
 router.get("/product", async function (req, res) {
     let products = await Product_mgmt.get_all_products_in_category(req.query.category);
-    console.log(products);
     res.render("pages/products", {products: products, category: req.query.category});
 });
 

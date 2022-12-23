@@ -78,7 +78,9 @@ router.get("/next_order_no", urlencodedParser, async function(req, res){
     res.json({orderno: retval});
 });
 
-//Order completed
+/**
+ * Order completed page
+ */
 router.get('/order_completed',function (req,res){
     res.render('pages/order',{order_number: req.query.receiptno});
 });

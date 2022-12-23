@@ -1,4 +1,6 @@
-// This function allows us to switch from light to dark mode.
+/**
+ * This function allows us to switch from light to dark mode.
+ */
 function dark_mode() {
     let icon = document.getElementById("icon");
     document.body.classList.toggle("dark-theme");
@@ -10,6 +12,11 @@ function dark_mode() {
         document.cookie = "dark_mode=Off";
     }
 }
+
+/**
+ * Set dark mode on page load
+ * Used in onload.js
+ */
 function setDark_mode() {
     if (!document.cookie.includes("dark_mode")) {
         document.cookie = "dark_mode=Off";

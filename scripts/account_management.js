@@ -4,9 +4,9 @@ const {Admins} = require("../models/admin");
 /**
  * Creates an admin account
  *
- * @param email the admins email address
- * @param password the admins password
- * @param is_main_admin
+ * @param email admin email address
+ * @param password admin password
+ * @param is_main_admin true if the account is a main admin, false otherwise
  * @returns {Promise<string>}
  */
 async function create_account(email, password, is_main_admin) {
@@ -26,7 +26,7 @@ async function create_account(email, password, is_main_admin) {
 /**
  * Returns account if it exists, false otherwise
  *
- * @param email the admins email address
+ * @param email admin email address
  * @returns {Promise<Model<any, TModelAttributes>|boolean>}
  */
 async function check_existing(email) {
@@ -41,8 +41,8 @@ async function check_existing(email) {
 /**
  * Gets the admin account that it's trying to connect
  *
- * @param email the admins email address
- * @param password the admins password
+ * @param email admin email address
+ * @param password admin password
  * @returns {Promise<{code: string, data: null, pass: boolean}|{code: string, data: (Model<*, TModelAttributes>|boolean), pass: boolean}>}
  */
 async function get_account(email, password) {
@@ -95,7 +95,7 @@ async function hash_password(password) {
 /**
  * Deletes an admin account
  *
- * @param email
+ * @param email admin email
  * @returns {Promise<number>}
  */
 async function delete_account(email){

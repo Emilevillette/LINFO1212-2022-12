@@ -5,7 +5,6 @@ const {sequelize} = require("../config/database");
  * Adds a new category of products to the database
  *
  * @param name category's name
- * @param description product's description
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
 async function add_category(name) {
@@ -61,13 +60,14 @@ async function find_product(name) {
 }
 
 /**
- * Add mutiple products at a time
- * @param qty quantity
- * @param name model
+ * Add multiple products at a time
+ *
+ * @param quantity
+ * @param name model's name
  * @returns {Promise<Model<*, TModelAttributes>>}
  */
-async function add_multiple_products(qty, name) {
-    for (let i = 0; i < qty; i++) {
+async function add_multiple_products(quantity, name) {
+    for (let i = 0; i < quantity; i++) {
         await add_product(name);
     }
 }
@@ -100,26 +100,27 @@ async function add_to_inventory(req) {
 }
 
 
-/** Returns all product models
+/**
+ * Returns all product models
  *
- * @param options
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
-async function get_all_products(options) {
+async function get_all_products() {
     return ProductModel.findAll({raw: true});
 }
 
-/** Returns all categories
+/**
+ * Returns all categories
  *
- * @param options
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
-async function get_all_categories(options) {
+async function get_all_categories() {
     return ProductCategory.findAll({raw: true});
 }
 
 
-/** Returns all product models in category
+/**
+ * Returns all product models in category
  *
  * @param categoryId
  * @returns {Promise<Model<any, TModelAttributes>[]>}
@@ -128,7 +129,8 @@ async function get_all_products_in_category(categoryId) {
     return ProductModel.findAll({where: {productCategoryId: categoryId}, raw: true});
 }
 
-/** Returns quantity in stock for a given product model
+/**
+ * Returns quantity in stock for a given product model
  *
  * @param productModel
  * @returns {Promise<*>}
@@ -138,11 +140,12 @@ async function get_available_quantity(productModel) {
 }
 
 
-/** Returns n products from products model
+/**
+ * Returns n products from products model
  *
  * @param productModel
  * @param quantity how many
- * @param random randomize ?
+ * @param random randomize
  * @param attributes which attributes to select
  * @returns {Promise<Model<any, TModelAttributes>[]>}
  */
@@ -156,9 +159,15 @@ async function get_n_products(productModel, quantity, random = false, attributes
     })
 }
 
-async function delete_product(produitmodel){
+/**
+ * Deletes a product model
+ *
+ * @param product_model
+ * @returns {Promise<void>}
+ */
+async function delete_product(product_model){
     await ProductModel.destroy({
-        where: {id : produitmodel}
+        where: {id : product_model}
     });
 };
 

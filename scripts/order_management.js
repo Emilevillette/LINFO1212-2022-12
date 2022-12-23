@@ -14,7 +14,8 @@ async function get_all_orders() {
 }
 
 
-/** Find order by number
+/**
+ * Find order by number
  *
  * @param order_number
  * @returns {Promise<Model<any, TModelAttributes> | null>}
@@ -31,8 +32,8 @@ async function get_receipt_by_number(receipt_number) {
  * Creates a new client order
  *
  * @param req all the queries entered by the client
- * @param item
- * @param receiptNo
+ * @param item the item that the client is trying to rent
+ * @param receiptNo receipt number
  * @returns {Promise<CreateOptions<Attributes<Model>> extends ({returning: false} | {ignoreDuplicates: true}) ? void : Model<any, TModelAttributes>>}
  */
 async function create_order(req, item, receiptNo) {
@@ -61,17 +62,22 @@ async function create_order(req, item, receiptNo) {
 
 /** One order per product in cart
  *
- * @param req
+ * @param cart all the items in the cart
  * @returns {Promise<{autoIncrement: boolean, allowNull: boolean, type: IntegerDataTypeConstructor, primaryKey: boolean}>}
  */
-async function create_batch_orders(req) {
+async function create_batch_orders(cart) {
     let receipt = await Receipt.create();
-    for (let element in req.cookies.cart) {
-        await create_order(req, req.cookies.cart[element], receipt["n_commande"]);
+    for (let element in cart.cookies.cart) {
+        await create_order(cart, cart.cookies.cart[element], receipt["n_commande"]);
     }
     return receipt["n_commande"];
 }
 
+/**
+ * Gets the latest order
+ *
+ * @returns {Promise<Model<any, TModelAttributes>>}
+ */
 async function get_latest_order() {
     return await Receipt.findOne({
         order: [ [ 'n_commande', 'DESC' ]],
@@ -87,7 +93,12 @@ async function get_all_receipts() {
     return await Receipt.findAll({raw: true});
 }
 
-
+/**
+ * Get all orders with the given receipt number
+ *
+ * @param receiptno the receipt number
+ * @returns {Promise<Model<any, TModelAttributes>[]>}
+ */
 async function get_orders_by_receipt_number(receiptno) {
     return await Orders.findAll({
         raw: true, where: {
@@ -96,6 +107,12 @@ async function get_orders_by_receipt_number(receiptno) {
     });
 }
 
+/**
+ * Mark an order as archived
+ *
+ * @param orderno order number
+ * @returns {Promise<Model<any, TModelAttributes>>}
+ */
 async function mark_archived(orderno) {
     let order = await Orders.findByPk(orderno);
     order.is_archived = !order.is_archived;
@@ -117,18 +134,38 @@ async function mark_archived(orderno) {
     return order.save();
 }
 
-async function mark_payed(orderno) {
+/**
+ * Mark an order as paid
+ *
+ * @param orderno order number
+ * @returns {Promise<Model<any, TModelAttributes>>}
+ */
+async function mark_paid(orderno) {
     let order = await Orders.findByPk(orderno);
     order.is_payed = !order.is_payed;
     return order.save();
 }
 
+/**
+ * Mark the order as picked up
+ *
+ * @param orderno order number
+ * @param date date that the client picks up his orders
+ * @returns {Promise<Model<any, TModelAttributes>>}
+ */
 async function mark_picked_up(orderno, date) {
     let order = await Orders.findByPk(orderno);
     order.date_client_pickup = new Date(date);
     return order.save();
 }
 
+/**
+ * Mark the order as dropped off
+ *
+ * @param orderno order number
+ * @param date date that the client drops off his rented items
+ * @returns {Promise<Model<any, TModelAttributes>>}
+ */
 async function mark_dropped_off(orderno, date) {
     let order = await Orders.findByPk(orderno);
     order.date_client_return = new Date(date);
@@ -144,7 +181,7 @@ module.exports = {
     get_all_receipts,
     get_orders_by_receipt_number,
     mark_archived,
-    mark_payed,
+    mark_paid,
     mark_picked_up,
     mark_dropped_off,
     get_latest_order

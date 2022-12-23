@@ -1,4 +1,8 @@
-// This function generates a pdf of the client's cart elements in the language that is selected for the website.
+/**
+ * This function generates a pdf of the client's cart elements in the language that is selected for the website.
+ *
+ * @returns {Promise<void>}
+ */
 async function generatePDF() {
     const pdf = new jsPDF;
     const date_t = new Date();
