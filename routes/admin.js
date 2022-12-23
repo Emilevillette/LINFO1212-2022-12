@@ -1,12 +1,21 @@
 const express = require("express");
 const router = express.Router();
 
+const fs = require("fs");
+const path_admin = require("path");
+
 const bodyparser = require("body-parser");
 const urlencodedParser = bodyparser.urlencoded({extended: true});
 const jsonparser = bodyparser.json();
 
 const frontThumbPath = "img/productThumbnail/";
-const backendThumbPath = "./public/img/productThumbnail/";
+const backendThumbPath = path_admin.join(__dirname,"../public/img/productThumbnail/");
+fs.mkdir(path_admin.join(__dirname, "../public/img/productThumbnail/"), (err) => {
+    if (err) {
+        return console.error(err);
+    }
+    console.log('Directory created successfully!');
+});
 const multer = require("multer");
 //Configure multer file destination
 const storage = multer.diskStorage({
