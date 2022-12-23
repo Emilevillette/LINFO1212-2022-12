@@ -125,7 +125,7 @@ const language = {
         title_index_stock: "Which page would you like to access",
         add_stock: "Add to stock",
         visualise_stock: "Visualise stock",
-        out: "Please present the order code below to Kot-à-Projet Louvain-li-Nux in order to collect your ordered:",
+        out: "Please present the order code below to Kot-à-Projet Louvain-li-Nux in order to collect your order:",
         products_title: "Products avaible in the section",
         add: "Add",
         shop: "Shop",
@@ -134,7 +134,7 @@ const language = {
         name: "Full Name",
         GSM: "Phone number in the form 0491923459",
         address: "Your full adress",
-        cookie: "🍪 By using this site, you accept cookies that improve your navigation",
+        cookie: "🍪 By using this website, you accept cookies that improve your navigation",
         choose_img:"Choose  an image:"
     }
 };
